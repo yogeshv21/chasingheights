@@ -3,7 +3,9 @@ import { Inter } from 'next/font/google'
 import { StoreProvider } from '@/store/StoreProvider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { WhatsAppButton } from '@/components/shared/WhatsAppButton'
+import { Toaster } from 'sonner'
 import './globals.css'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -89,6 +91,8 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             {children}
             <WhatsAppButton />
+            <Toaster position="top-center" richColors />
+
           </ThemeProvider>
         </StoreProvider>
       </body>

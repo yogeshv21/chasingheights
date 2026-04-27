@@ -1205,363 +1205,1345 @@ export const DUMMY_TREKS: Trek[] = [
     ]
   },
   {
-    id: 'matterhorn-circuit',
-    title: 'Matterhorn Circuit Trek',
-    location: 'Swiss Alps, Switzerland',
-    duration: '10 days',
-    difficulty: 'Hard',
-    cost: 1899,
-    season: 'Summer',
-    months: ['July', 'August', 'September'],
-    description: 'Circle the iconic Matterhorn through Switzerland and Italy. This challenging trek offers spectacular views of one of the world\'s most famous peaks and pristine alpine environments.',
-    image: 'https://images.unsplash.com/photo-1551524164-6cf6ac4fdc57?w=500',
-    availability: 8,
-    category: 'trending',
-    rating: 4.8,
-    reviews: 92,
+    id: 'kedarkantha-trek',
+    title: 'Kedarkantha Trek',
+    location: 'Uttarkashi, Uttarakhand, India',
+    duration: '6 days',
+    difficulty: 'Easy to Moderate',
+    cost: 699,
+    season: 'Winter',
+    months: ['December', 'January', 'February', 'March'],
+    description: 'A perfect winter trek known for snow-covered trails, dense pine forests, and a stunning summit climb with 360-degree Himalayan views.',
+    image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
+    availability: 20,
+    category: 'popular',
+    rating: 4.7,
+    reviews: 210,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=800',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800',
+        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800'
+      ],
+      videos: [
+        {
+          id: 'kedar-1',
+          title: 'Kedarkantha Snow Trek Experience',
+          thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          youtubeId: 'dQw4w9WgXcQ',
+          duration: '10:20'
+        }
+      ]
+    },
+
     highlights: [
-      'Close-up views of the Matterhorn',
-      'High-altitude alpine trails',
-      'Traditional Swiss and Italian villages',
-      'Challenging mountain passes',
-      'Pristine glacier views',
-      'Excellent mountain hut system'
+      'Snow trekking experience',
+      'Beautiful campsites like Juda Ka Talab',
+      'Panoramic summit views',
+      'Dense pine forests',
+      'Stunning sunrise from summit'
+    ],
+
+    included: [
+      'Accommodation in camps',
+      'All meals during trek',
+      'Guide and support staff',
+      'Permits and entry fees'
+    ],
+
+    notIncluded: [
+      'Transport to Sankri',
+      'Personal expenses',
+      'Trekking gear',
+      'Insurance'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Dehradun to Sankri',
+        description: 'Drive through scenic mountain roads to Sankri village.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '1,950m'
+      },
+      {
+        day: 2,
+        title: 'Sankri to Juda Ka Talab',
+        description: 'Trek through pine forests to reach campsite.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '2,700m',
+        walkingHours: '5 hours'
+      },
+      {
+        day: 3,
+        title: 'Juda Ka Talab to Base Camp',
+        description: 'Gradual ascent with snow trails.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3,100m',
+        walkingHours: '4 hours'
+      },
+      {
+        day: 4,
+        title: 'Summit & back',
+        description: 'Early morning summit climb and descent.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3,800m',
+        walkingHours: '7 hours'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Sankri', lat: 31.012, lng: 78.262, altitude: '1950m' },
+        { name: 'Juda Ka Talab', lat: 31.024, lng: 78.280, altitude: '2700m' },
+        { name: 'Kedarkantha Summit', lat: 31.0125, lng: 78.290, altitude: '3800m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'December',
+        year: 2024,
+        dates: [
+          { date: '2024-12-05', price: 699, seatsAvailable: 10, status: 'available' },
+          { date: '2024-12-15', price: 749, seatsAvailable: 3, status: 'limited' }
+        ]
+      }
     ]
   },
   {
-    id: 'patagonia-w-circuit',
-    title: 'Patagonia W Circuit',
-    location: 'Torres del Paine, Chile',
+    id: 'hamta-pass-trek',
+    title: 'Hamta Pass Trek',
+    location: 'Manali, Himachal Pradesh, India',
     duration: '5 days',
     difficulty: 'Moderate',
-    cost: 1199,
+    cost: 799,
     season: 'Summer',
-    months: ['December', 'January', 'February', 'March'],
-    description: 'Explore the dramatic landscapes of Torres del Paine National Park. This trek showcases Patagonia\'s iconic granite towers, glacial lakes, and diverse wildlife.',
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500',
+    months: ['June', 'July', 'August', 'September'],
+    description: 'A dramatic crossover trek from lush Kullu valley to the barren landscapes of Spiti.',
+    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500',
     availability: 15,
-    category: 'seasonal',
-    rating: 4.7,
-    reviews: 158,
-    highlights: [
-      'Torres del Paine granite towers',
-      'Glacial lakes and waterfalls',
-      'Diverse Patagonian wildlife',
-      'Dramatic mountain landscapes',
-      'Unique geology and ecosystems',
-      'World-class photography opportunities'
-    ]
-  },
-  {
-    id: 'gokyo-lakes-trek',
-    title: 'Gokyo Lakes and Ri Trek',
-    location: 'Khumbu, Nepal',
-    duration: '12 days',
-    difficulty: 'Hard',
-    cost: 1149,
-    season: 'Spring, Autumn',
-    months: ['March', 'April', 'May', 'October', 'November'],
-    description: 'Alternative route to Everest region featuring pristine high-altitude lakes and panoramic Himalayan views. Less crowded than EBC with equally spectacular mountain vistas.',
-    image: 'https://images.unsplash.com/photo-1571863533956-01c88e79957e?w=500',
-    availability: 10,
-    category: 'upcoming',
-    rating: 4.6,
-    reviews: 87,
-    highlights: [
-      'Turquoise Gokyo Lakes',
-      'Gokyo Ri summit (5,357m)',
-      'Views of Everest, Lhotse, Makalu, Cho Oyu',
-      'Ngozumpa Glacier crossing',
-      'Less crowded than EBC',
-      'Traditional Sherpa culture'
-    ]
-  },
-  {
-    id: 'dolomites-alta-via',
-    title: 'Dolomites Alta Via 1',
-    location: 'South Tyrol, Italy',
-    duration: '8 days',
-    difficulty: 'Moderate',
-    cost: 1299,
-    season: 'Summer',
-    months: ['June', 'July', 'August', 'September'],
-    description: 'Trek through the UNESCO World Heritage Dolomites on the famous Alta Via 1. Experience dramatic limestone peaks, mountain huts, and Italian alpine culture.',
-    image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500',
-    availability: 12,
     category: 'trending',
-    rating: 4.5,
-    reviews: 76,
-    highlights: [
-      'Dramatic Dolomite limestone formations',
-      'Mountain hut-to-hut trekking',
-      'Italian alpine cuisine',
-      'Well-maintained trail system',
-      'Via ferrata optional routes',
-      'UNESCO World Heritage scenery'
-    ]
-  },
-  {
-    id: 'milford-track',
-    title: 'Milford Track',
-    location: 'Fiordland, New Zealand',
-    duration: '4 days',
-    difficulty: 'Easy',
-    cost: 699,
-    season: 'Summer',
-    months: ['November', 'December', 'January', 'February', 'March', 'April'],
-    description: 'Walk through pristine New Zealand wilderness on this "finest walk in the world." Experience temperate rainforests, waterfalls, and dramatic fjord landscapes.',
-    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500',
-    availability: 16,
-    category: 'seasonal',
-    rating: 4.4,
-    reviews: 134,
-    highlights: [
-      'Milford Sound fjord views',
-      'Temperate rainforest hiking',
-      'Spectacular waterfalls',
-      'Unique New Zealand wildlife',
-      'Comfortable hut accommodation',
-      'All-weather hiking experience'
-    ]
-  },
-  {
-    id: 'mont-blanc-summit',
-    title: 'Mont Blanc Summit Expedition',
-    location: 'Chamonix, France',
-    duration: '6 days',
-    difficulty: 'Hard',
-    cost: 2499,
-    season: 'Summer',
-    months: ['June', 'July', 'August', 'September'],
-    description: 'Climb Western Europe\'s highest peak (4,809m) via the classic Goûter Route. This technical climb requires mountaineering experience and excellent fitness.',
-    image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
-    availability: 6,
-    category: 'upcoming',
-    rating: 4.9,
-    reviews: 45,
-    highlights: [
-      'Summit of Western Europe (4,809m)',
-      'Technical mountaineering skills required',
-      'Stunning alpine environment',
-      'World-class mountain guiding',
-      'Iconic European peak',
-      'Challenging but achievable for fit climbers'
-    ]
-  },
-  {
-    id: 'gr20-corsica',
-    title: 'GR20 Corsica Complete',
-    location: 'Corsica, France',
-    duration: '15 days',
-    difficulty: 'Hard',
-    cost: 1749,
-    season: 'Summer',
-    months: ['June', 'July', 'August', 'September'],
-    description: 'Europe\'s toughest long-distance trail through the mountains of Corsica. Challenging terrain, stunning mountain landscapes, and unique Mediterranean alpine environment.',
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500',
-    availability: 8,
-    category: 'seasonal',
-    rating: 4.6,
-    reviews: 67,
-    highlights: [
-      'Europe\'s most challenging long trail',
-      'Dramatic Corsican mountain landscapes',
-      'Unique Mediterranean flora and fauna',
-      'Technical scrambling sections',
-      'Remote mountain refuge stays',
-      'Ultimate trekking challenge'
-    ]
-  },
-  {
-    id: 'k2-base-camp',
-    title: 'K2 Base Camp Trek',
-    location: 'Karakoram, Pakistan',
-    duration: '18 days',
-    difficulty: 'Hard',
-    cost: 1899,
-    season: 'Summer',
-    months: ['June', 'July', 'August', 'September'],
-    description: 'Trek to the base of the world\'s second-highest peak through the spectacular Karakoram range. Experience massive glaciers, towering peaks, and Balti culture.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
-    availability: 12,
-    category: 'upcoming',
     rating: 4.8,
-    reviews: 89,
+    reviews: 180,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800'
+      ],
+      videos: [
+        {
+          id: 'hamta-1',
+          title: 'Hamta Pass Trek Guide',
+          thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          youtubeId: 'dQw4w9WgXcQ',
+          duration: '9:10'
+        }
+      ]
+    },
+
     highlights: [
-      'Views of K2 (8,611m)',
-      'Massive Karakoram glaciers',
-      'Concordia - Throne of Mountain Gods',
-      'Broad Peak and Gasherbrum views',
-      'Traditional Balti culture',
-      'Remote wilderness experience'
+      'Valley to desert transition',
+      'River crossings',
+      'Chandratal lake visit'
+    ],
+
+    included: [
+      'Camping',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Travel to Manali',
+      'Gear rental'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Manali to Jobra',
+        description: 'Drive and trek start.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '2800m'
+      },
+      {
+        day: 2,
+        title: 'Jobra to Balu Ka Ghera',
+        description: 'Trek along river.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3600m',
+        walkingHours: '5 hours'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Manali', lat: 32.2396, lng: 77.1887, altitude: '2050m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'June',
+        year: 2024,
+        dates: [
+          { date: '2024-06-10', price: 799, seatsAvailable: 8, status: 'available' }
+        ]
+      }
     ]
   },
   {
-    id: 'camino-santiago',
-    title: 'Camino de Santiago',
-    location: 'Northern Spain',
-    duration: '35 days',
+    id: 'kuari-pass-trek',
+    title: 'Kuari Pass Trek',
+    location: 'Chamoli, Uttarakhand, India',
+    duration: '6 days',
+    difficulty: 'Moderate',
+    cost: 749,
+    season: 'Winter, Spring',
+    months: ['December', 'January', 'February', 'March', 'April'],
+    description: 'Known as the Curzon Trail, this trek offers grand views of Nanda Devi, Dronagiri, and other Himalayan peaks.',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500',
+    availability: 14,
+    category: 'popular',
+    rating: 4.7,
+    reviews: 165,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800',
+        'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=800'
+      ],
+      videos: [
+        {
+          id: 'kuari-1',
+          title: 'Kuari Pass Trek Experience',
+          thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          youtubeId: 'dQw4w9WgXcQ',
+          duration: '9:45'
+        }
+      ]
+    },
+
+    highlights: [
+      'Panoramic Himalayan views',
+      'Dense oak forests',
+      'Snow trails in winter',
+      'Views of Nanda Devi'
+    ],
+
+    included: [
+      'Accommodation',
+      'Meals',
+      'Guide',
+      'Permits'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Personal expenses',
+      'Gear rental'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Rishikesh to Joshimath',
+        description: 'Drive through scenic mountain roads.',
+        accommodation: 'Hotel',
+        meals: 'Dinner',
+        altitude: '1875m'
+      },
+      {
+        day: 2,
+        title: 'Joshimath to Gulling',
+        description: 'Trek through forest trails.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '2900m',
+        walkingHours: '5 hours'
+      },
+      {
+        day: 3,
+        title: 'Gulling to Khullara',
+        description: 'Gradual ascent with views.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3300m',
+        walkingHours: '4 hours'
+      },
+      {
+        day: 4,
+        title: 'Kuari Pass Summit',
+        description: 'Summit climb and return.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3810m',
+        walkingHours: '7 hours'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Joshimath', lat: 30.555, lng: 79.565, altitude: '1875m' },
+        { name: 'Kuari Pass', lat: 30.528, lng: 79.588, altitude: '3810m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'January',
+        year: 2024,
+        dates: [
+          { date: '2024-01-08', price: 749, seatsAvailable: 6, status: 'available' },
+          { date: '2024-01-18', price: 799, seatsAvailable: 2, status: 'limited' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'nag-tibba-trek',
+    title: 'Nag Tibba Trek',
+    location: 'Tehri, Uttarakhand, India',
+    duration: '2 days',
     difficulty: 'Easy',
-    cost: 899,
-    season: 'Spring, Summer, Autumn',
-    months: ['April', 'May', 'June', 'July', 'August', 'September', 'October'],
-    description: 'Walk the ancient pilgrimage route across northern Spain. This cultural and spiritual journey combines history, architecture, and beautiful countryside.',
-    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=500',
+    cost: 299,
+    season: 'All year',
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'October', 'November', 'December'],
+    description: 'A perfect weekend trek offering stunning Himalayan views without extreme effort.',
+    image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 25,
-    category: 'trending',
-    rating: 4.3,
-    reviews: 287,
-    highlights: [
-      'Historic pilgrimage route',
-      'Rich Spanish culture and history',
-      'Medieval towns and architecture',
-      'Spiritual and cultural journey',
-      'Excellent infrastructure for walkers',
-      'UNESCO World Heritage sites'
-    ]
-  },
-  {
-    id: 'rwenzori-mountains',
-    title: 'Rwenzori Mountains Circuit',
-    location: 'Uganda/Congo Border',
-    duration: '9 days',
-    difficulty: 'Hard',
-    cost: 1599,
-    season: 'Dry Season',
-    months: ['December', 'January', 'February', 'June', 'July', 'August'],
-    description: 'Explore Africa\'s "Mountains of the Moon" through unique afro-alpine vegetation zones. This challenging trek features glaciers, high peaks, and diverse ecosystems.',
-    image: 'https://images.unsplash.com/photo-1571863533956-01c88e79957e?w=500',
-    availability: 8,
-    category: 'seasonal',
+    category: 'weekend',
     rating: 4.5,
-    reviews: 56,
+    reviews: 210,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=800'
+      ],
+      videos: []
+    },
+
     highlights: [
-      'Margherita Peak (5,109m)',
-      'Equatorial glaciers',
-      'Unique afro-alpine vegetation',
-      'Giant groundsels and lobelias',
-      'Remote African wilderness',
-      'Challenging high-altitude hiking'
+      'Short weekend trek',
+      'Views of Bandarpoonch peak',
+      'Camping experience'
+    ],
+
+    included: [
+      'Camping',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Personal gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Dehradun to Base Camp',
+        description: 'Drive and trek.',
+        accommodation: 'Camp',
+        meals: 'Dinner',
+        altitude: '2600m'
+      },
+      {
+        day: 2,
+        title: 'Summit and Return',
+        description: 'Sunrise hike and descend.',
+        accommodation: 'NA',
+        meals: 'Breakfast',
+        altitude: '3022m',
+        walkingHours: '5 hours'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Pantwari', lat: 30.45, lng: 78.22, altitude: '1400m' },
+        { name: 'Nag Tibba', lat: 30.39, lng: 78.25, altitude: '3022m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'March',
+        year: 2024,
+        dates: [
+          { date: '2024-03-09', price: 299, seatsAvailable: 15, status: 'available' }
+        ]
+      }
     ]
   },
   {
-    id: 'laugavegur-iceland',
-    title: 'Laugavegur Trail Iceland',
-    location: 'Highlands, Iceland',
-    duration: '4 days',
+    id: 'goechala-trek',
+    title: 'Goechala Trek',
+    location: 'Sikkim, India',
+    duration: '10 days',
+    difficulty: 'Hard',
+    cost: 1099,
+    season: 'Spring, Autumn',
+    months: ['April', 'May', 'September', 'October'],
+    description: 'Offers breathtaking close views of Kanchenjunga, the third highest mountain in the world.',
+    image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
+    availability: 8,
+    category: 'premium',
+    rating: 4.9,
+    reviews: 140,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Close view of Kanchenjunga',
+      'Dense forests',
+      'Alpine meadows'
+    ],
+
+    included: [
+      'Accommodation',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Flights',
+      'Gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Yuksom Arrival',
+        description: 'Start point.',
+        accommodation: 'Hotel',
+        meals: 'Dinner',
+        altitude: '1780m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Yuksom', lat: 27.37, lng: 88.22, altitude: '1780m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'April',
+        year: 2024,
+        dates: [
+          { date: '2024-04-12', price: 1099, seatsAvailable: 4, status: 'limited' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'buran-ghati-trek',
+    title: 'Buran Ghati Trek',
+    location: 'Himachal Pradesh, India',
+    duration: '7 days',
+    difficulty: 'Moderate to Hard',
+    cost: 899,
+    season: 'Summer',
+    months: ['May', 'June', 'September'],
+    description: 'A thrilling trek with snow walls, river crossings, and dramatic landscapes.',
+    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500',
+    availability: 10,
+    category: 'adventure',
+    rating: 4.8,
+    reviews: 130,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Snow wall descent',
+      'River crossings',
+      'High altitude pass'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Shimla to Janglik',
+        description: 'Drive to base.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '2800m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Janglik', lat: 31.33, lng: 77.63, altitude: '2800m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'June',
+        year: 2024,
+        dates: [
+          { date: '2024-06-15', price: 899, seatsAvailable: 5, status: 'available' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'beas-kund-trek',
+    title: 'Beas Kund Trek',
+    location: 'Manali, Himachal Pradesh, India',
+    duration: '3 days',
+    difficulty: 'Easy to Moderate',
+    cost: 399,
+    season: 'Summer',
+    months: ['May', 'June', 'July', 'August', 'September'],
+    description: 'A short trek to the origin of the Beas river surrounded by glaciers.',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
+    availability: 20,
+    category: 'short',
+    rating: 4.6,
+    reviews: 170,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Origin of Beas river',
+      'Glacier views',
+      'Easy trek'
+    ],
+
+    included: [
+      'Camping',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Personal gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Manali to Solang',
+        description: 'Drive and trek.',
+        accommodation: 'Camp',
+        meals: 'Dinner',
+        altitude: '2600m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Solang Valley', lat: 32.316, lng: 77.157, altitude: '2600m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'May',
+        year: 2024,
+        dates: [
+          { date: '2024-05-20', price: 399, seatsAvailable: 12, status: 'available' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pangarchulla-peak-trek',
+    title: 'Pangarchulla Peak Trek',
+    location: 'Chamoli, Uttarakhand, India',
+    duration: '7 days',
+    difficulty: 'Hard',
+    cost: 949,
+    season: 'Spring',
+    months: ['April', 'May'],
+    description: 'A challenging summit trek offering panoramic Himalayan views including Nanda Devi and Hathi Ghoda peaks.',
+    image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
+    availability: 10,
+    category: 'adventure',
+    rating: 4.8,
+    reviews: 120,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=800',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800'
+      ],
+      videos: [
+        {
+          id: 'pangarchulla-1',
+          title: 'Pangarchulla Summit Climb',
+          thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          youtubeId: 'dQw4w9WgXcQ',
+          duration: '8:12'
+        }
+      ]
+    },
+
+    highlights: [
+      'Technical summit climb',
+      '360-degree Himalayan views',
+      'Snow trekking experience',
+      'Kuari Pass extension option'
+    ],
+
+    included: [
+      'Accommodation',
+      'Meals',
+      'Guide',
+      'Permits'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Technical gear',
+      'Personal expenses'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Rishikesh to Joshimath',
+        description: 'Drive to Joshimath.',
+        accommodation: 'Hotel',
+        meals: 'Dinner',
+        altitude: '1875m'
+      },
+      {
+        day: 2,
+        title: 'Joshimath to Dhak to Gulling',
+        description: 'Trek begins.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '2900m',
+        walkingHours: '5 hours'
+      },
+      {
+        day: 3,
+        title: 'Gulling to Khullara',
+        description: 'Ascend through forests.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3300m',
+        walkingHours: '4 hours'
+      },
+      {
+        day: 4,
+        title: 'Summit Day',
+        description: 'Climb Pangarchulla Peak and return.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '4575m',
+        walkingHours: '8 hours'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Joshimath', lat: 30.555, lng: 79.565, altitude: '1875m' },
+        { name: 'Pangarchulla Peak', lat: 30.52, lng: 79.58, altitude: '4575m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'April',
+        year: 2024,
+        dates: [
+          { date: '2024-04-10', price: 949, seatsAvailable: 5, status: 'available' },
+          { date: '2024-04-20', price: 999, seatsAvailable: 2, status: 'limited' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'tarsar-marsar-trek',
+    title: 'Tarsar Marsar Trek',
+    location: 'Kashmir, India',
+    duration: '7 days',
     difficulty: 'Moderate',
     cost: 999,
     season: 'Summer',
-    months: ['June', 'July', 'August', 'September'],
-    description: 'Trek through Iceland\'s otherworldly landscapes featuring colorful mountains, geothermal areas, glaciers, and volcanic terrain. One of the world\'s most scenic trails.',
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500',
-    availability: 14,
-    category: 'trending',
-    rating: 4.7,
-    reviews: 145,
+    months: ['July', 'August', 'September'],
+    description: 'A breathtaking trek through alpine lakes and lush meadows in Kashmir.',
+    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500',
+    availability: 12,
+    category: 'premium',
+    rating: 4.9,
+    reviews: 160,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800'
+      ],
+      videos: []
+    },
+
     highlights: [
-      'Colorful rhyolite mountains',
-      'Active geothermal areas',
-      'Glacial river crossings',
-      'Unique volcanic landscapes',
-      'Northern lights possible',
-      'Dramatic weather changes'
+      'Twin alpine lakes',
+      'Kashmir meadows',
+      'Peaceful camping spots'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Flights',
+      'Gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Srinagar to Aru',
+        description: 'Drive to basecamp.',
+        accommodation: 'Camp',
+        meals: 'Dinner',
+        altitude: '2400m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Aru Valley', lat: 34.07, lng: 75.31, altitude: '2400m' },
+        { name: 'Tarsar Lake', lat: 34.1, lng: 75.35, altitude: '3795m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'July',
+        year: 2024,
+        dates: [
+          { date: '2024-07-15', price: 999, seatsAvailable: 6, status: 'available' }
+        ]
+      }
     ]
   },
   {
-    id: 'annapurna-base-camp',
-    title: 'Annapurna Base Camp Trek',
-    location: 'Annapurna, Nepal',
-    duration: '10 days',
+    id: 'dzongri-trek',
+    title: 'Dzongri Trek',
+    location: 'Sikkim, India',
+    duration: '6 days',
+    difficulty: 'Moderate',
+    cost: 899,
+    season: 'Spring, Autumn',
+    months: ['April', 'May', 'October', 'November'],
+    description: 'A short yet rewarding trek with panoramic views of Kanchenjunga.',
+    image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
+    availability: 10,
+    category: 'scenic',
+    rating: 4.7,
+    reviews: 95,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Kanchenjunga views',
+      'Rhododendron forests',
+      'Dzongri top sunrise'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Permits',
+      'Flights'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Yuksom Arrival',
+        description: 'Start trek.',
+        accommodation: 'Hotel',
+        meals: 'Dinner',
+        altitude: '1780m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Yuksom', lat: 27.37, lng: 88.22, altitude: '1780m' },
+        { name: 'Dzongri', lat: 27.5, lng: 88.18, altitude: '4020m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'October',
+        year: 2024,
+        dates: [
+          { date: '2024-10-10', price: 899, seatsAvailable: 4, status: 'available' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pin-parvati-pass',
+    title: 'Pin Parvati Pass Trek',
+    location: 'Himachal Pradesh, India',
+    duration: '11 days',
+    difficulty: 'Extreme',
+    cost: 1299,
+    season: 'Monsoon',
+    months: ['July', 'August'],
+    description: 'One of the toughest treks connecting Parvati Valley to Spiti Valley.',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
+    availability: 6,
+    category: 'extreme',
+    rating: 4.9,
+    reviews: 80,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'High altitude pass',
+      'Glacier crossing',
+      'Parvati to Spiti transition'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Gear',
+      'Insurance'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Kasol Arrival',
+        description: 'Start trek preparation.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '1580m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Kasol', lat: 32.01, lng: 77.31, altitude: '1580m' },
+        { name: 'Pin Parvati Pass', lat: 31.9, lng: 77.8, altitude: '5319m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'August',
+        year: 2024,
+        dates: [
+          { date: '2024-08-05', price: 1299, seatsAvailable: 2, status: 'limited' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'markha-valley-trek',
+    title: 'Markha Valley Trek',
+    location: 'Ladakh, India',
+    duration: '8 days',
+    difficulty: 'Moderate',
+    cost: 1099,
+    season: 'Summer',
+    months: ['June', 'July', 'August', 'September'],
+    description: 'A classic Ladakh trek through barren landscapes, monasteries, and river crossings.',
+    image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
+    availability: 12,
+    category: 'popular',
+    rating: 4.8,
+    reviews: 140,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Ladakh landscapes',
+      'Monasteries',
+      'River crossings'
+    ],
+
+    included: [
+      'Accommodation',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Flights',
+      'Gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Leh Arrival',
+        description: 'Acclimatization day.',
+        accommodation: 'Hotel',
+        meals: 'Dinner',
+        altitude: '3500m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Leh', lat: 34.15, lng: 77.57, altitude: '3500m' },
+        { name: 'Markha Valley', lat: 34.05, lng: 77.7, altitude: '3700m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'July',
+        year: 2024,
+        dates: [
+          { date: '2024-07-12', price: 1099, seatsAvailable: 6, status: 'available' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'rupin-pass-trek',
+    title: 'Rupin Pass Trek',
+    location: 'Uttarakhand to Himachal Pradesh, India',
+    duration: '8 days',
+    difficulty: 'Hard',
+    cost: 1099,
+    season: 'Summer',
+    months: ['May', 'June', 'September', 'October'],
+    description: 'A dramatic crossover trek featuring hanging villages, waterfalls, snow bridges, and high-altitude passes.',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500',
+    availability: 10,
+    category: 'adventure',
+    rating: 4.9,
+    reviews: 175,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800',
+        'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800'
+      ],
+      videos: [
+        {
+          id: 'rupin-1',
+          title: 'Rupin Pass Trek Documentary',
+          thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+          youtubeId: 'dQw4w9WgXcQ',
+          duration: '11:05'
+        }
+      ]
+    },
+
+    highlights: [
+      'Rupin waterfall climb',
+      'Snow bridges',
+      'Hanging villages',
+      'Pass crossing at 4650m'
+    ],
+
+    included: [
+      'Accommodation',
+      'Meals',
+      'Guide',
+      'Permits'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Gear',
+      'Insurance'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Dehradun to Dhaula',
+        description: 'Drive to base village.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '1550m'
+      },
+      {
+        day: 2,
+        title: 'Dhaula to Sewa',
+        description: 'Trek along river valley.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '2100m',
+        walkingHours: '6 hours'
+      },
+      {
+        day: 3,
+        title: 'Sewa to Jhaka',
+        description: 'Climb to hanging village.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '2650m',
+        walkingHours: '5 hours'
+      },
+      {
+        day: 4,
+        title: 'Jhaka to Upper Waterfall Camp',
+        description: 'Reach waterfall base.',
+        accommodation: 'Camp',
+        meals: 'All meals',
+        altitude: '3500m',
+        walkingHours: '5 hours'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Dhaula', lat: 31.01, lng: 78.18, altitude: '1550m' },
+        { name: 'Rupin Pass', lat: 31.03, lng: 78.34, altitude: '4650m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'May',
+        year: 2024,
+        dates: [
+          { date: '2024-05-12', price: 1099, seatsAvailable: 6, status: 'available' },
+          { date: '2024-05-25', price: 1149, seatsAvailable: 2, status: 'limited' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ali-bedni-bugyal-trek',
+    title: 'Ali Bedni Bugyal Trek',
+    location: 'Uttarakhand, India',
+    duration: '6 days',
     difficulty: 'Moderate',
     cost: 799,
     season: 'Spring, Autumn',
-    months: ['March', 'April', 'May', 'October', 'November'],
-    description: 'Trek into the heart of the Annapurna Sanctuary surrounded by towering peaks. Experience diverse landscapes from subtropical forests to alpine meadows.',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500',
-    availability: 18,
-    category: 'upcoming',
-    rating: 4.4,
-    reviews: 167,
+    months: ['April', 'May', 'September', 'October'],
+    description: 'Famous for vast alpine meadows and stunning views of Trishul and Nanda Ghunti.',
+    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500',
+    availability: 15,
+    category: 'scenic',
+    rating: 4.7,
+    reviews: 140,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800'
+      ],
+      videos: []
+    },
+
     highlights: [
-      'Annapurna Base Camp (4,130m)',
-      '360-degree mountain views',
-      'Diverse ecosystems and cultures',
-      'Traditional Gurung villages',
-      'Spectacular sunrise views',
-      'Natural amphitheater setting'
+      'Huge alpine meadows',
+      'Sunrise views',
+      'Camping in bugyals'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Rishikesh to Lohajung',
+        description: 'Drive to base.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '2300m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Lohajung', lat: 30.23, lng: 79.73, altitude: '2300m' },
+        { name: 'Bedni Bugyal', lat: 30.27, lng: 79.72, altitude: '3350m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'April',
+        year: 2024,
+        dates: [
+          { date: '2024-04-14', price: 799, seatsAvailable: 10, status: 'available' }
+        ]
+      }
     ]
   },
   {
-    id: 'haute-route',
-    title: 'Walker\'s Haute Route',
-    location: 'French/Swiss Alps',
-    duration: '12 days',
-    difficulty: 'Hard',
-    cost: 1699,
-    season: 'Summer',
-    months: ['July', 'August', 'September'],
-    description: 'One of the world\'s classic high-level routes from Chamonix to Zermatt. Walk beneath the highest peaks of the Alps with stunning glacier views.',
-    image: 'https://images.unsplash.com/photo-1551524164-0c96924c8f06?w=500',
-    availability: 9,
-    category: 'seasonal',
-    rating: 4.8,
-    reviews: 112,
-    highlights: [
-      'Chamonix to Zermatt classic route',
-      'Views of Mont Blanc and Matterhorn',
-      'High alpine passes and glaciers',
-      'Traditional alpine villages',
-      'Mountain hut accommodation',
-      'World-class mountain scenery'
-    ]
-  },
-  {
-    id: 'torres-del-paine-o',
-    title: 'Torres del Paine O Circuit',
-    location: 'Patagonia, Chile',
-    duration: '8 days',
-    difficulty: 'Hard',
-    cost: 1499,
-    season: 'Summer',
-    months: ['December', 'January', 'February', 'March'],
-    description: 'Complete circuit around Torres del Paine massif including the famous W Trek plus the remote backside. Experience Patagonia\'s most dramatic landscapes.',
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500',
-    availability: 7,
-    category: 'seasonal',
-    rating: 4.6,
-    reviews: 89,
-    highlights: [
-      'Complete Torres del Paine circuit',
-      'Remote backside wilderness',
-      'Glacier Grey and icebergs',
-      'Diverse Patagonian wildlife',
-      'Challenging weather conditions',
-      'Ultimate Patagonia experience'
-    ]
-  },
-  {
-    id: 'langtang-valley',
-    title: 'Langtang Valley Trek',
-    location: 'Langtang, Nepal',
+    id: 'kedartal-trek',
+    title: 'Kedartal Trek',
+    location: 'Gangotri, Uttarakhand, India',
     duration: '7 days',
-    difficulty: 'Moderate',
-    cost: 649,
-    season: 'Spring, Autumn',
-    months: ['March', 'April', 'May', 'October', 'November'],
-    description: 'Beautiful valley trek north of Kathmandu with mountain views, Tamang culture, and rhododendron forests. Often called the "Valley of Glaciers."',
+    difficulty: 'Hard',
+    cost: 999,
+    season: 'Summer',
+    months: ['May', 'June', 'September'],
+    description: 'A high-altitude trek to a pristine glacial lake at the base of Thalay Sagar.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
-    availability: 20,
-    category: 'upcoming',
-    rating: 4.3,
-    reviews: 156,
+    availability: 8,
+    category: 'adventure',
+    rating: 4.8,
+    reviews: 90,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800'
+      ],
+      videos: []
+    },
+
     highlights: [
-      'Beautiful Langtang Valley',
-      'Tamang culture and villages',
-      'Langtang Lirung views',
-      'Rhododendron forests',
-      'Kyanjin Gompa monastery',
-      'Close to Kathmandu'
+      'Glacial lake',
+      'Close mountain views',
+      'Technical terrain'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Gear',
+      'Insurance'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Gangotri Arrival',
+        description: 'Base preparation.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '3048m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Gangotri', lat: 30.99, lng: 78.93, altitude: '3048m' },
+        { name: 'Kedartal', lat: 30.92, lng: 79.02, altitude: '4750m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'June',
+        year: 2024,
+        dates: [
+          { date: '2024-06-18', price: 999, seatsAvailable: 4, status: 'available' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'phulara-ridge-trek',
+    title: 'Phulara Ridge Trek',
+    location: 'Uttarkashi, Uttarakhand, India',
+    duration: '6 days',
+    difficulty: 'Moderate',
+    cost: 749,
+    season: 'Spring, Autumn',
+    months: ['April', 'May', 'September', 'October'],
+    description: 'A unique ridge walk trek offering continuous panoramic Himalayan views.',
+    image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
+    availability: 12,
+    category: 'scenic',
+    rating: 4.6,
+    reviews: 85,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Continuous ridge walk',
+      '360-degree views',
+      'Forests and meadows'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Gear'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'Dehradun to Sankri',
+        description: 'Drive to base.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '1950m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Sankri', lat: 31.01, lng: 78.26, altitude: '1950m' },
+        { name: 'Phulara Ridge', lat: 31.05, lng: 78.30, altitude: '3700m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'May',
+        year: 2024,
+        dates: [
+          { date: '2024-05-10', price: 749, seatsAvailable: 6, status: 'available' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'sandakphu-phalut-trek',
+    title: 'Sandakphu Phalut Trek',
+    location: 'West Bengal, India',
+    duration: '7 days',
+    difficulty: 'Easy to Moderate',
+    cost: 699,
+    season: 'Spring, Autumn',
+    months: ['March', 'April', 'October', 'November'],
+    description: 'A ridge trek offering views of Everest, Kanchenjunga, Lhotse, and Makalu.',
+    image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
+    availability: 18,
+    category: 'scenic',
+    rating: 4.7,
+    reviews: 130,
+
+    gallery: {
+      photos: [
+        'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=800'
+      ],
+      videos: []
+    },
+
+    highlights: [
+      'Sleeping Buddha formation',
+      'Four highest peaks view',
+      'Ridge walking'
+    ],
+
+    included: [
+      'Stay',
+      'Meals',
+      'Guide'
+    ],
+
+    notIncluded: [
+      'Transport',
+      'Personal expenses'
+    ],
+
+    itinerary: [
+      {
+        day: 1,
+        title: 'NJP to Manebhanjan',
+        description: 'Drive to start point.',
+        accommodation: 'Guesthouse',
+        meals: 'Dinner',
+        altitude: '2000m'
+      }
+    ],
+
+    routeMap: {
+      waypoints: [
+        { name: 'Manebhanjan', lat: 26.99, lng: 88.11, altitude: '2000m' },
+        { name: 'Sandakphu', lat: 27.1, lng: 88.0, altitude: '3636m' }
+      ]
+    },
+
+    monthlyAvailability: [
+      {
+        month: 'October',
+        year: 2024,
+        dates: [
+          { date: '2024-10-12', price: 699, seatsAvailable: 10, status: 'available' }
+        ]
+      }
     ]
   }
 ]

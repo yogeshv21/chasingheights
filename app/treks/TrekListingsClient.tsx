@@ -16,7 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { Star, MapPin, Clock, Users, Search, Filter, ChevronRight } from 'lucide-react'
+import { Star, MapPin, Clock, Users, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
 import { ImageWithFallback } from '@/components/shared/ImageWithFallback'
 import { DUMMY_TREKS, searchTreks, mockDelay } from '@/data/dummyData'
 import type { Trek } from '@/types/trek'
@@ -50,6 +50,10 @@ export function TrekListingsClient() {
     useEffect(() => {
         fetchTreks()
     }, [filters])
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, [currentPage])
 
     const fetchTreks = async () => {
         try {
@@ -435,6 +439,51 @@ export function TrekListingsClient() {
                                             </Card>
                                         ))}
                                     </div>
+
+                                    {/* Pagination Controls */}
+                                    {totalPages > 1 && (
+                                        <div className="flex items-center justify-center space-x-2 mt-8">
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                                                disabled={currentPage === 1}
+                                                className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                                            >
+                                                <ChevronLeft className="w-4 h-4 mr-1" />
+                                                Previous
+                                            </Button>
+
+                                            <div className="flex items-center space-x-1">
+                                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                                    <Button
+                                                        key={page}
+                                                        variant={currentPage === page ? 'default' : 'outline'}
+                                                        size="sm"
+                                                        onClick={() => setCurrentPage(page)}
+                                                        className={
+                                                            currentPage === page
+                                                                ? 'bg-emerald-600 hover:bg-emerald-700'
+                                                                : 'border-emerald-600 text-emerald-600 hover:bg-emerald-50'
+                                                        }
+                                                    >
+                                                        {page}
+                                                    </Button>
+                                                ))}
+                                            </div>
+
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                                                disabled={currentPage === totalPages}
+                                                className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                                            >
+                                                Next
+                                                <ChevronRight className="w-4 h-4 ml-1" />
+                                            </Button>
+                                        </div>
+                                    )}
                                 </>
                             ) : (
                                 <div className="text-center py-16">

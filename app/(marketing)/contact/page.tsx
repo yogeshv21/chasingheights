@@ -23,6 +23,8 @@ import {
     CheckCircle
 } from 'lucide-react'
 import { APP_ROUTES } from '@/lib/constants/routes'
+import { toast } from 'sonner'
+
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -43,15 +45,32 @@ export default function ContactPage() {
         e.preventDefault()
 
         if (!formData.name || !formData.email || !formData.message) {
-            alert('Please fill in all required fields')
+            toast.error('Please fill in all required fields')
+            return
+        }
+
+        const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL
+
+        if (!scriptUrl || scriptUrl === 'YOUR_DEPLOYED_WEB_APP_URL_HERE') {
+            toast.error('Google Sheet URL not configured. Please add it to your .env.local file.')
             return
         }
 
         setLoading(true)
 
-        // Simulate form submission
-        setTimeout(() => {
-            alert('Message sent successfully! We\'ll get back to you within 24 hours.')
+        try {
+            const response = await fetch(scriptUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Apps Script requires no-cors for simple POST
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+
+            // Since we use 'no-cors', we can't check response.ok, 
+            // but the data is usually sent successfully if the URL is correct.
+            toast.success('Message sent successfully! We\'ll get back to you soon.')
             setFormData({
                 name: '',
                 email: '',
@@ -60,8 +79,12 @@ export default function ContactPage() {
                 message: '',
                 inquiryType: ''
             })
+        } catch (error) {
+            console.error('Error sending message:', error)
+            toast.error('Failed to send message. Please try again later.')
+        } finally {
             setLoading(false)
-        }, 1500)
+        }
     }
 
     const contactMethods = [
