@@ -5,14 +5,11 @@ import { MessageCircle } from 'lucide-react'
 
 export const WhatsAppButton: React.FC = () => {
   const handleWhatsAppClick = () => {
-    // Replace with your actual WhatsApp business number
-    const phoneNumber = '+91 8319931901' // Update this with your actual WhatsApp business number
-    const message = encodeURIComponent(
-      'Hi! I am interested in learning more about your trekking packages and would like to get more information.'
-    )
+    const phoneNumber = '918319931901' // WhatsApp business number with country code
+    const message = encodeURIComponent('I want to book a trekk')
 
-    // WhatsApp Web URL format
-    const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${message}`
+    // WhatsApp Universal Link format handles mobile vs desktop redirection automatically
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
 
     // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank')

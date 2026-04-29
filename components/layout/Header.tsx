@@ -70,12 +70,15 @@ export function Header() {
                 {/* Auth buttons */}
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
                     {isAuthenticated ? (
-                        <>
-                            <span className="text-sm text-gray-700">Hi, {user?.name}</span>
-                            <Button variant="ghost" asChild>
-                                <Link href={APP_ROUTES.DASHBOARD}>Dashboard</Link>
-                            </Button>
-                        </>
+                        <div className="flex items-center gap-4">
+                            <Link href={APP_ROUTES.DASHBOARD} title={user?.email}>
+                                <div 
+                                    className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-700 border border-emerald-200 hover:bg-emerald-200 transition-colors cursor-pointer"
+                                >
+                                    {user?.email?.substring(0, 2).toUpperCase()}
+                                </div>
+                            </Link>
+                        </div>
                     ) : (
                         <>
                             <Button variant="ghost" asChild>

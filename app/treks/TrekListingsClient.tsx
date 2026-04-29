@@ -16,7 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { Star, MapPin, Clock, Users, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Star, MapPin, Clock, Users, Search, Filter, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { ImageWithFallback } from '@/components/shared/ImageWithFallback'
 import { DUMMY_TREKS, searchTreks, mockDelay } from '@/data/dummyData'
 import type { Trek } from '@/types/trek'
@@ -48,7 +48,10 @@ export function TrekListingsClient() {
     const itemsPerPage = 9
 
     useEffect(() => {
-        fetchTreks()
+        const timer = setTimeout(() => {
+            fetchTreks()
+        }, 500)
+        return () => clearTimeout(timer)
     }, [filters])
 
     useEffect(() => {
@@ -151,20 +154,7 @@ export function TrekListingsClient() {
     const endIndex = startIndex + itemsPerPage
     const currentTreks = treks.slice(startIndex, endIndex)
 
-    if (loading) {
-        return (
-            <>
-                <Header />
-                <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                    <div className="text-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
-                        <p className="text-gray-600">Loading amazing treks...</p>
-                    </div>
-                </div>
-                <Footer />
-            </>
-        )
-    }
+
 
     return (
         <>
@@ -347,7 +337,47 @@ export function TrekListingsClient() {
 
                         {/* Right Content - Trek Grid */}
                         <div className="flex-1">
-                            {currentTreks.length > 0 ? (
+                            {/* Active Filters Chips */}
+                            {Object.entries(filters).filter(([_, value]) => value !== '').length > 0 && (
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {Object.entries(filters).map(([key, value]) => {
+                                        if (!value) return null;
+                                        return (
+                                            <Badge
+                                                key={key}
+                                                variant="secondary"
+                                                className="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5 hover:bg-emerald-100 transition-colors"
+                                            >
+                                                <span className="capitalize font-medium text-emerald-800">
+                                                    {key === 'priceRange' ? 'Price' : key}:
+                                                </span>
+                                                <span className="font-semibold">{value}</span>
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        handleFilterChange(key as keyof Filters, '');
+                                                    }}
+                                                    className="ml-1 p-0.5 rounded-full hover:bg-emerald-200 text-emerald-600 hover:text-emerald-900 focus:outline-none transition-colors"
+                                                    aria-label={`Remove ${key} filter`}
+                                                    type="button"
+                                                >
+                                                    <X className="w-3.5 h-3.5" />
+                                                </button>
+                                            </Badge>
+                                        )
+                                    })}
+                                </div>
+                            )}
+
+                            {loading ? (
+                                <div className="flex items-center justify-center py-32">
+                                    <div className="text-center">
+                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
+                                        <p className="text-gray-600">Loading amazing treks...</p>
+                                    </div>
+                                </div>
+                            ) : currentTreks.length > 0 ? (
                                 <>
                                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
                                         {currentTreks.map((trek) => (

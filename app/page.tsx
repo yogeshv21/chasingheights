@@ -4,7 +4,9 @@ import { Footer } from '@/components/layout/Footer'
 import { LandingPageClient } from '@/components/landing/LandingPageClient'
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: {
+    absolute: 'Chasingheights',
+  },
   description: 'Discover breathtaking treks around the world with expert guides and premium safety',
 }
 
