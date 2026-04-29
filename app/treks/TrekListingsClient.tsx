@@ -36,6 +36,7 @@ export function TrekListingsClient() {
     const [treks, setTreks] = useState<Trek[]>([])
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
+    const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
     const [filters, setFilters] = useState<Filters>({
         search: '',
         season: '',
@@ -177,25 +178,52 @@ export function TrekListingsClient() {
 
                     {/* Main Layout with Sidebar */}
                     <div className="flex flex-col lg:flex-row gap-8">
+                        {/* Mobile Filter Toggle */}
+                        <div className="lg:hidden">
+                            <Button 
+                                onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+                                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center h-12 text-lg"
+                            >
+                                <Filter className="w-5 h-5 mr-2" />
+                                {isMobileFilterOpen ? 'Hide Filters' : 'Show Filters'}
+                            </Button>
+                        </div>
+
                         {/* Left Sidebar - Filters */}
-                        <div className="lg:w-80 flex-shrink-0">
-                            <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
-                                <div className="flex items-center justify-between mb-6">
+                        <div className={`lg:w-80 flex-shrink-0 ${isMobileFilterOpen ? 'fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-4 lg:static lg:bg-transparent lg:p-0 lg:block' : 'hidden lg:block'}`}>
+                            <div className={`bg-white shadow-sm border w-full flex flex-col ${isMobileFilterOpen ? 'rounded-xl max-h-[85vh] animate-in slide-in-from-bottom-4 lg:animate-none lg:h-auto' : 'rounded-lg sticky top-8'}`}>
+                                {/* Sticky Header */}
+                                <div className="flex items-center justify-between p-6 pb-4 border-b">
                                     <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
-                                    {Object.values(filters).some((filter) => filter) && (
-                                        <Button
-                                            variant="outline"
-                                            size="sm"
-                                            onClick={clearFilters}
-                                            className="text-emerald-600 border-emerald-600 hover:bg-emerald-50"
-                                        >
-                                            <Filter className="w-4 h-4 mr-2" />
-                                            Clear
-                                        </Button>
-                                    )}
+                                    <div className="flex items-center gap-3">
+                                        {Object.values(filters).some((filter) => filter) && (
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => {
+                                                    clearFilters()
+                                                    setIsMobileFilterOpen(false)
+                                                }}
+                                                className="text-emerald-600 border-emerald-600 hover:bg-emerald-50"
+                                            >
+                                                <Filter className="w-4 h-4 mr-2" />
+                                                Clear
+                                            </Button>
+                                        )}
+                                        {isMobileFilterOpen && (
+                                            <button 
+                                                onClick={() => setIsMobileFilterOpen(false)}
+                                                className="lg:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors -mr-2"
+                                            >
+                                                <X className="w-5 h-5" />
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
 
-                                <div className="space-y-6">
+                                {/* Scrolling Body */}
+                                <div className={`p-6 pt-4 ${isMobileFilterOpen ? 'overflow-y-auto' : ''}`}>
+                                    <div className="space-y-6">
                                     {/* Search */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -332,6 +360,7 @@ export function TrekListingsClient() {
                                         </p>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
 
@@ -445,16 +474,15 @@ export function TrekListingsClient() {
                                                             </Badge>
                                                         </div>
 
-                                                        <div className="flex items-center justify-between pt-4 border-t">
+                                                        <div className="pt-4 border-t space-y-3">
                                                             <div>
                                                                 <span className="text-2xl font-bold text-emerald-600">
-                                                                    ₹{trek.cost}
+                                                                    ₹{trek.cost.toLocaleString('en-IN')}
                                                                 </span>
                                                                 <span className="text-gray-600 text-sm"> / person</span>
                                                             </div>
                                                             <Button
-                                                                size="sm"
-                                                                className="bg-emerald-600 hover:bg-emerald-700"
+                                                                className="w-full bg-emerald-600 hover:bg-emerald-700"
                                                                 onClick={(e) => {
                                                                     e.stopPropagation()
                                                                     router.push(APP_ROUTES.TREK_DETAIL(trek.id))

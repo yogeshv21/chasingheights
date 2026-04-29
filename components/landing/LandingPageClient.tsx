@@ -195,12 +195,12 @@ export function LandingPageClient() {
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     onFocus={() => searchQuery.length >= 2 && setShowSuggestions(true)}
                                     placeholder="Search for treks, destinations, or adventures..."
-                                    className="flex-1 bg-white/90 border-0 text-gray-900 placeholder-gray-600 h-12 text-base"
+                                    className="w-full sm:flex-1 bg-white border border-gray-200 text-gray-900 placeholder-gray-500 h-14 md:h-12 min-h-[3.5rem] md:min-h-[3rem] text-base px-4 shadow-sm"
                                 />
                                 <Button
                                     type="submit"
                                     size="lg"
-                                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 h-12 flex items-center justify-center min-w-[120px]"
+                                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 h-14 md:h-12 flex items-center justify-center min-w-[120px] text-base"
                                     asChild
                                 >
                                     <Link href={APP_ROUTES.TREKS}>
@@ -228,7 +228,7 @@ export function LandingPageClient() {
                                                 {suggestion.location}
                                             </p>
                                         </div>
-                                        <p className="text-emerald-600 font-semibold">₹{suggestion.cost}</p>
+                                        <p className="text-emerald-600 font-semibold">₹{suggestion.cost.toLocaleString('en-IN')}</p>
                                     </Link>
                                 ))}
                             </div>
@@ -290,14 +290,13 @@ export function LandingPageClient() {
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center justify-between pt-4 border-t">
+                                        <div className="pt-4 border-t space-y-3">
                                             <div>
-                                                <span className="text-2xl font-bold text-emerald-600">₹{trek.cost}</span>
+                                                <span className="text-2xl font-bold text-emerald-600">₹{trek.cost.toLocaleString('en-IN')}</span>
                                                 <span className="text-gray-600 text-sm"> / person</span>
                                             </div>
                                             <Button
-                                                size="sm"
-                                                className="bg-emerald-600 hover:bg-emerald-700"
+                                                className="w-full bg-emerald-600 hover:bg-emerald-700"
                                                 onClick={(e) => e.preventDefault()}
                                             >
                                                 View Details
@@ -466,14 +465,13 @@ export function LandingPageClient() {
                                             {trek.location}
                                         </div>
 
-                                        <div className="flex items-center justify-between">
+                                        <div className="space-y-3">
                                             <div>
-                                                <span className="text-2xl font-bold text-emerald-600">₹{trek.cost}</span>
+                                                <span className="text-2xl font-bold text-emerald-600">₹{trek.cost.toLocaleString('en-IN')}</span>
                                                 <span className="text-gray-600 text-sm"> / person</span>
                                             </div>
                                             <Button
-                                                size="sm"
-                                                className="bg-emerald-600 hover:bg-emerald-700"
+                                                className="w-full bg-emerald-600 hover:bg-emerald-700"
                                                 onClick={(e) => e.preventDefault()}
                                             >
                                                 Book Now

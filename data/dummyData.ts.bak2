@@ -177,12 +177,12 @@ export const DUMMY_TREKS: Trek[] = [
       ]
     },
     highlights: [
-      'Reach Everest Base Camp (5,364m) – the legendary basecamp',
-      'Summit Kala Patthar (5,545m) for the best Everest close-up',
-      'Fly into Lukla, one of the world\'s most dramatic airstrips',
-      'Visit the 400-year-old Tengboche Monastery',
-      'Experience authentic Sherpa culture in Namche Bazaar',
-      'Witness four 8,000m+ peaks: Everest, Lhotse, Makalu, Cho Oyu'
+      'Stand at Everest Base Camp (5,364m)',
+      'Breathtaking views from Kala Patthar (5,545m)',
+      'Visit Tengboche Monastery',
+      'Experience Sherpa culture in Namche Bazaar',
+      'Cross thrilling suspension bridges',
+      'See Everest, Lhotse, and Nuptse up close'
     ],
     included: [
       'Domestic flights (Kathmandu-Lukla-Kathmandu)',
@@ -414,7 +414,7 @@ export const DUMMY_TREKS: Trek[] = [
     cost: 55000,
     season: 'Spring, Autumn',
     months: ['March', 'April', 'May', 'October', 'November'],
-    description: 'The  Annapurna Circuit is a trek within the mountain ranges of central Nepal. The total length of the route varies between 160 and 230 km, depending on where motor transportation is used and where the trek is ended. This trek crosses two different river valleys and encircles the Annapurna Massif. The path reaches its highest point at Thorung La pass, reaching the edge of the Tibetan Plateau. Most trekkers hike the route anticlockwise, as this way the daily altitude gain is slower, and crossing the high Thorong La pass is easier and safer.',
+    description: 'One of the world\'s classic treks featuring diverse landscapes from subtropical forests to high alpine desert. Cross the challenging Thorong La Pass at 5,416m and experience the incredible diversity of Nepal\'s Annapurna region.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 8,
     category: 'trending',
@@ -447,12 +447,12 @@ export const DUMMY_TREKS: Trek[] = [
       ]
     },
     highlights: [
-      'Cross Thorong La Pass (5,416m), one of the world\'s highest trekking passes',
-      'Visit the sacred Muktinath Temple, revered by Hindus and Buddhists',
-      'Walk through the Kali Gandaki Gorge, the world\'s deepest valley',
-      'Soak in the natural hot springs at Tatopani',
-      'See Annapurna I–IV, Gangapurna, and Dhaulagiri',
-      'Experience diverse ecosystems: subtropical to Tibetan high desert'
+      'Cross Thorong La Pass (5,416m)',
+      'Visit sacred Muktinath Temple',
+      'Stunning views of Annapurna massif',
+      'Experience diverse ecosystems',
+      'Traditional Gurung and Thakali culture',
+      'Natural hot springs in Tatopani'
     ],
     included: [
       'All ground transportation',
@@ -681,12 +681,12 @@ export const DUMMY_TREKS: Trek[] = [
       ]
     },
     highlights: [
-      'Summit Uhuru Peak (5,895m), the Roof of Africa',
-      'Climb the iconic Barranco Wall at 3,950m',
-      'Pass through 5 distinct climate zones in 7 days',
-      'See the famous glaciers and ice fields of Kilimanjaro',
-      'Experience a breathtaking sunrise above the clouds',
-      'Wildlife sightings in the montane forest zone'
+      'Summit Uhuru Peak (5,895m)',
+      'Climb the Barranco Wall',
+      'See the famous glaciers',
+      'Experience 5 climate zones',
+      'Stunning sunrise from summit',
+      'Wildlife viewing in lower slopes'
     ],
     included: [
       'Airport transfers',
@@ -838,7 +838,7 @@ export const DUMMY_TREKS: Trek[] = [
     cost: 140000,
     season: 'Summer',
     months: ['June', 'July', 'August', 'September'],
-    description: 'The Tour du Mont Blanc or TMB is one of the most popular long-distance walks in Europe. It circles the Mont Blanc massif, covering a distance of roughly 165 kilometres (103 mi) with 10 kilometres (6.2 mi) of ascent/descent and passing through parts of Switzerland, Italy and France.',
+    description: 'Walk around Mont Blanc, Western Europe\'s highest peak, through France, Italy, and Switzerland. This classic alpine trek offers stunning mountain scenery, charming alpine villages, and excellent mountain hut accommodation.',
     image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
     availability: 10,
     category: 'trending',
@@ -871,12 +871,12 @@ export const DUMMY_TREKS: Trek[] = [
       ]
     },
     highlights: [
-      'Circle Mont Blanc through France, Italy and Switzerland',
-      'Stay in traditional Alpine mountain huts (refuges)',
-      'Cross multiple high mountain passes above 2,500m',
-      'Stunning views of the Mont Blanc massif (4,808m)',
-      'Charming Alpine villages: Courmayeur, Champex, Chamonix',
-      'Well-marked trails with excellent waymarking throughout'
+      'Circle Mont Blanc massif through 3 countries',
+      'Stay in traditional alpine huts',
+      'Cross high mountain passes',
+      'Experience Alpine culture and cuisine',
+      'Stunning glacier and peak views',
+      'Well-marked trails and facilities'
     ],
     included: [
       'Mountain hut accommodation',
@@ -1034,7 +1034,7 @@ export const DUMMY_TREKS: Trek[] = [
     cost: 90000,
     season: 'Dry Season',
     months: ['May', 'June', 'July', 'August', 'September'],
-    description: 'The Inca Trail to Machu Picchu is a hiking trail in Peru that terminates at Machu Picchu. It consists of three overlapping trails: Mollepata, Classic, and One Day. Mollepata is the longest of the three routes with the highest mountain pass and intersects with the Classic route before crossing Warmiwañusqa. Located in the Andes mountain range, the trail passes through several types of Andean environments including cloud forest and alpine tundra. Settlements, tunnels, and many Incan ruins are located along the trail before ending the terminus at the Sun Gate on Machu Picchu mountain. The two lon',
+    description: 'Follow in the footsteps of the Incas on this ancient trail to the lost city of Machu Picchu. This UNESCO World Heritage trail combines stunning Andean scenery with fascinating archaeological sites.',
     image: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=500',
     availability: 4,
     category: 'upcoming',
@@ -1074,12 +1074,12 @@ export const DUMMY_TREKS: Trek[] = [
       ]
     },
     highlights: [
-      'Enter Machu Picchu through the iconic Sun Gate at sunrise',
-      'Walk the ancient Inca-paved stone trail through cloud forest',
-      'Cross Dead Woman\'s Pass (4,215m), the highest point',
-      'Visit Inca ruins: Runkurakay, Sayacmarca, Wiñay Wayna',
-      'Limited permits – a truly exclusive experience',
-      'Experience diverse ecosystems from high Andes to cloud forest'
+      'Enter Machu Picchu through Sun Gate',
+      'Visit ancient Inca ruins along the trail',
+      'Cross Dead Woman\'s Pass (4,215m)',
+      'Experience cloud forest ecosystems',
+      'Learn about Inca history and culture',
+      'Limited permits - book well in advance'
     ],
     included: [
       'Professional English-speaking guide',
@@ -1208,18 +1208,12 @@ export const DUMMY_TREKS: Trek[] = [
     id: 'kedarkantha-trek',
     title: 'Kedarkantha Trek',
     location: 'Uttarkashi, Uttarakhand, India',
-    duration: '5 days',
-    difficulty: 'Easy',
+    duration: '6 days',
+    difficulty: 'Easy to Moderate',
     cost: 8000,
-    season: 'Winter, Spring',
-    months: [
-      'December',
-      'January',
-      'February',
-      'March',
-      'April'
-    ],
-    description: 'Kedarkantha is a mountain peak of the Himalayas in Uttarakhand, India. Its elevation is 12,500 ft (3,800 m). Kedarkantha is located within Govind Wildlife Sanctuary in Uttarkashi district.',
+    season: 'Winter',
+    months: ['December', 'January', 'February', 'March'],
+    description: 'A perfect winter trek known for snow-covered trails, dense pine forests, and a stunning summit climb with 360-degree Himalayan views.',
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 20,
     category: 'popular',
@@ -1244,12 +1238,11 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Summit Kedarkantha (3,810m) for 360° panoramic views',
-      'Camp beside the frozen Juda-ka-Taal lake in winter',
-      'Trek through dense snow-laden pine and oak forests',
-      'See Swargarohini, Bandarpoonch, and Black Peak summits',
-      'Ideal beginner winter trek with manageable altitude',
-      'Spectacular Himalayan sunrise from the summit ridge'
+      'Snow trekking experience',
+      'Beautiful campsites like Juda Ka Talab',
+      'Panoramic summit views',
+      'Dense pine forests',
+      'Stunning sunrise from summit'
     ],
 
     included: [
@@ -1331,13 +1324,7 @@ export const DUMMY_TREKS: Trek[] = [
     difficulty: 'Moderate',
     cost: 10000,
     season: 'Summer',
-    months: [
-      'June',
-      'July',
-      'August',
-      'September',
-      'October'
-    ],
+    months: ['June', 'July', 'August', 'September'],
     description: 'A dramatic crossover trek from lush Kullu valley to the barren landscapes of Spiti.',
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500',
     availability: 15,
@@ -1361,12 +1348,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Cross Hamta Pass (4,298m) for dramatic landscape contrast',
-      'Transition from lush green Kullu Valley to stark Spiti desert',
-      'Optional excursion to the stunning crescent Chandratal Lake',
-      'Trek through dense deodar forests and alpine meadows',
-      'Spectacular views of Deo Tibba and Indrasan peaks',
-      'Accessible base: only 3 hours drive from Manali'
+      'Valley to desert transition',
+      'River crossings',
+      'Chandratal lake visit'
     ],
 
     included: [
@@ -1423,15 +1407,8 @@ export const DUMMY_TREKS: Trek[] = [
     duration: '6 days',
     difficulty: 'Moderate',
     cost: 9000,
-    season: 'Spring, Autumn, Winter',
-    months: [
-      'February',
-      'March',
-      'April',
-      'October',
-      'November',
-      'December'
-    ],
+    season: 'Winter, Spring',
+    months: ['December', 'January', 'February', 'March', 'April'],
     description: 'Known as the Curzon Trail, this trek offers grand views of Nanda Devi, Dronagiri, and other Himalayan peaks.',
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500',
     availability: 14,
@@ -1456,12 +1433,10 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Cross Kuari Pass (3,640m) with panoramic Himalayan views',
-      'See Nanda Devi (7,816m), India\'s highest entirely Indian peak',
-      'Traverse the ancient Lord Curzon Trail through Garhwal',
-      'Camp in scenic Auli meadow with Himalayan backdrop',
-      'Views of 13 peaks above 6,500m from the pass',
-      'Rhododendron forests ablaze with colour in spring'
+      'Panoramic Himalayan views',
+      'Dense oak forests',
+      'Snow trails in winter',
+      'Views of Nanda Devi'
     ],
 
     included: [
@@ -1540,22 +1515,9 @@ export const DUMMY_TREKS: Trek[] = [
     duration: '2 days',
     difficulty: 'Easy',
     cost: 3500,
-    season: 'All Year',
-    months: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ],
-    description: 'Nag Tibba, at an elevation of 3,022 metres (9,915 ft), is the highest peak in the Lesser Himalayan region of the Garhwal Division of Uttarakhand state in India and of the Bugyals region. It lends its name to the Nag Tibba Range, itself the next-northerly of the five folds of the Himalayas. It is situated 16 km (9.9 mi) away from Landour cantonment, 57 kilometres (35 mi) from Mussoorie and 148 kilometres (92 mi) from New Tehri in the Tehri Garhwal district of Uttarakhand. The Nag Tibba Range is one of the three principal ranges of the Lesser Himalayas, along with the Dhauladhar and the Pir Panj',
+    season: 'All year',
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'October', 'November', 'December'],
+    description: 'A perfect weekend trek offering stunning Himalayan views without extreme effort.',
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 25,
     category: 'weekend',
@@ -1570,12 +1532,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Summit Nag Tibba (3,022m), highest peak of Lesser Himalayas',
-      'Visit the locally revered Nag Devta serpent temple',
-      '360° views: Bandarpoonch, Kedarnath, Srikanta, Gangotri range',
-      'Magical stargazing from base camp away from city lights',
-      'Beautiful snow-covered trails in winter months',
-      'Perfect beginner weekend trek, just 85 km from Dehradun'
+      'Short weekend trek',
+      'Views of Bandarpoonch peak',
+      'Camping experience'
     ],
 
     included: [
@@ -1634,15 +1593,8 @@ export const DUMMY_TREKS: Trek[] = [
     difficulty: 'Hard',
     cost: 18000,
     season: 'Spring, Autumn',
-    months: [
-      'March',
-      'April',
-      'May',
-      'September',
-      'October',
-      'November'
-    ],
-    description: 'Goecha La is a high mountain pass in Gyalshing district, Sikkim, India in the Himalaya range. The southeast face of Kanchenjunga, the world\'s third highest mountain, can be viewed from the pass, which is also a base camp for those aspiring to scale the mountain. They say that when the government authorities first saw the view from Goecha La, they were so moved by the view that they decided to feature it on the Rs.100 note.',
+    months: ['April', 'May', 'September', 'October'],
+    description: 'Offers breathtaking close views of Kanchenjunga, the third highest mountain in the world.',
     image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
     availability: 8,
     category: 'premium',
@@ -1657,12 +1609,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Close-up view of Kanchenjunga (8,586m), world\'s 3rd highest peak',
-      'Sunrise spectacle from Dzongri Top over the Himalayan range',
-      'Beautiful glacial Samiti Lake reflecting Mt. Pandim',
-      'Trek through dense rhododendron forests blooming in spring',
-      'Start from Yuksom, the historic first capital of Sikkim',
-      'Spot red pandas, blue sheep, and Himalayan wildlife'
+      'Close view of Kanchenjunga',
+      'Dense forests',
+      'Alpine meadows'
     ],
 
     included: [
@@ -1708,15 +1657,10 @@ export const DUMMY_TREKS: Trek[] = [
     title: 'Buran Ghati Trek',
     location: 'Himachal Pradesh, India',
     duration: '7 days',
-    difficulty: 'Hard',
+    difficulty: 'Moderate to Hard',
     cost: 16000,
-    season: 'Summer, Autumn',
-    months: [
-      'May',
-      'June',
-      'September',
-      'October'
-    ],
+    season: 'Summer',
+    months: ['May', 'June', 'September'],
     description: 'A thrilling trek with snow walls, river crossings, and dramatic landscapes.',
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500',
     availability: 10,
@@ -1732,12 +1676,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Cross Buran Ghati Pass (4,700m) with a thrilling rope rappel down snow',
-      'Descend dramatically into the remote Sangla Valley, Kinnaur',
-      'Meadows of Litham and Lamakurti filled with wildflowers',
-      'Views of Kinner Kailash range across the Baspa valley',
-      'Remote trail through dense forests and high-altitude pastures',
-      'Unique experience rappelling down a steep snow slope'
+      'Snow wall descent',
+      'River crossings',
+      'High altitude pass'
     ],
 
     included: [
@@ -1783,15 +1724,10 @@ export const DUMMY_TREKS: Trek[] = [
     title: 'Beas Kund Trek',
     location: 'Manali, Himachal Pradesh, India',
     duration: '3 days',
-    difficulty: 'Easy',
+    difficulty: 'Easy to Moderate',
     cost: 7500,
     season: 'Summer',
-    months: [
-      'June',
-      'July',
-      'August',
-      'September'
-    ],
+    months: ['May', 'June', 'July', 'August', 'September'],
     description: 'A short trek to the origin of the Beas river surrounded by glaciers.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 20,
@@ -1807,12 +1743,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Reach Beas Kund (3,690m), the sacred origin of River Beas',
-      'Views of Friendship Peak (5,289m) and Hanuman Tibba (5,928m)',
-      'Camp at Dhundi and Bakarthach in pristine alpine meadows',
-      'Easy acclimatisation trek ideal before higher altitude treks',
-      'Abundant wildflowers in the Solang Nullah valley',
-      'Starting point just 15 km from Manali'
+      'Origin of Beas river',
+      'Glacier views',
+      'Easy trek'
     ],
 
     included: [
@@ -1860,13 +1793,8 @@ export const DUMMY_TREKS: Trek[] = [
     duration: '7 days',
     difficulty: 'Hard',
     cost: 13500,
-    season: 'Spring, Autumn',
-    months: [
-      'April',
-      'May',
-      'October',
-      'November'
-    ],
+    season: 'Spring',
+    months: ['April', 'May'],
     description: 'A challenging summit trek offering panoramic Himalayan views including Nanda Devi and Hathi Ghoda peaks.',
     image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
     availability: 10,
@@ -1891,12 +1819,10 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Summit Pangarchulla Peak (4,700m) with 360° Garhwal Himalaya views',
-      'See Nanda Devi, Dronagiri, Chaukhamba, Kamet, and Mana peaks',
-      'Traverse the beautiful Khullara and Tali alpine meadows',
-      'One of the few beginner-friendly peak climbs in India',
-      'Camp on the rim of Auli meadow with stunning mountain backdrop',
-      'Ideal spring trek with snow underfoot and clear blue skies'
+      'Technical summit climb',
+      '360-degree Himalayan views',
+      'Snow trekking experience',
+      'Kuari Pass extension option'
     ],
 
     included: [
@@ -1976,11 +1902,7 @@ export const DUMMY_TREKS: Trek[] = [
     difficulty: 'Moderate',
     cost: 15000,
     season: 'Summer',
-    months: [
-      'July',
-      'August',
-      'September'
-    ],
+    months: ['July', 'August', 'September'],
     description: 'A breathtaking trek through alpine lakes and lush meadows in Kashmir.',
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500',
     availability: 12,
@@ -1996,12 +1918,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Discover two pristine alpine lakes: Tarsar and Marsar',
-      'Trek through the stunning Lidder Valley in Kashmir',
-      'Vibrant wildflower meadows and crystal-clear streams',
-      'Views of Kolahoi Glacier (5,425m), the largest in Kashmir',
-      'Camp on the shores of the brilliant blue Tarsar Lake',
-      'Experience the unique beauty of a Kashmiri alpine landscape'
+      'Twin alpine lakes',
+      'Kashmir meadows',
+      'Peaceful camping spots'
     ],
 
     included: [
@@ -2051,14 +1970,7 @@ export const DUMMY_TREKS: Trek[] = [
     difficulty: 'Moderate',
     cost: 14000,
     season: 'Spring, Autumn',
-    months: [
-      'March',
-      'April',
-      'May',
-      'September',
-      'October',
-      'November'
-    ],
+    months: ['April', 'May', 'October', 'November'],
     description: 'A short yet rewarding trek with panoramic views of Kanchenjunga.',
     image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
     availability: 10,
@@ -2074,12 +1986,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Sunrise views from Dzongri Top (4,600m) over the Kanchenjunga range',
-      'Trek through the lush rhododendron forests of Sikkim',
-      'Visit ancient monasteries: Yuksom and Tshoka',
-      'Camp in the beautiful Tshoka valley with peak views',
-      'Shorter version of the full Goechala expedition',
-      'Wildlife: red panda, Himalayan black bear, various pheasants'
+      'Kanchenjunga views',
+      'Rhododendron forests',
+      'Dzongri top sunrise'
     ],
 
     included: [
@@ -2126,13 +2035,10 @@ export const DUMMY_TREKS: Trek[] = [
     title: 'Pin Parvati Pass Trek',
     location: 'Himachal Pradesh, India',
     duration: '11 days',
-    difficulty: 'Hard',
+    difficulty: 'Extreme',
     cost: 28000,
-    season: 'Summer',
-    months: [
-      'July',
-      'August'
-    ],
+    season: 'Monsoon',
+    months: ['July', 'August'],
     description: 'One of the toughest treks connecting Parvati Valley to Spiti Valley.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 6,
@@ -2148,12 +2054,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Cross the challenging Pin Parvati Pass (5,319m) into Spiti Valley',
-      'Trek from the lush Parvati Valley to the stark Pin Valley',
-      'Sacred Mantalai Lake (4,116m) at the foot of the pass',
-      'One of India\'s most remote and demanding high-passes',
-      'Views of Parvati, Kullu Eiger, and multiple 6,000m peaks',
-      'Transition from Kullu\'s green forests to Spiti\'s barren plateaus'
+      'High altitude pass',
+      'Glacier crossing',
+      'Parvati to Spiti transition'
     ],
 
     included: [
@@ -2203,12 +2106,7 @@ export const DUMMY_TREKS: Trek[] = [
     difficulty: 'Moderate',
     cost: 22000,
     season: 'Summer',
-    months: [
-      'June',
-      'July',
-      'August',
-      'September'
-    ],
+    months: ['June', 'July', 'August', 'September'],
     description: 'A classic Ladakh trek through barren landscapes, monasteries, and river crossings.',
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 12,
@@ -2224,12 +2122,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Cross two dramatic high passes: Ganda La (4,970m) and Kongmaru La (5,286m)',
-      'Stay in traditional Ladakhi homestays and experience local culture',
-      'Trek through Hemis National Park, habitat of the snow leopard',
-      'Visit ancient monasteries: Hemis, Hankar, and Tacha Gompa',
-      'Views of Kang Yatse (6,400m) and the Zanskar range',
-      'Spot marmots, golden eagles, and Himalayan blue sheep'
+      'Ladakh landscapes',
+      'Monasteries',
+      'River crossings'
     ],
 
     included: [
@@ -2276,15 +2171,10 @@ export const DUMMY_TREKS: Trek[] = [
     title: 'Rupin Pass Trek',
     location: 'Uttarakhand to Himachal Pradesh, India',
     duration: '8 days',
-    difficulty: 'Moderate',
+    difficulty: 'Hard',
     cost: 17500,
-    season: 'Spring, Autumn',
-    months: [
-      'May',
-      'June',
-      'September',
-      'October'
-    ],
+    season: 'Summer',
+    months: ['May', 'June', 'September', 'October'],
     description: 'A dramatic crossover trek featuring hanging villages, waterfalls, snow bridges, and high-altitude passes.',
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500',
     availability: 10,
@@ -2309,12 +2199,10 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Cross Rupin Pass (4,650m) from Uttarakhand into Himachal Pradesh',
-      'Marvel at the massive multi-tiered Rupin Waterfall',
-      'Pass through the remarkable "hanging village" of Jakha',
-      'Dramatic shift from green valleys to arid high-altitude snowfields',
-      'Panoramic views of the Kinner Kailash and Kinnaur ranges',
-      'One of India\'s most visually diverse high-altitude crossings'
+      'Rupin waterfall climb',
+      'Snow bridges',
+      'Hanging villages',
+      'Pass crossing at 4650m'
     ],
 
     included: [
@@ -2393,15 +2281,8 @@ export const DUMMY_TREKS: Trek[] = [
     duration: '6 days',
     difficulty: 'Moderate',
     cost: 12000,
-    season: 'Summer, Autumn',
-    months: [
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October'
-    ],
+    season: 'Spring, Autumn',
+    months: ['April', 'May', 'September', 'October'],
     description: 'Famous for vast alpine meadows and stunning views of Trishul and Nanda Ghunti.',
     image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500',
     availability: 15,
@@ -2417,12 +2298,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Explore Ali Bugyal and Bedni Bugyal, India\'s largest high-altitude meadows',
-      'Views of Nanda Ghunti, Trishul, and Nanda Devi peaks',
-      'Camp in vast rolling meadows carpeted with alpine flowers',
-      'Visit the ancient Bedni Kund temple and sacred glacial lake',
-      'Roopkund Trek gateway: acclimatise and explore the region',
-      'Trek through enchanting rhododendron and oak forests'
+      'Huge alpine meadows',
+      'Sunrise views',
+      'Camping in bugyals'
     ],
 
     included: [
@@ -2471,13 +2349,8 @@ export const DUMMY_TREKS: Trek[] = [
     duration: '7 days',
     difficulty: 'Hard',
     cost: 16000,
-    season: 'Spring, Autumn',
-    months: [
-      'May',
-      'June',
-      'September',
-      'October'
-    ],
+    season: 'Summer',
+    months: ['May', 'June', 'September'],
     description: 'A high-altitude trek to a pristine glacial lake at the base of Thalay Sagar.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 8,
@@ -2493,12 +2366,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Reach Kedartal (4,750m), Shiva\'s Lake with Mt. Thalay Sagar reflection',
-      'Navigate the challenging "Spider Wall" rock traverse section',
-      'Begin at the sacred Gangotri Temple on the banks of the Bhagirathi',
-      'Views of Thalay Sagar (6,904m), Bhrigupanth, and Meru peaks',
-      'One of the most dramatic and less-commercialised Himalayan treks',
-      'Unique blend of spiritual Gangotri pilgrimage and high-altitude adventure'
+      'Glacial lake',
+      'Close mountain views',
+      'Technical terrain'
     ],
 
     included: [
@@ -2548,12 +2418,7 @@ export const DUMMY_TREKS: Trek[] = [
     difficulty: 'Moderate',
     cost: 11500,
     season: 'Spring, Autumn',
-    months: [
-      'May',
-      'June',
-      'September',
-      'October'
-    ],
+    months: ['April', 'May', 'September', 'October'],
     description: 'A unique ridge walk trek offering continuous panoramic Himalayan views.',
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 12,
@@ -2569,12 +2434,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Walk the spectacular Phulara Ridge with 360° Himalayan views',
-      'Camp directly on the ridge above 3,600m for starlit nights',
-      'Views of Swargarohini, Black Peak, Bandarpoonch, and Kedarnath range',
-      'Trek through Govind Wildlife Sanctuary, home to snow leopard',
-      'Remote trail through ancient Har-ki-Dun valley settlements',
-      'Ridge walking with views into both Tons and Rupin valleys'
+      'Continuous ridge walk',
+      '360-degree views',
+      'Forests and meadows'
     ],
 
     included: [
@@ -2621,18 +2483,11 @@ export const DUMMY_TREKS: Trek[] = [
     title: 'Sandakphu Phalut Trek',
     location: 'West Bengal, India',
     duration: '7 days',
-    difficulty: 'Easy',
+    difficulty: 'Easy to Moderate',
     cost: 12000,
     season: 'Spring, Autumn',
-    months: [
-      'March',
-      'April',
-      'May',
-      'September',
-      'October',
-      'November'
-    ],
-    description: 'Sandakphu or Sandakpur at 3,636 m (11,929 ft) is a mountain peak in the Singalila Ridge on the border between India and Nepal. It is the highest point of the ridge and of the state of West Bengal, India. The peak is located at the edge of the Singalila National Park and has a small village on the summit with a few hotels. Four of the five highest peaks in the world, Everest, Kangchenjunga, Lhotse and Makalu can be seen from its summit. It also affords a pristine view of the entire Kangchenjunga Range. Sandakphu is also known as the land of poisonous flowers.',
+    months: ['March', 'April', 'October', 'November'],
+    description: 'A ridge trek offering views of Everest, Kanchenjunga, Lhotse, and Makalu.',
     image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
     availability: 18,
     category: 'scenic',
@@ -2647,12 +2502,9 @@ export const DUMMY_TREKS: Trek[] = [
     },
 
     highlights: [
-      'Witness the famous "Sleeping Buddha" view of the Kanchenjunga range',
-      'See four of the world\'s five highest peaks on a clear day',
-      'Summit Sandakphu (3,636m), the highest point in West Bengal',
-      'Trek through Singalila National Park, home of the red panda',
-      'Classic teahouse trek along the Indo-Nepal border ridge',
-      'Spectacular rhododendron blooms in March–April'
+      'Sleeping Buddha formation',
+      'Four highest peaks view',
+      'Ridge walking'
     ],
 
     included: [
