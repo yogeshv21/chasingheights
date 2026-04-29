@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
@@ -15,9 +15,15 @@ import { APP_ROUTES } from '@/lib/constants/routes'
 export function LoginForm() {
     const router = useRouter()
     const dispatch = useAppDispatch()
-    const { loading, error } = useAppSelector((state) => state.auth)
+    const { loading, error, isAuthenticated } = useAppSelector((state) => state.auth)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.replace(APP_ROUTES.DASHBOARD)
+        }
+    }, [isAuthenticated, router])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()

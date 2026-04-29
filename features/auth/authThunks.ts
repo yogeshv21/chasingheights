@@ -19,6 +19,7 @@ export const loginThunk = createAsyncThunk<
             created_at: new Date().toISOString(),
         }
 
+        localStorage.setItem('user', JSON.stringify(user))
         return user
     } catch (error) {
         return rejectWithValue('Invalid credentials')
@@ -42,6 +43,7 @@ export const signupThunk = createAsyncThunk<
             created_at: new Date().toISOString(),
         }
 
+        localStorage.setItem('user', JSON.stringify(user))
         return user
     } catch (error) {
         return rejectWithValue('Signup failed')
@@ -51,5 +53,6 @@ export const signupThunk = createAsyncThunk<
 export const logoutThunk = createAsyncThunk('auth/logout', async () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 500))
+    localStorage.removeItem('user')
     return
 })
