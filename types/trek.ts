@@ -64,10 +64,11 @@ export interface Trek {
     notIncluded?: string[]
     itinerary?: ItineraryDay[]
     routeMap?: RouteMap
-    rating: number
-    reviews: number
     gallery?: Gallery
     monthlyAvailability?: MonthlyAvailability[]
+    basecamp?: string
+    highestAltitude?: string
+    totalDistance?: string
 }
 
 export interface TrekFilters {

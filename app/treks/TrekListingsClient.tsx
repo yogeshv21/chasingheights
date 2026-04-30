@@ -16,7 +16,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { Star, MapPin, Clock, Users, Search, Filter, ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { MapPin, Clock, Search, Filter, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { ImageWithFallback } from '@/components/shared/ImageWithFallback'
 import { DUMMY_TREKS, searchTreks, mockDelay } from '@/data/dummyData'
 import type { Trek } from '@/types/trek'
@@ -412,86 +412,79 @@ export function TrekListingsClient() {
                                         {currentTreks.map((trek) => (
                                             <Card
                                                 key={trek.id}
-                                                className="group cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105"
+                                                className="group flex flex-col h-full cursor-pointer hover:shadow-xl transition-all duration-300 border-gray-100 overflow-hidden"
                                                 onClick={() => router.push(APP_ROUTES.TREK_DETAIL(trek.id))}
                                             >
-                                                <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                                                <div className="aspect-[16/10] relative overflow-hidden">
                                                     <ImageWithFallback
                                                         src={trek.image}
                                                         alt={trek.title}
-                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                                     />
-                                                    <div className="absolute top-4 left-4 flex gap-2">
-                                                        <Badge className="bg-emerald-600 text-white">
+                                                    <div className="absolute top-3 left-3">
+                                                        <Badge className="bg-emerald-600/90 backdrop-blur-sm text-white border-none px-3 py-1 text-xs font-medium uppercase tracking-wider">
                                                             {trek.category}
                                                         </Badge>
-                                                        {trek.availability <= 5 && (
-                                                            <Badge className="bg-red-500 text-white">
-                                                                Only {trek.availability} left
-                                                            </Badge>
-                                                        )}
-                                                    </div>
-                                                    <div className="absolute top-4 right-4">
-                                                        <div className="bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center text-sm">
-                                                            <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
-                                                            <span className="font-semibold">{trek.rating}</span>
-                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <CardContent className="p-6">
-                                                    <div className="space-y-4">
+                                                <CardContent className="p-5 flex flex-col flex-1">
+                                                    <div className="flex-1 space-y-4">
                                                         <div>
-                                                            <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-1">
+                                                            <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-1 mb-1.5">
                                                                 {trek.title}
                                                             </h3>
-                                                            <div className="flex items-center text-gray-600 text-sm">
-                                                                <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
+                                                            <div className="flex items-center text-gray-500 text-sm font-medium">
+                                                                <MapPin className="w-3.5 h-3.5 mr-1.5 text-emerald-500" />
                                                                 <span className="line-clamp-1">{trek.location}</span>
                                                             </div>
                                                         </div>
 
-                                                        <p className="text-gray-600 text-sm line-clamp-2">
-                                                            {trek.description}
-                                                        </p>
-
-                                                        <div className="flex items-center justify-between text-sm">
-                                                            <div className="flex items-center space-x-4">
-                                                                <div className="flex items-center">
-                                                                    <Clock className="w-4 h-4 text-emerald-600 mr-1" />
-                                                                    <span>{trek.duration}</span>
-                                                                </div>
-                                                                <div className="flex items-center">
-                                                                    <Users className="w-4 h-4 text-emerald-600 mr-1" />
-                                                                    <span>{trek.availability}</span>
-                                                                </div>
+                                                        <div className="grid grid-cols-2 gap-y-3 gap-x-2 py-3 border-y border-gray-50">
+                                                            <div className="flex items-center text-xs text-gray-600">
+                                                                <Clock className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
+                                                                <span className="font-medium">{trek.duration}</span>
                                                             </div>
-                                                            <Badge
-                                                                variant="secondary"
-                                                                className={getDifficultyColor(trek.difficulty)}
-                                                            >
-                                                                {trek.difficulty}
-                                                            </Badge>
-                                                        </div>
-
-                                                        <div className="pt-4 border-t space-y-3">
-                                                            <div>
-                                                                <span className="text-2xl font-bold text-emerald-600">
-                                                                    ₹{trek.cost.toLocaleString('en-IN')}
-                                                                </span>
-                                                                <span className="text-gray-600 text-sm"> / person</span>
+                                                            <div className="flex items-center text-xs text-gray-600">
+                                                                <div className={`w-2 h-2 rounded-full mr-2 shrink-0 ${
+                                                                    trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
+                                                                    trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-500' : 'bg-red-500'
+                                                                }`} />
+                                                                <span className="font-medium">{trek.difficulty}</span>
                                                             </div>
-                                                            <Button
-                                                                className="w-full bg-emerald-600 hover:bg-emerald-700"
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation()
-                                                                    router.push(APP_ROUTES.TREK_DETAIL(trek.id))
-                                                                }}
-                                                            >
-                                                                View Details
-                                                                <ChevronRight className="w-4 h-4 ml-1" />
-                                                            </Button>
+                                                            {trek.highestAltitude && (
+                                                                <div className="flex items-center text-xs text-gray-600">
+                                                                    <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Alt</span>
+                                                                    <span className="font-medium">{trek.highestAltitude}</span>
+                                                                </div>
+                                                            )}
+                                                            {trek.totalDistance && (
+                                                                <div className="flex items-center text-xs text-gray-600">
+                                                                    <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Dist</span>
+                                                                    <span className="font-medium">{trek.totalDistance}</span>
+                                                                </div>
+                                                            )}
                                                         </div>
+                                                    </div>
+
+                                                    <div className="mt-5 flex items-center justify-between gap-4">
+                                                        <div className="flex flex-col">
+                                                            <span className="text-xs text-gray-500 font-medium uppercase tracking-tighter">Starting from</span>
+                                                            <span className="text-xl font-extrabold text-emerald-700">
+                                                                ₹{trek.cost.toLocaleString('en-IN')}
+                                                            </span>
+                                                        </div>
+                                                        <Button
+                                                            className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm px-4"
+                                                            size="sm"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation()
+                                                                router.push(APP_ROUTES.TREK_DETAIL(trek.id))
+                                                            }}
+                                                        >
+                                                            Details
+                                                            <ChevronRight className="w-4 h-4 ml-1" />
+                                                        </Button>
                                                     </div>
                                                 </CardContent>
                                             </Card>

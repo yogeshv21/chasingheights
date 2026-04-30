@@ -9,9 +9,7 @@ import { Input } from '@/components/ui/input'
 import {
     Search,
     MapPin,
-    Star,
     Clock,
-    Users,
     ChevronRight,
     ArrowRight,
     Compass,
@@ -67,7 +65,7 @@ export function LandingPageClient() {
             setLoading(true)
             await mockDelay(600)
             const upcoming = getTreksByCategory('upcoming').slice(0, 3)
-            const featured = getTreksByCategory('seasonal').slice(0, 3)
+            const featured = getTreksByCategory('trending').slice(0, 3)
             setUpcomingTreks(upcoming)
             setFeaturedTreks(featured)
             setLoading(false)
@@ -251,56 +249,77 @@ export function LandingPageClient() {
                         {featuredTreks.map((trek) => (
                             <Card
                                 key={trek.id}
-                                className="group cursor-pointer hover:shadow-lg transition-all duration-200"
+                                className="group flex flex-col h-full cursor-pointer hover:shadow-xl transition-all duration-300 border-gray-100 overflow-hidden"
                             >
-                                <Link href={APP_ROUTES.TREK_DETAIL(trek.id)}>
-                                    <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                                <Link href={APP_ROUTES.TREK_DETAIL(trek.id)} className="flex flex-col h-full">
+                                    <div className="aspect-[16/10] relative overflow-hidden">
                                         <ImageWithFallback
                                             src={trek.image}
                                             alt={trek.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                         />
-                                        <div className="absolute top-4 right-4 bg-white/90 rounded-full px-2 py-1 flex items-center text-sm">
-                                            <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
-                                            <span className="font-semibold">{trek.rating}</span>
+                                        <div className="absolute top-3 left-3">
+                                            <Badge className="bg-emerald-600/90 backdrop-blur-sm text-white border-none px-3 py-1 text-xs font-medium uppercase tracking-wider">
+                                                {trek.category}
+                                            </Badge>
                                         </div>
                                     </div>
 
-                                    <CardContent className="p-6">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Badge variant="outline">{trek.difficulty}</Badge>
-                                            <Badge className="bg-emerald-600">{trek.category}</Badge>
-                                        </div>
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{trek.title}</h3>
-                                        <div className="flex items-center text-gray-600 text-sm mb-4">
-                                            <MapPin className="w-4 h-4 mr-1" />
-                                            {trek.location}
-                                        </div>
+                                    <CardContent className="p-5 flex flex-col flex-1">
+                                        <div className="flex-1 space-y-4">
+                                            <div>
+                                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-1 mb-1.5">
+                                                    {trek.title}
+                                                </h3>
+                                                <div className="flex items-center text-gray-500 text-sm font-medium">
+                                                    <MapPin className="w-3.5 h-3.5 mr-1.5 text-emerald-500" />
+                                                    <span className="line-clamp-1">{trek.location}</span>
+                                                </div>
+                                            </div>
 
-                                        <div className="flex items-center justify-between text-sm mb-4">
-                                            <div className="flex items-center space-x-4">
-                                                <div className="flex items-center">
-                                                    <Clock className="w-4 h-4 text-emerald-600 mr-1" />
-                                                    <span>{trek.duration}</span>
+                                            <div className="grid grid-cols-2 gap-y-3 gap-x-2 py-3 border-y border-gray-50">
+                                                <div className="flex items-center text-xs text-gray-600">
+                                                    <Clock className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
+                                                    <span className="font-medium">{trek.duration}</span>
                                                 </div>
-                                                <div className="flex items-center">
-                                                    <Users className="w-4 h-4 text-emerald-600 mr-1" />
-                                                    <span>{trek.availability}</span>
+                                                <div className="flex items-center text-xs text-gray-600">
+                                                    <div className={`w-2 h-2 rounded-full mr-2 shrink-0 ${
+                                                        trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
+                                                        trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-500' : 'bg-red-500'
+                                                    }`} />
+                                                    <span className="font-medium">{trek.difficulty}</span>
                                                 </div>
+                                                {trek.highestAltitude && (
+                                                    <div className="flex items-center text-xs text-gray-600">
+                                                        <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Alt</span>
+                                                        <span className="font-medium">{trek.highestAltitude}</span>
+                                                    </div>
+                                                )}
+                                                {trek.totalDistance && (
+                                                    <div className="flex items-center text-xs text-gray-600">
+                                                        <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Dist</span>
+                                                        <span className="font-medium">{trek.totalDistance}</span>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
-                                        <div className="pt-4 border-t space-y-3">
-                                            <div>
-                                                <span className="text-2xl font-bold text-emerald-600">₹{trek.cost.toLocaleString('en-IN')}</span>
-                                                <span className="text-gray-600 text-sm"> / person</span>
+                                        <div className="mt-5 flex items-center justify-between gap-4">
+                                            <div className="flex flex-col">
+                                                <span className="text-xs text-gray-500 font-medium uppercase tracking-tighter">Starting from</span>
+                                                <span className="text-xl font-extrabold text-emerald-700">
+                                                    ₹{trek.cost.toLocaleString('en-IN')}
+                                                </span>
                                             </div>
                                             <Button
-                                                className="w-full bg-emerald-600 hover:bg-emerald-700"
-                                                onClick={(e) => e.preventDefault()}
+                                                className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm px-4"
+                                                size="sm"
+                                                asChild
                                             >
-                                                View Details
-                                                <ChevronRight className="w-4 h-4 ml-1" />
+                                                <span>
+                                                    Details
+                                                    <ChevronRight className="w-4 h-4 ml-1" />
+                                                </span>
                                             </Button>
                                         </div>
                                     </CardContent>
@@ -399,12 +418,7 @@ export function LandingPageClient() {
                         {testimonials.map((testimonial, index) => (
                             <Card key={index} className="p-6">
                                 <CardContent className="p-0">
-                                    <div className="flex items-center mb-4">
-                                        {[...Array(testimonial.rating)].map((_, i) => (
-                                            <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                                        ))}
-                                    </div>
-                                    <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                                        <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
                                     <div className="flex items-center">
                                         <ImageWithFallback
                                             src={testimonial.image}
@@ -437,44 +451,77 @@ export function LandingPageClient() {
                         {upcomingTreks.map((trek) => (
                             <Card
                                 key={trek.id}
-                                className="group cursor-pointer hover:shadow-lg transition-all duration-200"
+                                className="group flex flex-col h-full cursor-pointer hover:shadow-xl transition-all duration-300 border-gray-100 overflow-hidden"
                             >
-                                <Link href={APP_ROUTES.TREK_DETAIL(trek.id)}>
-                                    <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                                <Link href={APP_ROUTES.TREK_DETAIL(trek.id)} className="flex flex-col h-full">
+                                    <div className="aspect-[16/10] relative overflow-hidden">
                                         <ImageWithFallback
                                             src={trek.image}
                                             alt={trek.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                         />
-                                        <div className="absolute top-4 left-4">
-                                            <Badge className="bg-emerald-600 text-white">Upcoming</Badge>
+                                        <div className="absolute top-3 left-3">
+                                            <Badge className="bg-emerald-600/90 backdrop-blur-sm text-white border-none px-3 py-1 text-xs font-medium uppercase tracking-wider">
+                                                Upcoming
+                                            </Badge>
                                         </div>
-                                        {trek.availability <= 5 && (
-                                            <div className="absolute top-4 right-4">
-                                                <Badge className="bg-red-500 text-white">
-                                                    Only {trek.availability} left
-                                                </Badge>
-                                            </div>
-                                        )}
                                     </div>
 
-                                    <CardContent className="p-6">
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{trek.title}</h3>
-                                        <div className="flex items-center text-gray-600 text-sm mb-4">
-                                            <MapPin className="w-4 h-4 mr-1" />
-                                            {trek.location}
+                                    <CardContent className="p-5 flex flex-col flex-1">
+                                        <div className="flex-1 space-y-4">
+                                            <div>
+                                                <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-1 mb-1.5">
+                                                    {trek.title}
+                                                </h3>
+                                                <div className="flex items-center text-gray-500 text-sm font-medium">
+                                                    <MapPin className="w-3.5 h-3.5 mr-1.5 text-emerald-500" />
+                                                    <span className="line-clamp-1">{trek.location}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-y-3 gap-x-2 py-3 border-y border-gray-50">
+                                                <div className="flex items-center text-xs text-gray-600">
+                                                    <Clock className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
+                                                    <span className="font-medium">{trek.duration}</span>
+                                                </div>
+                                                <div className="flex items-center text-xs text-gray-600">
+                                                    <div className={`w-2 h-2 rounded-full mr-2 shrink-0 ${
+                                                        trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
+                                                        trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-500' : 'bg-red-500'
+                                                    }`} />
+                                                    <span className="font-medium">{trek.difficulty}</span>
+                                                </div>
+                                                {trek.highestAltitude && (
+                                                    <div className="flex items-center text-xs text-gray-600">
+                                                        <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Alt</span>
+                                                        <span className="font-medium">{trek.highestAltitude}</span>
+                                                    </div>
+                                                )}
+                                                {trek.totalDistance && (
+                                                    <div className="flex items-center text-xs text-gray-600">
+                                                        <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Dist</span>
+                                                        <span className="font-medium">{trek.totalDistance}</span>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
 
-                                        <div className="space-y-3">
-                                            <div>
-                                                <span className="text-2xl font-bold text-emerald-600">₹{trek.cost.toLocaleString('en-IN')}</span>
-                                                <span className="text-gray-600 text-sm"> / person</span>
+                                        <div className="mt-5 flex items-center justify-between gap-4">
+                                            <div className="flex flex-col">
+                                                <span className="text-xs text-gray-500 font-medium uppercase tracking-tighter">Starting from</span>
+                                                <span className="text-xl font-extrabold text-emerald-700">
+                                                    ₹{trek.cost.toLocaleString('en-IN')}
+                                                </span>
                                             </div>
                                             <Button
-                                                className="w-full bg-emerald-600 hover:bg-emerald-700"
-                                                onClick={(e) => e.preventDefault()}
+                                                className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm px-4"
+                                                size="sm"
+                                                asChild
                                             >
-                                                Book Now
+                                                <span>
+                                                    Details
+                                                    <ChevronRight className="w-4 h-4 ml-1" />
+                                                </span>
                                             </Button>
                                         </div>
                                     </CardContent>

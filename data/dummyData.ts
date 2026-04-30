@@ -21,19 +21,6 @@ export interface GalleryVideo {
   duration: string
 }
 
-export interface AvailableDate {
-  date: string
-  price: number
-  seatsAvailable: number
-  status: 'available' | 'limited' | 'full'
-}
-
-export interface MonthlyAvailability {
-  month: string
-  year: number
-  dates: AvailableDate[]
-}
-
 export interface Trek {
   id: string
   title: string
@@ -51,11 +38,10 @@ export interface Trek {
   included?: string[]
   notIncluded?: string[]
   itinerary?: ItineraryDay[]
-  routeMap?: RouteMap
-  rating: number
-  reviews: number
   gallery?: Gallery
-  monthlyAvailability?: MonthlyAvailability[]
+  basecamp?: string
+  highestAltitude?: string
+  totalDistance?: string
 }
 
 export interface ItineraryDay {
@@ -63,10 +49,9 @@ export interface ItineraryDay {
   title: string
   description: string
   accommodation: string
-  meals: string
-  altitude: string
-  walkingHours?: string
-  drivingHours?: string
+  meals: string,
+  distance?: string
+  duration: string,
 }
 
 export interface RouteMap {
@@ -139,8 +124,9 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500',
     availability: 12,
     category: 'upcoming',
-    rating: 4.8,
-    reviews: 124,
+    basecamp: 'Everest Base Camp',
+    highestAltitude: '18,513 ft',
+    totalDistance: '130 km',
     gallery: {
       photos: [
         'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800',
@@ -211,7 +197,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Arrive in Kathmandu and transfer to hotel. Meet your guide and final preparations for the trek.',
         accommodation: 'Hotel',
         meals: 'Dinner',
-        altitude: '1,350m'
+        distance: '1,350m',
+        duration: ""
       },
       {
         day: 2,
@@ -219,8 +206,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Early morning flight to Lukla. Begin trek to Phakding through beautiful Sherpa villages.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '2,651m',
-        walkingHours: '3-4 hours'
+        distance: '2,651m',
+        duration: '3-4 hours'
       },
       {
         day: 3,
@@ -228,8 +215,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Cross several suspension bridges and climb to the famous Sherpa capital of Namche Bazaar.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,438m',
-        walkingHours: '5-6 hours'
+        distance: '3,438m',
+        duration: '5-6 hours'
       },
       {
         day: 4,
@@ -237,8 +224,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Rest day for acclimatization. Optional hike to Everest View Hotel for stunning mountain views.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,438m',
-        walkingHours: '3-4 hours (optional)'
+        distance: '3,438m',
+        duration: '3-4 hours (optional)'
       },
       {
         day: 5,
@@ -246,8 +233,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek through beautiful rhododendron forests to reach the famous Tengboche Monastery.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,867m',
-        walkingHours: '5-6 hours'
+        distance: '3,867m',
+        duration: '5-6 hours'
       },
       {
         day: 6,
@@ -255,8 +242,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Continue through alpine terrain to Dingboche, with incredible mountain views.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '4,410m',
-        walkingHours: '5-6 hours'
+        distance: '4,410m',
+        duration: '5-6 hours'
       },
       {
         day: 7,
@@ -264,8 +251,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Another crucial acclimatization day. Optional hike to Nagarjun Hill for panoramic views.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '4,410m',
-        walkingHours: '3-4 hours (optional)'
+        distance: '4,410m',
+        duration: '3-4 hours (optional)'
       },
       {
         day: 8,
@@ -273,8 +260,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek through the memorial area to climbers and continue to Lobuche.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '4,910m',
-        walkingHours: '4-5 hours'
+        distance: '4,910m',
+        duration: '4-5 hours'
       },
       {
         day: 9,
@@ -282,8 +269,7 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'The big day! Trek to Everest Base Camp and return to Gorak Shep for the night.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '5,364m (EBC), 5,140m (Gorak Shep)',
-        walkingHours: '7-8 hours'
+        duration: '7-8 hours'
       },
       {
         day: 10,
@@ -291,8 +277,7 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Early morning hike to Kala Patthar for sunrise views, then descend to Pheriche.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '5,545m (Kala Patthar), 4,240m (Pheriche)',
-        walkingHours: '6-7 hours'
+        duration: '6-7 hours'
       },
       {
         day: 11,
@@ -300,8 +285,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Long descent back to Namche Bazaar through familiar territory.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,438m',
-        walkingHours: '6-7 hours'
+        distance: '3,438m',
+        duration: '6-7 hours'
       },
       {
         day: 12,
@@ -309,8 +294,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Final day of trekking, return to Lukla for celebration dinner.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '2,840m',
-        walkingHours: '6-7 hours'
+        distance: '2,840m',
+        duration: '6-7 hours'
       },
       {
         day: 13,
@@ -318,7 +303,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Morning flight back to Kathmandu. Rest and explore the city.',
         accommodation: 'Hotel',
         meals: 'Breakfast',
-        altitude: '1,350m'
+        distance: '1,350m',
+        duration: ""
       },
       {
         day: 14,
@@ -326,84 +312,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Transfer to airport for international departure or extend your stay.',
         accommodation: 'Day room if needed',
         meals: 'Breakfast',
-        altitude: '1,350m'
+        distance: '1,350m',
+        duration: ""
       }
     ],
-    routeMap: {
-      waypoints: [
-        { name: 'Lukla', lat: 27.6867, lng: 86.7294, altitude: '2,860m' },
-        { name: 'Phakding', lat: 27.7404, lng: 86.7117, altitude: '2,651m' },
-        { name: 'Namche Bazaar', lat: 27.8056, lng: 86.7147, altitude: '3,438m' },
-        { name: 'Tengboche', lat: 27.8369, lng: 86.7639, altitude: '3,867m' },
-        { name: 'Dingboche', lat: 27.8267, lng: 86.8306, altitude: '4,410m' },
-        { name: 'Lobuche', lat: 27.9667, lng: 86.7833, altitude: '4,910m' },
-        { name: 'Everest Base Camp', lat: 28.0018, lng: 86.8528, altitude: '5,364m' }
-      ]
-    },
-    monthlyAvailability: [
-      {
-        month: 'March',
-        year: 2024,
-        dates: [
-          { date: '2024-03-05', price: 75000, seatsAvailable: 8, status: 'available' },
-          { date: '2024-03-12', price: 75000, seatsAvailable: 6, status: 'available' },
-          { date: '2024-03-19', price: 77900, seatsAvailable: 3, status: 'limited' },
-          { date: '2024-03-26', price: 75000, seatsAvailable: 10, status: 'available' }
-        ]
-      },
-      {
-        month: 'April',
-        year: 2024,
-        dates: [
-          { date: '2024-04-02', price: 80800, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-04-09', price: 80800, seatsAvailable: 0, status: 'full' },
-          { date: '2024-04-16', price: 83700, seatsAvailable: 5, status: 'available' },
-          { date: '2024-04-23', price: 80800, seatsAvailable: 7, status: 'available' },
-          { date: '2024-04-30', price: 80800, seatsAvailable: 4, status: 'limited' }
-        ]
-      },
-      {
-        month: 'May',
-        year: 2024,
-        dates: [
-          { date: '2024-05-07', price: 83700, seatsAvailable: 9, status: 'available' },
-          { date: '2024-05-14', price: 83700, seatsAvailable: 6, status: 'available' },
-          { date: '2024-05-21', price: 86500, seatsAvailable: 3, status: 'limited' },
-          { date: '2024-05-28', price: 83700, seatsAvailable: 8, status: 'available' }
-        ]
-      },
-      {
-        month: 'September',
-        year: 2024,
-        dates: [
-          { date: '2024-09-03', price: 80800, seatsAvailable: 7, status: 'available' },
-          { date: '2024-09-10', price: 80800, seatsAvailable: 5, status: 'available' },
-          { date: '2024-09-17', price: 83700, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-09-24', price: 80800, seatsAvailable: 9, status: 'available' }
-        ]
-      },
-      {
-        month: 'October',
-        year: 2024,
-        dates: [
-          { date: '2024-10-01', price: 83700, seatsAvailable: 6, status: 'available' },
-          { date: '2024-10-08', price: 86500, seatsAvailable: 1, status: 'limited' },
-          { date: '2024-10-15', price: 89400, seatsAvailable: 0, status: 'full' },
-          { date: '2024-10-22', price: 86500, seatsAvailable: 4, status: 'limited' },
-          { date: '2024-10-29', price: 83700, seatsAvailable: 8, status: 'available' }
-        ]
-      },
-      {
-        month: 'November',
-        year: 2024,
-        dates: [
-          { date: '2024-11-05', price: 77900, seatsAvailable: 10, status: 'available' },
-          { date: '2024-11-12', price: 77900, seatsAvailable: 7, status: 'available' },
-          { date: '2024-11-19', price: 75000, seatsAvailable: 12, status: 'available' },
-          { date: '2024-11-26', price: 75000, seatsAvailable: 9, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'annapurna-circuit',
@@ -418,8 +330,9 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 8,
     category: 'trending',
-    rating: 4.6,
-    reviews: 89,
+    basecamp: 'Thorong Phedi',
+    highestAltitude: '17,769 ft',
+    totalDistance: '210 km',
     gallery: {
       photos: [
         'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
@@ -481,8 +394,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive from Kathmandu to Besisahar, the starting point of our trek.',
         accommodation: 'Lodge',
         meals: 'All meals',
-        altitude: '760m',
-        drivingHours: '6-7 hours'
+        distance: '760m',
+        duration: ""
       },
       {
         day: 2,
@@ -490,8 +403,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Begin trekking through terraced fields and rhododendron forests.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '2,710m',
-        walkingHours: '6-7 hours'
+        distance: '2,710m',
+        duration: '6-7 hours'
       },
       {
         day: 3,
@@ -499,8 +412,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek through pine forests with views of Annapurna II and Pisang Peak.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,300m',
-        walkingHours: '5-6 hours'
+        distance: '3,300m',
+        duration: '5-6 hours'
       },
       {
         day: 4,
@@ -508,8 +421,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Choose between upper or lower trail to reach the beautiful village of Manang.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,519m',
-        walkingHours: '6-7 hours'
+        distance: '3,519m',
+        duration: '6-7 hours'
       },
       {
         day: 5,
@@ -517,8 +430,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Rest day for acclimatization. Optional hike to Gangapurna Lake or Ice Lake.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '3,519m',
-        walkingHours: '3-5 hours (optional)'
+        distance: '3,519m',
+        duration: '3-5 hours (optional)'
       },
       {
         day: 6,
@@ -526,8 +439,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Continue climbing through alpine landscape to Yak Kharka.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '4,018m',
-        walkingHours: '3-4 hours'
+        distance: '4,018m',
+        duration: '3-4 hours'
       },
       {
         day: 7,
@@ -535,8 +448,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Short but steep climb to Thorong Phedi, base for the pass crossing.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '4,450m',
-        walkingHours: '3-4 hours'
+        distance: '4,450m',
+        duration: '3-4 hours'
       },
       {
         day: 8,
@@ -544,8 +457,7 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Early start to cross the challenging Thorong La Pass and descend to Muktinath.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '5,416m (pass), 3,710m (Muktinath)',
-        walkingHours: '7-9 hours'
+        duration: '7-9 hours'
       },
       {
         day: 9,
@@ -553,8 +465,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Visit the sacred Muktinath Temple and descend to the windy town of Jomsom.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '2,743m',
-        walkingHours: '5-6 hours'
+        distance: '2,743m',
+        duration: '5-6 hours'
       },
       {
         day: 10,
@@ -562,74 +474,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Walk through the Kali Gandaki valley to the beautiful village of Marpha.',
         accommodation: 'Tea House',
         meals: 'All meals',
-        altitude: '2,667m',
-        walkingHours: '4-5 hours'
+        distance: '2,667m',
+        duration: '4-5 hours'
       }
     ],
-    routeMap: {
-      waypoints: [
-        { name: 'Besisahar', lat: 28.2333, lng: 84.4167, altitude: '760m' },
-        { name: 'Chame', lat: 28.5500, lng: 84.2333, altitude: '2,710m' },
-        { name: 'Manang', lat: 28.6667, lng: 84.0167, altitude: '3,519m' },
-        { name: 'Thorong La Pass', lat: 28.7833, lng: 83.9333, altitude: '5,416m' },
-        { name: 'Muktinath', lat: 28.8167, lng: 83.8667, altitude: '3,710m' },
-        { name: 'Jomsom', lat: 28.7833, lng: 83.7333, altitude: '2,743m' }
-      ]
-    },
-    monthlyAvailability: [
-      {
-        month: 'March',
-        year: 2024,
-        dates: [
-          { date: '2024-03-08', price: 55000, seatsAvailable: 6, status: 'available' },
-          { date: '2024-03-15', price: 55000, seatsAvailable: 4, status: 'limited' },
-          { date: '2024-03-22', price: 58100, seatsAvailable: 8, status: 'available' },
-          { date: '2024-03-29', price: 55000, seatsAvailable: 7, status: 'available' }
-        ]
-      },
-      {
-        month: 'April',
-        year: 2024,
-        dates: [
-          { date: '2024-04-05', price: 58100, seatsAvailable: 5, status: 'available' },
-          { date: '2024-04-12', price: 61100, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-04-19', price: 61100, seatsAvailable: 9, status: 'available' },
-          { date: '2024-04-26', price: 58100, seatsAvailable: 6, status: 'available' }
-        ]
-      },
-      {
-        month: 'May',
-        year: 2024,
-        dates: [
-          { date: '2024-05-03', price: 61100, seatsAvailable: 3, status: 'limited' },
-          { date: '2024-05-10', price: 64200, seatsAvailable: 0, status: 'full' },
-          { date: '2024-05-17', price: 64200, seatsAvailable: 7, status: 'available' },
-          { date: '2024-05-24', price: 61100, seatsAvailable: 8, status: 'available' },
-          { date: '2024-05-31', price: 58100, seatsAvailable: 10, status: 'available' }
-        ]
-      },
-      {
-        month: 'October',
-        year: 2024,
-        dates: [
-          { date: '2024-10-04', price: 61100, seatsAvailable: 4, status: 'limited' },
-          { date: '2024-10-11', price: 64200, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-10-18', price: 67200, seatsAvailable: 6, status: 'available' },
-          { date: '2024-10-25', price: 64200, seatsAvailable: 8, status: 'available' }
-        ]
-      },
-      {
-        month: 'November',
-        year: 2024,
-        dates: [
-          { date: '2024-11-01', price: 58100, seatsAvailable: 9, status: 'available' },
-          { date: '2024-11-08', price: 55000, seatsAvailable: 12, status: 'available' },
-          { date: '2024-11-15', price: 55000, seatsAvailable: 10, status: 'available' },
-          { date: '2024-11-22', price: 51900, seatsAvailable: 15, status: 'available' },
-          { date: '2024-11-29', price: 51900, seatsAvailable: 11, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'kilimanjaro-machame',
@@ -644,8 +492,9 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=500',
     availability: 6,
     category: 'seasonal',
-    rating: 4.9,
-    reviews: 67,
+    basecamp: 'Barafu Camp',
+    highestAltitude: '19,341 ft',
+    totalDistance: '62 km',
     gallery: {
       photos: [
         'https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=800',
@@ -716,8 +565,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Begin your climb through the rainforest zone to Machame Camp.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '3,010m',
-        walkingHours: '5-7 hours'
+        distance: '3,010m',
+        duration: '5-7 hours'
       },
       {
         day: 2,
@@ -725,8 +574,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Climb through moorland to reach the Shira Plateau.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '3,850m',
-        walkingHours: '4-6 hours'
+        distance: '3,850m',
+        duration: '4-6 hours'
       },
       {
         day: 3,
@@ -734,8 +583,7 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Climb high and sleep low for acclimatization, including the famous Barranco Wall.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '4,630m (Lava Tower), 3,950m (Barranco)',
-        walkingHours: '6-8 hours'
+        duration: '6-8 hours'
       },
       {
         day: 4,
@@ -743,8 +591,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Climb the Barranco Wall and continue to Karanga Camp.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '4,035m',
-        walkingHours: '4-5 hours'
+        distance: '4,035m',
+        duration: '4-5 hours'
       },
       {
         day: 5,
@@ -752,8 +600,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Final approach to base camp. Rest and prepare for summit attempt.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '4,640m',
-        walkingHours: '4-5 hours'
+        distance: '4,640m',
+        duration: '4-5 hours'
       },
       {
         day: 6,
@@ -761,8 +609,7 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Midnight start for summit attempt to Uhuru Peak, then descend to Mweka Camp.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '5,895m (summit), 3,090m (Mweka)',
-        walkingHours: '10-14 hours'
+        duration: '10-14 hours'
       },
       {
         day: 7,
@@ -770,64 +617,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Final descent through rainforest to Mweka Gate and transfer back to hotel.',
         accommodation: 'Hotel',
         meals: 'Breakfast',
-        altitude: '1,630m',
-        walkingHours: '3-4 hours'
+        distance: '1,630m',
+        duration: '3-4 hours'
       }
     ],
-    routeMap: {
-      waypoints: [
-        { name: 'Machame Gate', lat: -3.1667, lng: 37.2167, altitude: '1,640m' },
-        { name: 'Machame Camp', lat: -3.1833, lng: 37.2000, altitude: '3,010m' },
-        { name: 'Shira Camp', lat: -3.0833, lng: 37.2000, altitude: '3,850m' },
-        { name: 'Lava Tower', lat: -3.0667, lng: 37.3167, altitude: '4,630m' },
-        { name: 'Barranco Camp', lat: -3.0667, lng: 37.3000, altitude: '3,950m' },
-        { name: 'Barafu Camp', lat: -3.0667, lng: 37.3333, altitude: '4,640m' },
-        { name: 'Uhuru Peak', lat: -3.0759, lng: 37.3533, altitude: '5,895m' }
-      ]
-    },
-    monthlyAvailability: [
-      {
-        month: 'January',
-        year: 2024,
-        dates: [
-          { date: '2024-01-08', price: 180000, seatsAvailable: 4, status: 'limited' },
-          { date: '2024-01-15', price: 180000, seatsAvailable: 6, status: 'available' },
-          { date: '2024-01-22', price: 188200, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-01-29', price: 180000, seatsAvailable: 8, status: 'available' }
-        ]
-      },
-      {
-        month: 'February',
-        year: 2024,
-        dates: [
-          { date: '2024-02-05', price: 180000, seatsAvailable: 5, status: 'available' },
-          { date: '2024-02-12', price: 184100, seatsAvailable: 3, status: 'limited' },
-          { date: '2024-02-19', price: 180000, seatsAvailable: 7, status: 'available' },
-          { date: '2024-02-26', price: 180000, seatsAvailable: 6, status: 'available' }
-        ]
-      },
-      {
-        month: 'June',
-        year: 2024,
-        dates: [
-          { date: '2024-06-03', price: 188200, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-06-10', price: 196400, seatsAvailable: 0, status: 'full' },
-          { date: '2024-06-17', price: 196400, seatsAvailable: 4, status: 'limited' },
-          { date: '2024-06-24', price: 192300, seatsAvailable: 6, status: 'available' }
-        ]
-      },
-      {
-        month: 'July',
-        year: 2024,
-        dates: [
-          { date: '2024-07-01', price: 200500, seatsAvailable: 3, status: 'limited' },
-          { date: '2024-07-08', price: 204600, seatsAvailable: 1, status: 'limited' },
-          { date: '2024-07-15', price: 204600, seatsAvailable: 5, status: 'available' },
-          { date: '2024-07-22', price: 200500, seatsAvailable: 7, status: 'available' },
-          { date: '2024-07-29', price: 196400, seatsAvailable: 8, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'mont-blanc-circuit',
@@ -842,8 +635,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
     availability: 10,
     category: 'trending',
-    rating: 4.7,
-    reviews: 156,
     gallery: {
       photos: [
         'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=800',
@@ -904,8 +695,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Begin the classic Tour du Mont Blanc from Chamonix valley.',
         accommodation: 'Mountain Hut',
         meals: 'Half board',
-        altitude: '1,000m',
-        walkingHours: '4-5 hours'
+        distance: '1,000m',
+        duration: '4-5 hours'
       },
       {
         day: 2,
@@ -913,8 +704,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Cross into Italy via the beautiful Seigne Pass.',
         accommodation: 'Mountain Hut',
         meals: 'Half board',
-        altitude: '1,549m',
-        walkingHours: '6-7 hours'
+        distance: '1,549m',
+        duration: '6-7 hours'
       },
       {
         day: 3,
@@ -922,8 +713,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Descend to the charming Italian town of Courmayeur.',
         accommodation: 'Hotel',
         meals: 'Breakfast',
-        altitude: '1,224m',
-        walkingHours: '5-6 hours'
+        distance: '1,224m',
+        duration: '5-6 hours'
       },
       {
         day: 4,
@@ -931,8 +722,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek through the beautiful Italian Val Ferret.',
         accommodation: 'Mountain Hut',
         meals: 'Half board',
-        altitude: '1,769m',
-        walkingHours: '6-7 hours'
+        distance: '1,769m',
+        duration: '6-7 hours'
       },
       {
         day: 5,
@@ -940,8 +731,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Cross into Switzerland via Grand Col Ferret.',
         accommodation: 'Hotel',
         meals: 'Half board',
-        altitude: '1,466m',
-        walkingHours: '5-6 hours'
+        distance: '1,466m',
+        duration: '5-6 hours'
       },
       {
         day: 6,
@@ -949,8 +740,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Beautiful walking through Swiss Alpine meadows.',
         accommodation: 'Mountain Hut',
         meals: 'Half board',
-        altitude: '1,279m',
-        walkingHours: '4-5 hours'
+        distance: '1,279m',
+        duration: '4-5 hours'
       },
       {
         day: 7,
@@ -958,8 +749,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Cross back into France via Balme Col.',
         accommodation: 'Hotel',
         meals: 'Half board',
-        altitude: '1,252m',
-        walkingHours: '5-6 hours'
+        distance: '1,252m',
+        duration: '5-6 hours'
       },
       {
         day: 8,
@@ -967,63 +758,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Final day completing the circuit back to Chamonix.',
         accommodation: 'Hotel',
         meals: 'Breakfast',
-        altitude: '1,035m',
-        walkingHours: '4-5 hours'
+        distance: '1,035m',
+        duration: '4-5 hours'
       }
     ],
-    routeMap: {
-      waypoints: [
-        { name: 'Chamonix', lat: 45.9237, lng: 6.8694, altitude: '1,035m' },
-        { name: 'Les Houches', lat: 45.8936, lng: 6.7969, altitude: '1,000m' },
-        { name: 'Les Chapieux', lat: 45.7567, lng: 6.9683, altitude: '1,549m' },
-        { name: 'Courmayeur', lat: 45.8167, lng: 6.9667, altitude: '1,224m' },
-        { name: 'Champex', lat: 46.0667, lng: 7.1000, altitude: '1,466m' },
-        { name: 'Trient', lat: 46.0667, lng: 6.9167, altitude: '1,279m' },
-        { name: 'Argentière', lat: 45.9667, lng: 6.9167, altitude: '1,252m' }
-      ]
-    },
-    monthlyAvailability: [
-      {
-        month: 'June',
-        year: 2024,
-        dates: [
-          { date: '2024-06-10', price: 140000, seatsAvailable: 8, status: 'available' },
-          { date: '2024-06-17', price: 144400, seatsAvailable: 5, status: 'available' },
-          { date: '2024-06-24', price: 148800, seatsAvailable: 3, status: 'limited' }
-        ]
-      },
-      {
-        month: 'July',
-        year: 2024,
-        dates: [
-          { date: '2024-07-01', price: 153100, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-07-08', price: 157500, seatsAvailable: 0, status: 'full' },
-          { date: '2024-07-15', price: 157500, seatsAvailable: 6, status: 'available' },
-          { date: '2024-07-22', price: 153100, seatsAvailable: 9, status: 'available' },
-          { date: '2024-07-29', price: 148800, seatsAvailable: 7, status: 'available' }
-        ]
-      },
-      {
-        month: 'August',
-        year: 2024,
-        dates: [
-          { date: '2024-08-05', price: 157500, seatsAvailable: 4, status: 'limited' },
-          { date: '2024-08-12', price: 161900, seatsAvailable: 1, status: 'limited' },
-          { date: '2024-08-19', price: 157500, seatsAvailable: 8, status: 'available' },
-          { date: '2024-08-26', price: 153100, seatsAvailable: 10, status: 'available' }
-        ]
-      },
-      {
-        month: 'September',
-        year: 2024,
-        dates: [
-          { date: '2024-09-02', price: 148800, seatsAvailable: 12, status: 'available' },
-          { date: '2024-09-09', price: 144400, seatsAvailable: 8, status: 'available' },
-          { date: '2024-09-16', price: 140000, seatsAvailable: 15, status: 'available' },
-          { date: '2024-09-23', price: 140000, seatsAvailable: 11, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'inca-trail',
@@ -1038,8 +776,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=500',
     availability: 4,
     category: 'upcoming',
-    rating: 4.9,
-    reviews: 203,
     gallery: {
       photos: [
         'https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800',
@@ -1109,8 +845,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Start the trek from Qoriwayrachina and hike to the first campsite.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '3,000m',
-        walkingHours: '6-7 hours'
+        distance: '3,000m',
+        duration: '6-7 hours'
       },
       {
         day: 2,
@@ -1119,7 +855,7 @@ export const DUMMY_TREKS: Trek[] = [
         accommodation: 'Camping',
         meals: 'All meals',
         altitude: '4,215m (pass), 3,650m (camp)',
-        walkingHours: '7-8 hours'
+        duration: '7-8 hours'
       },
       {
         day: 3,
@@ -1127,8 +863,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Visit Wiñay Wayna ruins and descend to final campsite.',
         accommodation: 'Camping',
         meals: 'All meals',
-        altitude: '2,650m',
-        walkingHours: '8-9 hours'
+        distance: '2,650m',
+        duration: '8-9 hours'
       },
       {
         day: 4,
@@ -1136,73 +872,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Early morning hike through Sun Gate to Machu Picchu for sunrise.',
         accommodation: 'Hotel in Aguas Calientes',
         meals: 'Breakfast',
-        altitude: '2,430m',
-        walkingHours: '3-4 hours'
+        distance: '2,430m',
+        duration: '3-4 hours'
       }
     ],
-    routeMap: {
-      waypoints: [
-        { name: 'Qoriwayrachina', lat: -13.2167, lng: -72.5167, altitude: '2,600m' },
-        { name: 'Wayllabamba', lat: -13.2000, lng: -72.5333, altitude: '3,000m' },
-        { name: 'Dead Woman\'s Pass', lat: -13.1833, lng: -72.5500, altitude: '4,215m' },
-        { name: 'Wiñay Wayna', lat: -13.1667, lng: -72.5667, altitude: '2,650m' },
-        { name: 'Sun Gate', lat: -13.1633, lng: -72.5450, altitude: '2,720m' },
-        { name: 'Machu Picchu', lat: -13.1631, lng: -72.5450, altitude: '2,430m' }
-      ]
-    },
-    monthlyAvailability: [
-      {
-        month: 'May',
-        year: 2024,
-        dates: [
-          { date: '2024-05-06', price: 90000, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-05-13', price: 95300, seatsAvailable: 0, status: 'full' },
-          { date: '2024-05-20', price: 95300, seatsAvailable: 3, status: 'limited' },
-          { date: '2024-05-27', price: 90000, seatsAvailable: 4, status: 'limited' }
-        ]
-      },
-      {
-        month: 'June',
-        year: 2024,
-        dates: [
-          { date: '2024-06-03', price: 100600, seatsAvailable: 1, status: 'limited' },
-          { date: '2024-06-10', price: 105900, seatsAvailable: 0, status: 'full' },
-          { date: '2024-06-17', price: 105900, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-06-24', price: 100600, seatsAvailable: 3, status: 'limited' }
-        ]
-      },
-      {
-        month: 'July',
-        year: 2024,
-        dates: [
-          { date: '2024-07-01', price: 111200, seatsAvailable: 0, status: 'full' },
-          { date: '2024-07-08', price: 116500, seatsAvailable: 0, status: 'full' },
-          { date: '2024-07-15', price: 116500, seatsAvailable: 1, status: 'limited' },
-          { date: '2024-07-22', price: 111200, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-07-29', price: 105900, seatsAvailable: 3, status: 'limited' }
-        ]
-      },
-      {
-        month: 'August',
-        year: 2024,
-        dates: [
-          { date: '2024-08-05', price: 111200, seatsAvailable: 1, status: 'limited' },
-          { date: '2024-08-12', price: 116500, seatsAvailable: 0, status: 'full' },
-          { date: '2024-08-19', price: 111200, seatsAvailable: 2, status: 'limited' },
-          { date: '2024-08-26', price: 105900, seatsAvailable: 4, status: 'limited' }
-        ]
-      },
-      {
-        month: 'September',
-        year: 2024,
-        dates: [
-          { date: '2024-09-02', price: 100600, seatsAvailable: 5, status: 'available' },
-          { date: '2024-09-09', price: 95300, seatsAvailable: 6, status: 'available' },
-          { date: '2024-09-16', price: 90000, seatsAvailable: 8, status: 'available' },
-          { date: '2024-09-23', price: 90000, seatsAvailable: 7, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'kedarkantha-trek',
@@ -1223,8 +896,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 20,
     category: 'popular',
-    rating: 4.7,
-    reviews: 210,
 
     gallery: {
       photos: [
@@ -1273,7 +944,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive through scenic mountain roads to Sankri village.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '1,950m'
+        distance: '1,950m',
+        duration: ""
       },
       {
         day: 2,
@@ -1281,8 +953,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek through pine forests to reach campsite.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '2,700m',
-        walkingHours: '5 hours'
+        distance: '2,700m',
+        duration: '5 hours'
       },
       {
         day: 3,
@@ -1290,8 +962,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Gradual ascent with snow trails.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3,100m',
-        walkingHours: '4 hours'
+        distance: '3,100m',
+        duration: '4 hours'
       },
       {
         day: 4,
@@ -1299,29 +971,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Early morning summit climb and descent.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3,800m',
-        walkingHours: '7 hours'
+        distance: '3,800m',
+        duration: '7 hours'
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Sankri', lat: 31.012, lng: 78.262, altitude: '1950m' },
-        { name: 'Juda Ka Talab', lat: 31.024, lng: 78.280, altitude: '2700m' },
-        { name: 'Kedarkantha Summit', lat: 31.0125, lng: 78.290, altitude: '3800m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'December',
-        year: 2024,
-        dates: [
-          { date: '2024-12-05', price: 8000, seatsAvailable: 10, status: 'available' },
-          { date: '2024-12-15', price: 8600, seatsAvailable: 3, status: 'limited' }
-        ]
-      }
-    ]
   },
   {
     id: 'hamta-pass-trek',
@@ -1342,8 +995,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500',
     availability: 15,
     category: 'trending',
-    rating: 4.8,
-    reviews: 180,
 
     gallery: {
       photos: [
@@ -1387,7 +1038,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive and trek start.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '2800m'
+        distance: '2800m',
+        duration: ""
       },
       {
         day: 2,
@@ -1395,26 +1047,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek along river.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3600m',
-        walkingHours: '5 hours'
+        distance: '3600m',
+        duration: '5 hours'
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Manali', lat: 32.2396, lng: 77.1887, altitude: '2050m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'June',
-        year: 2024,
-        dates: [
-          { date: '2024-06-10', price: 10000, seatsAvailable: 8, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'kuari-pass-trek',
@@ -1436,8 +1072,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500',
     availability: 14,
     category: 'popular',
-    rating: 4.7,
-    reviews: 165,
 
     gallery: {
       photos: [
@@ -1484,7 +1118,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive through scenic mountain roads.',
         accommodation: 'Hotel',
         meals: 'Dinner',
-        altitude: '1875m'
+        distance: '1875m',
+        duration: ""
       },
       {
         day: 2,
@@ -1492,8 +1127,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek through forest trails.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '2900m',
-        walkingHours: '5 hours'
+        distance: '2900m',
+        duration: '5 hours'
       },
       {
         day: 3,
@@ -1501,8 +1136,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Gradual ascent with views.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3300m',
-        walkingHours: '4 hours'
+        distance: '3300m',
+        duration: '4 hours'
       },
       {
         day: 4,
@@ -1510,28 +1145,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Summit climb and return.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3810m',
-        walkingHours: '7 hours'
+        distance: '3810m',
+        duration: '7 hours'
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Joshimath', lat: 30.555, lng: 79.565, altitude: '1875m' },
-        { name: 'Kuari Pass', lat: 30.528, lng: 79.588, altitude: '3810m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'January',
-        year: 2024,
-        dates: [
-          { date: '2024-01-08', price: 9000, seatsAvailable: 6, status: 'available' },
-          { date: '2024-01-18', price: 9600, seatsAvailable: 2, status: 'limited' }
-        ]
-      }
-    ]
   },
   {
     id: 'nag-tibba-trek',
@@ -1558,9 +1175,7 @@ export const DUMMY_TREKS: Trek[] = [
     description: 'Nag Tibba, at an elevation of 3,022 metres (9,915 ft), is the highest peak in the Lesser Himalayan region of the Garhwal Division of Uttarakhand state in India and of the Bugyals region. It lends its name to the Nag Tibba Range, itself the next-northerly of the five folds of the Himalayas. It is situated 16 km (9.9 mi) away from Landour cantonment, 57 kilometres (35 mi) from Mussoorie and 148 kilometres (92 mi) from New Tehri in the Tehri Garhwal district of Uttarakhand. The Nag Tibba Range is one of the three principal ranges of the Lesser Himalayas, along with the Dhauladhar and the Pir Panj',
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 25,
-    category: 'weekend',
-    rating: 4.5,
-    reviews: 210,
+    category: 'upcoming',
 
     gallery: {
       photos: [
@@ -1596,7 +1211,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive and trek.',
         accommodation: 'Camp',
         meals: 'Dinner',
-        altitude: '2600m'
+        distance: '2600m',
+        duration: ""
       },
       {
         day: 2,
@@ -1604,27 +1220,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Sunrise hike and descend.',
         accommodation: 'NA',
         meals: 'Breakfast',
-        altitude: '3022m',
-        walkingHours: '5 hours'
+        distance: '3022m',
+        duration: '5 hours'
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Pantwari', lat: 30.45, lng: 78.22, altitude: '1400m' },
-        { name: 'Nag Tibba', lat: 30.39, lng: 78.25, altitude: '3022m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'March',
-        year: 2024,
-        dates: [
-          { date: '2024-03-09', price: 3500, seatsAvailable: 15, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'goechala-trek',
@@ -1646,8 +1245,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
     availability: 8,
     category: 'premium',
-    rating: 4.9,
-    reviews: 140,
 
     gallery: {
       photos: [
@@ -1683,25 +1280,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Start point.',
         accommodation: 'Hotel',
         meals: 'Dinner',
-        altitude: '1780m'
+        distance: '1780m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Yuksom', lat: 27.37, lng: 88.22, altitude: '1780m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'April',
-        year: 2024,
-        dates: [
-          { date: '2024-04-12', price: 18000, seatsAvailable: 4, status: 'limited' }
-        ]
-      }
-    ]
   },
   {
     id: 'buran-ghati-trek',
@@ -1721,8 +1303,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500',
     availability: 10,
     category: 'adventure',
-    rating: 4.8,
-    reviews: 130,
 
     gallery: {
       photos: [
@@ -1758,25 +1338,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to base.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '2800m'
+        distance: '2800m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Janglik', lat: 31.33, lng: 77.63, altitude: '2800m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'June',
-        year: 2024,
-        dates: [
-          { date: '2024-06-15', price: 16000, seatsAvailable: 5, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'beas-kund-trek',
@@ -1796,8 +1361,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 20,
     category: 'short',
-    rating: 4.6,
-    reviews: 170,
 
     gallery: {
       photos: [
@@ -1833,25 +1396,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive and trek.',
         accommodation: 'Camp',
         meals: 'Dinner',
-        altitude: '2600m'
+        distance: '2600m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Solang Valley', lat: 32.316, lng: 77.157, altitude: '2600m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'May',
-        year: 2024,
-        dates: [
-          { date: '2024-05-20', price: 7500, seatsAvailable: 12, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'pangarchulla-peak-trek',
@@ -1871,8 +1419,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
     availability: 10,
     category: 'adventure',
-    rating: 4.8,
-    reviews: 120,
 
     gallery: {
       photos: [
@@ -1919,7 +1465,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to Joshimath.',
         accommodation: 'Hotel',
         meals: 'Dinner',
-        altitude: '1875m'
+        distance: '1875m',
+        duration: ""
       },
       {
         day: 2,
@@ -1927,8 +1474,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek begins.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '2900m',
-        walkingHours: '5 hours'
+        distance: '2900m',
+        duration: '5 hours'
       },
       {
         day: 3,
@@ -1936,8 +1483,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Ascend through forests.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3300m',
-        walkingHours: '4 hours'
+        distance: '3300m',
+        duration: '4 hours'
       },
       {
         day: 4,
@@ -1945,28 +1492,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Climb Pangarchulla Peak and return.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '4575m',
-        walkingHours: '8 hours'
+        distance: '4575m',
+        duration: '8 hours'
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Joshimath', lat: 30.555, lng: 79.565, altitude: '1875m' },
-        { name: 'Pangarchulla Peak', lat: 30.52, lng: 79.58, altitude: '4575m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'April',
-        year: 2024,
-        dates: [
-          { date: '2024-04-10', price: 13500, seatsAvailable: 5, status: 'available' },
-          { date: '2024-04-20', price: 14200, seatsAvailable: 2, status: 'limited' }
-        ]
-      }
-    ]
   },
   {
     id: 'tarsar-marsar-trek',
@@ -1985,8 +1514,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500',
     availability: 12,
     category: 'premium',
-    rating: 4.9,
-    reviews: 160,
 
     gallery: {
       photos: [
@@ -2022,26 +1549,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to basecamp.',
         accommodation: 'Camp',
         meals: 'Dinner',
-        altitude: '2400m'
+        distance: '2400m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Aru Valley', lat: 34.07, lng: 75.31, altitude: '2400m' },
-        { name: 'Tarsar Lake', lat: 34.1, lng: 75.35, altitude: '3795m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'July',
-        year: 2024,
-        dates: [
-          { date: '2024-07-15', price: 15000, seatsAvailable: 6, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'dzongri-trek',
@@ -2063,8 +1574,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=500',
     availability: 10,
     category: 'scenic',
-    rating: 4.7,
-    reviews: 95,
 
     gallery: {
       photos: [
@@ -2100,26 +1609,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Start trek.',
         accommodation: 'Hotel',
         meals: 'Dinner',
-        altitude: '1780m'
+        distance: '1780m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Yuksom', lat: 27.37, lng: 88.22, altitude: '1780m' },
-        { name: 'Dzongri', lat: 27.5, lng: 88.18, altitude: '4020m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'October',
-        year: 2024,
-        dates: [
-          { date: '2024-10-10', price: 14000, seatsAvailable: 4, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'pin-parvati-pass',
@@ -2137,8 +1630,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 6,
     category: 'extreme',
-    rating: 4.9,
-    reviews: 80,
 
     gallery: {
       photos: [
@@ -2174,26 +1665,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Start trek preparation.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '1580m'
+        distance: '1580m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Kasol', lat: 32.01, lng: 77.31, altitude: '1580m' },
-        { name: 'Pin Parvati Pass', lat: 31.9, lng: 77.8, altitude: '5319m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'August',
-        year: 2024,
-        dates: [
-          { date: '2024-08-05', price: 28000, seatsAvailable: 2, status: 'limited' }
-        ]
-      }
-    ]
   },
   {
     id: 'markha-valley-trek',
@@ -2213,8 +1688,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 12,
     category: 'popular',
-    rating: 4.8,
-    reviews: 140,
 
     gallery: {
       photos: [
@@ -2250,26 +1723,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Acclimatization day.',
         accommodation: 'Hotel',
         meals: 'Dinner',
-        altitude: '3500m'
+        distance: '3500m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Leh', lat: 34.15, lng: 77.57, altitude: '3500m' },
-        { name: 'Markha Valley', lat: 34.05, lng: 77.7, altitude: '3700m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'July',
-        year: 2024,
-        dates: [
-          { date: '2024-07-12', price: 22000, seatsAvailable: 6, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'rupin-pass-trek',
@@ -2289,8 +1746,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500',
     availability: 10,
     category: 'adventure',
-    rating: 4.9,
-    reviews: 175,
 
     gallery: {
       photos: [
@@ -2337,7 +1792,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to base village.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '1550m'
+        distance: '1550m',
+        duration: ""
       },
       {
         day: 2,
@@ -2345,8 +1801,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Trek along river valley.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '2100m',
-        walkingHours: '6 hours'
+        distance: '2100m',
+        duration: '6 hours'
       },
       {
         day: 3,
@@ -2354,8 +1810,8 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Climb to hanging village.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '2650m',
-        walkingHours: '5 hours'
+        distance: '2650m',
+        duration: '5 hours'
       },
       {
         day: 4,
@@ -2363,28 +1819,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Reach waterfall base.',
         accommodation: 'Camp',
         meals: 'All meals',
-        altitude: '3500m',
-        walkingHours: '5 hours'
+        distance: '3500m',
+        duration: '5 hours'
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Dhaula', lat: 31.01, lng: 78.18, altitude: '1550m' },
-        { name: 'Rupin Pass', lat: 31.03, lng: 78.34, altitude: '4650m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'May',
-        year: 2024,
-        dates: [
-          { date: '2024-05-12', price: 17500, seatsAvailable: 6, status: 'available' },
-          { date: '2024-05-25', price: 18300, seatsAvailable: 2, status: 'limited' }
-        ]
-      }
-    ]
   },
   {
     id: 'ali-bedni-bugyal-trek',
@@ -2406,8 +1844,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500',
     availability: 15,
     category: 'scenic',
-    rating: 4.7,
-    reviews: 140,
 
     gallery: {
       photos: [
@@ -2443,26 +1879,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to base.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '2300m'
+        distance: '2300m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Lohajung', lat: 30.23, lng: 79.73, altitude: '2300m' },
-        { name: 'Bedni Bugyal', lat: 30.27, lng: 79.72, altitude: '3350m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'April',
-        year: 2024,
-        dates: [
-          { date: '2024-04-14', price: 12000, seatsAvailable: 10, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'kedartal-trek',
@@ -2482,8 +1902,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500',
     availability: 8,
     category: 'adventure',
-    rating: 4.8,
-    reviews: 90,
 
     gallery: {
       photos: [
@@ -2519,26 +1937,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Base preparation.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '3048m'
+        distance: '3048m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Gangotri', lat: 30.99, lng: 78.93, altitude: '3048m' },
-        { name: 'Kedartal', lat: 30.92, lng: 79.02, altitude: '4750m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'June',
-        year: 2024,
-        dates: [
-          { date: '2024-06-18', price: 16000, seatsAvailable: 4, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'phulara-ridge-trek',
@@ -2558,8 +1960,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1549887534-3ec93abae1b6?w=500',
     availability: 12,
     category: 'scenic',
-    rating: 4.6,
-    reviews: 85,
 
     gallery: {
       photos: [
@@ -2595,26 +1995,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to base.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '1950m'
+        distance: '1950m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Sankri', lat: 31.01, lng: 78.26, altitude: '1950m' },
-        { name: 'Phulara Ridge', lat: 31.05, lng: 78.30, altitude: '3700m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'May',
-        year: 2024,
-        dates: [
-          { date: '2024-05-10', price: 11500, seatsAvailable: 6, status: 'available' }
-        ]
-      }
-    ]
   },
   {
     id: 'sandakphu-phalut-trek',
@@ -2636,8 +2020,6 @@ export const DUMMY_TREKS: Trek[] = [
     image: 'https://images.unsplash.com/photo-1464822759844-d150ad6d1c6d?w=500',
     availability: 18,
     category: 'scenic',
-    rating: 4.7,
-    reviews: 130,
 
     gallery: {
       photos: [
@@ -2673,26 +2055,10 @@ export const DUMMY_TREKS: Trek[] = [
         description: 'Drive to start point.',
         accommodation: 'Guesthouse',
         meals: 'Dinner',
-        altitude: '2000m'
+        distance: '2000m',
+        duration: ""
       }
     ],
-
-    routeMap: {
-      waypoints: [
-        { name: 'Manebhanjan', lat: 26.99, lng: 88.11, altitude: '2000m' },
-        { name: 'Sandakphu', lat: 27.1, lng: 88.0, altitude: '3636m' }
-      ]
-    },
-
-    monthlyAvailability: [
-      {
-        month: 'October',
-        year: 2024,
-        dates: [
-          { date: '2024-10-12', price: 12000, seatsAvailable: 10, status: 'available' }
-        ]
-      }
-    ]
   }
 ]
 
@@ -2716,23 +2082,8 @@ export const searchTreks = (query: string): Trek[] => {
   )
 }
 
-export const getBlogById = (id: string): BlogPost | undefined => {
-  return DUMMY_BLOGS.find(blog => blog.id === id || blog.slug === id)
-}
-
 export const getUserById = (id: string): User | undefined => {
   return DUMMY_USERS.find(user => user.id === id)
-}
-
-export const searchBlogs = (query: string): BlogPost[] => {
-  const lowercaseQuery = query.toLowerCase()
-  return DUMMY_BLOGS.filter(blog =>
-    blog.title.toLowerCase().includes(lowercaseQuery) ||
-    blog.excerpt.toLowerCase().includes(lowercaseQuery) ||
-    blog.content.toLowerCase().includes(lowercaseQuery) ||
-    blog.category.toLowerCase().includes(lowercaseQuery) ||
-    blog.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery))
-  )
 }
 
 export const getTreksByCategory = (category: string): Trek[] => {
@@ -2752,7 +2103,7 @@ export const getQuickTrekSuggestions = (query: string = '', limit: number = 6): 
   }
 
   return treks
-    .sort((a, b) => (b.rating * b.reviews) - (a.rating * a.reviews))
+    .sort((a, b) => a.title.localeCompare(b.title))
     .slice(0, limit)
 }
 
@@ -2792,113 +2143,5 @@ export const DUMMY_BOOKINGS: Booking[] = [
     status: 'confirmed',
     total_cost: 2199,
     created_at: '2024-02-28T16:45:00Z'
-  }
-]
-
-// Blog Posts (Complete collection)
-export const DUMMY_BLOGS: BlogPost[] = [
-  {
-    id: 'blog-1',
-    title: 'Essential Gear for High-Altitude Trekking',
-    slug: 'essential-gear-high-altitude-trekking',
-    excerpt: 'Discover the must-have equipment and gear for successful high-altitude adventures. From proper layering systems to specialized equipment, learn what you need for treks above 4,000 meters.',
-    content: 'High-altitude trekking presents unique challenges that require specialized gear and careful preparation. As you ascend above 4,000 meters, the environment becomes increasingly harsh, with lower oxygen levels, extreme temperature variations, and unpredictable weather conditions...',
-    image: 'https://images.unsplash.com/photo-1596055746427-d5f61aa5df99?w=800',
-    author: 'Sarah Mountain',
-    published_date: '2024-03-15T10:00:00Z',
-    category: 'Gear Guide',
-    tags: ['gear', 'high-altitude', 'equipment', 'safety'],
-    reading_time: 8
-  },
-  {
-    id: 'blog-2',
-    title: 'Preparing for Your First Himalayan Trek',
-    slug: 'preparing-first-himalayan-trek',
-    excerpt: 'Everything you need to know before embarking on your first Himalayan adventure. From physical preparation to cultural insights, this comprehensive guide covers all the essentials.',
-    content: 'The Himalayas offer some of the world\'s most spectacular trekking experiences, but proper preparation is essential for a safe and enjoyable journey...',
-    image: 'https://images.unsplash.com/photo-1686553749776-96e22b5e5827?w=800',
-    author: 'David Sherpa',
-    published_date: '2024-03-10T14:30:00Z',
-    category: 'Preparation',
-    tags: ['himalayas', 'preparation', 'first-time', 'training'],
-    reading_time: 12
-  },
-  {
-    id: 'blog-3',
-    title: 'Best Trekking Seasons Around the World',
-    slug: 'best-trekking-seasons-worldwide',
-    excerpt: 'Plan your trekking adventures with this comprehensive guide to the best seasons for popular trekking destinations worldwide. From monsoons to snow seasons, timing is everything.',
-    content: 'Timing can make or break your trekking experience. Understanding seasonal patterns, weather conditions, and local factors is crucial for planning successful adventures worldwide...',
-    image: 'https://images.unsplash.com/photo-1551046285-76c80338639e?w=800',
-    author: 'Maria Rodriguez',
-    published_date: '2024-03-05T09:15:00Z',
-    category: 'Planning',
-    tags: ['seasons', 'planning', 'weather', 'worldwide'],
-    reading_time: 10
-  },
-  {
-    id: 'blog-4',
-    title: 'Complete Guide to Trekking Nutrition',
-    slug: 'complete-guide-trekking-nutrition',
-    excerpt: 'Fuel your adventures with proper nutrition. Learn about caloric needs, meal planning, and the best foods to pack for multi-day treks in remote locations.',
-    content: 'Proper nutrition is the fuel that powers your trekking adventures. Understanding your body\'s needs and planning accordingly can mean the difference between a successful trek and an energy-depleted struggle...',
-    image: 'https://images.unsplash.com/photo-1651956126405-be7497203015?w=800',
-    author: 'Dr. James Nutrition',
-    published_date: '2024-02-28T11:20:00Z',
-    category: 'Nutrition',
-    tags: ['nutrition', 'food', 'energy', 'health'],
-    reading_time: 9
-  },
-  {
-    id: 'blog-5',
-    title: 'Navigation Skills Every Trekker Should Know',
-    slug: 'navigation-skills-every-trekker',
-    excerpt: 'Master essential navigation techniques for safe wilderness travel. From reading topographic maps to using GPS devices, build confidence in route-finding skills.',
-    content: 'Navigation skills are among the most critical safety skills for any trekker. Whether you\'re following well-marked trails or venturing into remote wilderness areas, understanding how to navigate confidently can save your life...',
-    image: 'https://images.unsplash.com/photo-1504807959081-3dafd3871909?w=800',
-    author: 'Mike Trailblazer',
-    published_date: '2024-02-25T15:45:00Z',
-    category: 'Skills',
-    tags: ['navigation', 'safety', 'compass', 'gps'],
-    reading_time: 11
-  },
-  {
-    id: 'blog-6',
-    title: 'Choosing the Right Trekking Backpack',
-    slug: 'choosing-right-trekking-backpack',
-    excerpt: 'Find the perfect backpack for your adventures. This comprehensive guide covers capacity, fit, features, and recommendations for different types of trekking.',
-    content: 'Your backpack is your most important piece of trekking equipment after your boots. A well-fitted, properly sized pack can make the difference between a comfortable journey and a painful ordeal...',
-    image: 'https://images.unsplash.com/photo-1622260614153-03223fb72052?w=800',
-    author: 'Lisa Gear',
-    published_date: '2024-02-20T08:30:00Z',
-    category: 'Gear Guide',
-    tags: ['backpack', 'equipment', 'gear', 'comfort'],
-    reading_time: 13
-  },
-  {
-    id: 'blog-7',
-    title: 'Mental Preparation for Challenging Treks',
-    slug: 'mental-preparation-challenging-treks',
-    excerpt: 'Build the mental resilience needed for demanding adventures. Learn psychological techniques and mindset strategies that help you overcome obstacles and enjoy your journey.',
-    content: 'Physical fitness gets most of the attention in trek preparation, but mental readiness is equally important for challenging adventures. This guide explores psychological preparation techniques...',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
-    author: 'Dr. Emma Mind',
-    published_date: '2024-02-15T16:20:00Z',
-    category: 'Preparation',
-    tags: ['mental-health', 'psychology', 'mindset', 'resilience'],
-    reading_time: 14
-  },
-  {
-    id: 'blog-8',
-    title: 'Altitude Sickness: Prevention and Treatment',
-    slug: 'altitude-sickness-prevention-treatment',
-    excerpt: 'Understand altitude sickness symptoms, prevention strategies, and treatment options. Essential knowledge for anyone planning high-altitude adventures above 3,000 meters.',
-    content: 'Altitude sickness affects many trekkers venturing above 3,000 meters. Understanding the symptoms, prevention methods, and proper treatment can make the difference between a successful summit and a dangerous situation...',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800',
-    author: 'Dr. Sarah Alpine',
-    published_date: '2024-02-10T12:45:00Z',
-    category: 'Health',
-    tags: ['altitude', 'health', 'safety', 'medicine'],
-    reading_time: 15
   }
 ]

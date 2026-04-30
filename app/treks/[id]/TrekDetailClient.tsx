@@ -17,8 +17,6 @@ import { Label } from '@/components/ui/label'
 import {
     MapPin,
     Clock,
-    Users,
-    Star,
     Calendar,
     CheckCircle2,
     XCircle,
@@ -29,6 +27,12 @@ import {
     CalendarIcon,
     ImageIcon,
     Check,
+    Flag,
+    Route,
+    User,
+    Mail,
+    Phone,
+    Users,
 } from 'lucide-react'
 import type { Trek } from '@/types/trek'
 import { APP_ROUTES } from '@/lib/constants/routes'
@@ -41,11 +45,33 @@ interface Props {
 export function TrekDetailClient({ trek }: Props) {
     const router = useRouter()
     const [showBookingDialog, setShowBookingDialog] = useState(false)
+    const [imageError, setImageError] = useState(false)
 
-    const handleBookingSubmit = (e: React.FormEvent) => {
+    const handleBookingSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // In a real app, this would send data to an API
-        alert('Booking request received! We will contact you shortly to confirm details.')
+        const formData = new FormData(e.currentTarget)
+        
+        const firstName = formData.get('firstName')
+        const lastName = formData.get('lastName')
+        const email = formData.get('email')
+        const phone = formData.get('phone')
+        const travelers = formData.get('travelers')
+        const date = formData.get('date')
+
+        const message = `*New Trek Booking Request*
+        
+*Trek:* ${trek.title}
+*Name:* ${firstName} ${lastName}
+*Email:* ${email}
+*Phone:* ${phone}
+*Travelers:* ${travelers}
+*Preferred Date:* ${date}
+*Location:* ${trek.location}`
+
+        const phoneNumber = '918319931901'
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+        
+        window.open(whatsappUrl, '_blank')
         setShowBookingDialog(false)
     }
 
@@ -65,23 +91,29 @@ export function TrekDetailClient({ trek }: Props) {
                     </Button>
 
                     {/* Hero Section */}
-                    <div className="relative h-96 rounded-lg overflow-hidden mb-8">
-                        <ImageWithFallback
-                            src={trek.image}
-                            alt={trek.title}
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                            <div className="p-8 text-white">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <Badge className="bg-emerald-600">{trek.category}</Badge>
-                                    {trek.availability <= 5 && (
-                                        <Badge className="bg-red-500">Only {trek.availability} spots left</Badge>
-                                    )}
+                    <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden mb-8 bg-black">
+                        {(trek.image && !imageError) ? (
+                            <Image
+                                src={trek.image}
+                                alt={trek.title}
+                                fill
+                                className="object-cover"
+                                priority
+                                onError={() => setImageError(true)}
+                            />
+                        ) : null}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end">
+                            <div className="p-8 text-white w-full">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <Badge className="bg-emerald-600 hover:bg-emerald-600 border-none px-3">
+                                        {trek.category}
+                                    </Badge>
                                 </div>
-                                <h1 className="text-4xl md:text-5xl font-bold mb-2">{trek.title}</h1>
-                                <div className="flex items-center text-lg">
-                                    <MapPin className="w-5 h-5 mr-2" />
+                                <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
+                                    {trek.title}
+                                </h1>
+                                <div className="flex items-center text-lg text-gray-200">
+                                    <MapPin className="w-5 h-5 mr-2 text-emerald-400" />
                                     {trek.location}
                                 </div>
                             </div>
@@ -93,12 +125,10 @@ export function TrekDetailClient({ trek }: Props) {
                         <div className="lg:col-span-2">
                             {/* Overview Tabs */}
                             <Tabs defaultValue="overview" className="w-full">
-                                <TabsList className="grid w-full grid-cols-5">
+                                <TabsList className="grid w-full grid-cols-3">
                                     <TabsTrigger value="overview">Overview</TabsTrigger>
                                     <TabsTrigger value="gallery">Gallery</TabsTrigger>
                                     <TabsTrigger value="itinerary">Itinerary</TabsTrigger>
-                                    <TabsTrigger value="route">Route</TabsTrigger>
-                                    <TabsTrigger value="calendar">Availability</TabsTrigger>
                                 </TabsList>
 
                                 {/* Overview Tab */}
@@ -120,13 +150,6 @@ export function TrekDetailClient({ trek }: Props) {
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center">
-                                                    <Users className="w-5 h-5 text-emerald-600 mr-3" />
-                                                    <div>
-                                                        <p className="font-semibold">Availability</p>
-                                                        <p className="text-gray-600">{trek.availability} spots available</p>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center">
                                                     <Mountain className="w-5 h-5 text-emerald-600 mr-3" />
                                                     <div>
                                                         <p className="font-semibold">Difficulty</p>
@@ -140,6 +163,36 @@ export function TrekDetailClient({ trek }: Props) {
                                                         <p className="text-gray-600">{trek.season}</p>
                                                     </div>
                                                 </div>
+
+                                                {trek.basecamp && (
+                                                    <div className="flex items-center">
+                                                        <Flag className="w-5 h-5 text-emerald-600 mr-3" />
+                                                        <div>
+                                                            <p className="font-semibold">Basecamp</p>
+                                                            <p className="text-gray-600">{trek.basecamp}</p>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {trek.highestAltitude && (
+                                                    <div className="flex items-center">
+                                                        <Mountain className="w-5 h-5 text-emerald-600 mr-3" />
+                                                        <div>
+                                                            <p className="font-semibold">Highest Altitude</p>
+                                                            <p className="text-gray-600">{trek.highestAltitude}</p>
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {trek.totalDistance && (
+                                                    <div className="flex items-center">
+                                                        <Route className="w-5 h-5 text-emerald-600 mr-3" />
+                                                        <div>
+                                                            <p className="font-semibold">Distance</p>
+                                                            <p className="text-gray-600">{trek.totalDistance}</p>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -174,6 +227,25 @@ export function TrekDetailClient({ trek }: Props) {
                                                     {trek.included.map((item, index) => (
                                                         <div key={index} className="flex items-start space-x-3">
                                                             <Check className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                            <span className="text-gray-700">{item}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    )}
+
+                                    {/* What's Not Included */}
+                                    {trek.notIncluded && trek.notIncluded.length > 0 && (
+                                        <Card>
+                                            <CardHeader>
+                                                <CardTitle>What's Not Included</CardTitle>
+                                            </CardHeader>
+                                            <CardContent>
+                                                <div className="grid md:grid-cols-2 gap-3">
+                                                    {trek.notIncluded.map((item, index) => (
+                                                        <div key={index} className="flex items-start space-x-3">
+                                                            <XCircle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                                                             <span className="text-gray-700">{item}</span>
                                                         </div>
                                                     ))}
@@ -232,27 +304,14 @@ export function TrekDetailClient({ trek }: Props) {
                                                                         Day {day.day}: {day.title}
                                                                     </div>
                                                                     <div className="text-sm text-gray-600 mt-1">
-                                                                        Altitude: {day.altitude}
-                                                                        {day.walkingHours && ` • Walking: ${day.walkingHours}`}
-                                                                        {day.drivingHours && ` • Driving: ${day.drivingHours}`}
+                                                                        {day.distance && `Distance: ${day.distance}`}
+                                                                        {day.duration && ` • Duration: ${day.duration}`}
                                                                     </div>
                                                                 </div>
                                                             </AccordionTrigger>
-                                                            <AccordionContent className="space-y-4">
-                                                                <p className="text-gray-700">{day.description}</p>
-                                                                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                                                                    <div className="flex items-center">
-                                                                        <Bed className="w-4 h-4 text-emerald-600 mr-2" />
-                                                                        <span>{day.accommodation}</span>
-                                                                    </div>
-                                                                    <div className="flex items-center">
-                                                                        <Utensils className="w-4 h-4 text-emerald-600 mr-2" />
-                                                                        <span>{day.meals}</span>
-                                                                    </div>
-                                                                    <div className="flex items-center">
-                                                                        <Mountain className="w-4 h-4 text-emerald-600 mr-2" />
-                                                                        <span>{day.altitude}</span>
-                                                                    </div>
+                                                            <AccordionContent className="pb-6 pt-2">
+                                                                <div className="bg-emerald-50/30 border-l-4 border-emerald-500 p-5 rounded-r-xl shadow-sm">
+                                                                    <p className="text-gray-700 leading-relaxed">{day.description}</p>
                                                                 </div>
                                                             </AccordionContent>
                                                         </AccordionItem>
@@ -267,198 +326,62 @@ export function TrekDetailClient({ trek }: Props) {
                                     </Card>
                                 </TabsContent>
 
-                                {/* Route Tab */}
-                                <TabsContent value="route">
-                                    <Card>
-                                        <CardHeader>
-                                            <CardTitle>Route Map</CardTitle>
-                                            <CardDescription>
-                                                Key waypoints and route information
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent>
-                                            {trek.routeMap && trek.routeMap.waypoints.length > 0 ? (
-                                                <div className="space-y-4">
-                                                    <div className="grid gap-4">
-                                                        {trek.routeMap.waypoints.map((waypoint, index) => (
-                                                            <div
-                                                                key={index}
-                                                                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
-                                                            >
-                                                                <div className="flex items-center space-x-3">
-                                                                    <div className="w-8 h-8 bg-emerald-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
-                                                                        {index + 1}
-                                                                    </div>
-                                                                    <div>
-                                                                        <h4 className="font-semibold text-gray-900">{waypoint.name}</h4>
-                                                                        <p className="text-sm text-gray-600">
-                                                                            Altitude: {waypoint.altitude}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="text-right text-sm text-gray-500">
-                                                                    <p>{waypoint.lat.toFixed(4)}°</p>
-                                                                    <p>{waypoint.lng.toFixed(4)}°</p>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <p className="text-gray-600 text-center py-8">
-                                                    Route map will be provided upon booking.
-                                                </p>
-                                            )}
-                                        </CardContent>
-                                    </Card>
-                                </TabsContent>
 
-                                {/* Availability Tab */}
-                                <TabsContent value="calendar">
-                                    <Card>
-                                        <CardHeader>
-                                            <CardTitle className="flex items-center gap-2">
-                                                <CalendarIcon className="w-5 h-5" />
-                                                Available Dates & Pricing
-                                            </CardTitle>
-                                            <CardDescription>
-                                                View available departure dates, pricing, and seat availability by month
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent>
-                                            {trek.monthlyAvailability && trek.monthlyAvailability.length > 0 ? (
-                                                <Accordion type="single" collapsible className="w-full">
-                                                    {trek.monthlyAvailability.map((monthData, index) => (
-                                                        <AccordionItem key={index} value={`month-${monthData.month}-${monthData.year}`}>
-                                                            <AccordionTrigger className="text-left">
-                                                                <div className="flex items-center justify-between w-full pr-4">
-                                                                    <div>
-                                                                        <div className="font-semibold text-lg">{monthData.month} {monthData.year}</div>
-                                                                        <div className="text-sm text-gray-600 mt-1">
-                                                                            {monthData.dates?.length || 0} departure{monthData.dates?.length !== 1 ? 's' : ''} available
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </AccordionTrigger>
-                                                            <AccordionContent>
-                                                                <div className="space-y-3">
-                                                                    {monthData.dates && monthData.dates.map((dateData, dateIndex) => (
-                                                                        <div
-                                                                            key={dateIndex}
-                                                                            className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
-                                                                        >
-                                                                            <div className="flex items-center space-x-4">
-                                                                                <div className="text-center">
-                                                                                    <div className="text-2xl font-bold text-emerald-600">
-                                                                                        {new Date(dateData.date).getDate()}
-                                                                                    </div>
-                                                                                    <div className="text-xs text-gray-600">
-                                                                                        {new Date(dateData.date).toLocaleDateString('en-US', { weekday: 'short' })}
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div>
-                                                                                    <div className="font-semibold text-gray-900">
-                                                                                        {new Date(dateData.date).toLocaleDateString('en-US', {
-                                                                                            month: 'long',
-                                                                                            day: 'numeric',
-                                                                                            year: 'numeric'
-                                                                                        })}
-                                                                                    </div>
-                                                                                    <div className="text-sm text-gray-600 mt-1">
-                                                                                        {dateData.seatsAvailable} seat{dateData.seatsAvailable !== 1 ? 's' : ''} available
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="text-right">
-                                                                                <div className="text-xl font-bold text-emerald-600">
-                                                                                    ₹{dateData.price}
-                                                                                </div>
-                                                                                <Button
-                                                                                    size="sm"
-                                                                                    onClick={() => setShowBookingDialog(true)}
-                                                                                    className="mt-2 bg-emerald-600 hover:bg-emerald-700"
-                                                                                >
-                                                                                    Book Now
-                                                                                </Button>
-                                                                            </div>
-                                                                        </div>
-                                                                    ))}
-                                                                </div>
-                                                            </AccordionContent>
-                                                        </AccordionItem>
-                                                    ))}
-                                                </Accordion>
-                                            ) : (
-                                                <div className="text-center py-12">
-                                                    <CalendarIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Availability Coming Soon</h3>
-                                                    <p className="text-gray-600 mb-6">
-                                                        Detailed availability calendar will be available soon. Contact us for current availability.
-                                                    </p>
-                                                    <Button
-                                                        onClick={() => setShowBookingDialog(true)}
-                                                        className="bg-emerald-600 hover:bg-emerald-700"
-                                                    >
-                                                        Check Availability
-                                                    </Button>
-                                                </div>
-                                            )}
-                                        </CardContent>
-                                    </Card>
-                                </TabsContent>
+
                             </Tabs>
                         </div>
 
                         {/* Sidebar */}
                         <div className="space-y-6">
                             {/* Booking Card */}
-                            <Card className="sticky top-8">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center justify-between">
-                                        <span>Book This Trek</span>
-                                        <div className="flex items-center">
-                                            <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
-                                            <span className="text-sm">
-                                                {trek.rating} ({trek.reviews})
-                                            </span>
+                            <Card className="sticky top-24 border-gray-100 shadow-xl overflow-hidden">
+                                <div className="bg-emerald-600 px-6 py-4">
+                                    <h3 className="text-white font-bold text-lg">Book Your Adventure</h3>
+                                </div>
+                                
+                                <CardContent className="p-6 space-y-6">
+                                    <div className="text-center pb-6 border-b border-gray-50">
+                                        <div className="text-sm text-gray-500 font-medium uppercase tracking-wider mb-1">Total Cost</div>
+                                        <div className="flex items-center justify-center gap-1">
+                                            <span className="text-4xl font-extrabold text-gray-900">₹{trek.cost.toLocaleString('en-IN')}</span>
                                         </div>
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="space-y-4">
-                                    <div className="text-center">
-                                        <div className="text-3xl font-bold text-emerald-600">₹{trek.cost}</div>
-                                        <div className="text-sm text-gray-600">per person</div>
+                                        <div className="text-sm text-emerald-600 font-semibold mt-1">per person</div>
                                     </div>
 
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between text-sm">
-                                            <span className="text-gray-600">Duration:</span>
-                                            <span className="font-semibold">{trek.duration}</span>
+                                    <div className="grid grid-cols-1 gap-4">
+                                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                            <div className="flex items-center text-gray-600">
+                                                <Clock className="w-4 h-4 mr-3 text-emerald-600" />
+                                                <span className="text-sm font-medium">Duration</span>
+                                            </div>
+                                            <span className="text-sm font-bold text-gray-900">{trek.duration}</span>
                                         </div>
-                                        <div className="flex justify-between text-sm">
-                                            <span className="text-gray-600">Difficulty:</span>
-                                            <Badge variant="outline" className="text-xs">
+                                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                            <div className="flex items-center text-gray-600">
+                                                <Mountain className="w-4 h-4 mr-3 text-emerald-600" />
+                                                <span className="text-sm font-medium">Difficulty</span>
+                                            </div>
+                                            <Badge className={`${
+                                                trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-100 text-green-700' :
+                                                trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                                            } border-none shadow-none font-bold`}>
                                                 {trek.difficulty}
                                             </Badge>
                                         </div>
-                                        <div className="flex justify-between text-sm">
-                                            <span className="text-gray-600">Available spots:</span>
-                                            <span className="font-semibold">{trek.availability}</span>
-                                        </div>
                                     </div>
 
-                                    <div className="border-t pt-4">
+                                    <div className="space-y-3 pt-2">
                                         <Button
                                             onClick={() => setShowBookingDialog(true)}
-                                            className="w-full bg-emerald-600 hover:bg-emerald-700"
-                                            size="lg"
+                                            className="w-full bg-emerald-600 hover:bg-emerald-700 h-14 text-lg font-bold shadow-lg shadow-emerald-100 transition-all active:scale-95"
                                         >
-                                            Book Now
+                                            Book This Trek
                                         </Button>
                                     </div>
 
-                                    <div className="text-xs text-gray-500 text-center">
-                                        Free cancellation up to 30 days before departure
+                                    <div className="text-[10px] text-gray-400 text-center">
+                                        Free cancellation up to 30 days before departure. 
+                                        <br />Terms & conditions apply.
                                     </div>
                                 </CardContent>
                             </Card>
@@ -468,56 +391,80 @@ export function TrekDetailClient({ trek }: Props) {
             </main>
 
             <Dialog open={showBookingDialog} onOpenChange={setShowBookingDialog}>
-                <DialogContent className="sm:max-w-[500px]">
-                    <DialogHeader>
-                        <DialogTitle>Book {trek.title}</DialogTitle>
-                        <DialogDescription>
-                            Fill out the form below to request a booking. We'll get back to you within 24 hours.
+                <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-none shadow-2xl">
+                    <DialogHeader className="bg-emerald-600 px-8 py-10 text-white relative">
+                        <DialogTitle className="text-3xl font-bold mb-2">Book Your Trek</DialogTitle>
+                        <DialogDescription className="text-emerald-50 text-base opacity-90 leading-relaxed">
+                            Adventure is just a few clicks away. Fill in your details and we'll handle the rest.
                         </DialogDescription>
                     </DialogHeader>
-                    <form onSubmit={handleBookingSubmit} className="space-y-4 mt-4">
-                        <div className="grid grid-cols-2 gap-4">
+                    
+                    <form onSubmit={handleBookingSubmit} className="p-8 space-y-6 bg-white">
+                        <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <Label htmlFor="firstName">First name</Label>
-                                <Input id="firstName" required placeholder="John" />
+                                <Label htmlFor="firstName" className="text-sm font-semibold text-gray-700 ml-1">First Name</Label>
+                                <div className="relative">
+                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <Input id="firstName" name="firstName" required placeholder="John" className="pl-10 h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-lg transition-all" />
+                                </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="lastName">Last name</Label>
-                                <Input id="lastName" required placeholder="Doe" />
+                                <Label htmlFor="lastName" className="text-sm font-semibold text-gray-700 ml-1">Last Name</Label>
+                                <div className="relative">
+                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <Input id="lastName" name="lastName" required placeholder="Doe" className="pl-10 h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-lg transition-all" />
+                                </div>
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" required placeholder="john@example.com" />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="phone">Phone number</Label>
-                            <Input id="phone" type="tel" required placeholder="+91 98765 43210" />
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <Label htmlFor="travelers">Travelers</Label>
-                                <Input id="travelers" type="number" min="1" defaultValue="1" required />
+                                <Label htmlFor="email" className="text-sm font-semibold text-gray-700 ml-1">Email Address</Label>
+                                <div className="relative">
+                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <Input id="email" name="email" type="email" required placeholder="john@example.com" className="pl-10 h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-lg transition-all" />
+                                </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="date">Preferred Date</Label>
-                                <Input id="date" type="date" required />
+                                <Label htmlFor="phone" className="text-sm font-semibold text-gray-700 ml-1">Phone Number</Label>
+                                <div className="relative">
+                                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <Input id="phone" name="phone" type="tel" required placeholder="+91 98765 43210" className="pl-10 h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-lg transition-all" />
+                                </div>
                             </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="message">Special Requests</Label>
-                            <textarea
-                                id="message"
-                                className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                placeholder="Any dietary restrictions or special requirements?"
-                            />
+
+                        <div className="grid grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="travelers" className="text-sm font-semibold text-gray-700 ml-1">Travelers</Label>
+                                <div className="relative">
+                                    <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <Input id="travelers" name="travelers" type="number" min="1" defaultValue="1" required className="pl-10 h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-lg transition-all" />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="date" className="text-sm font-semibold text-gray-700 ml-1">Preferred Date</Label>
+                                <div className="relative">
+                                    <CalendarIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <Input id="date" name="date" type="date" required className="pl-10 h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-lg transition-all" />
+                                </div>
+                            </div>
                         </div>
-                        <DialogFooter className="mt-6">
-                            <Button type="button" variant="outline" onClick={() => setShowBookingDialog(false)}>
-                                Cancel
+
+                        <DialogFooter className="mt-8 pt-6 border-t border-gray-50 flex sm:justify-between items-center gap-4">
+                            <Button 
+                                type="button" 
+                                variant="ghost" 
+                                onClick={() => setShowBookingDialog(false)}
+                                className="text-gray-500 hover:text-gray-700 hover:bg-gray-50 h-12 px-6"
+                            >
+                                Not ready yet
                             </Button>
-                            <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
-                                Submit Request
+                            <Button 
+                                type="submit" 
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white h-12 px-10 font-bold rounded-lg shadow-lg shadow-emerald-100 transition-all active:scale-95"
+                            >
+                                Confirm Booking Request
                             </Button>
                         </DialogFooter>
                     </form>
