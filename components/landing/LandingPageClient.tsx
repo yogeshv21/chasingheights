@@ -22,8 +22,8 @@ import {
     getTreksByCategory,
     getQuickTrekSuggestions,
     mockDelay,
-    type Trek,
 } from '@/data/dummyData'
+import type { Trek } from '@/types/trek'
 import { APP_ROUTES } from '@/lib/constants/routes'
 
 export function LandingPageClient() {
