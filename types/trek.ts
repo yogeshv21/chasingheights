@@ -30,9 +30,8 @@ export interface ItineraryDay {
     description: string
     accommodation: string
     meals: string
-    altitude: string
-    walkingHours?: string
-    drivingHours?: string
+    distance?: string
+    duration: string
 }
 
 export interface RouteMap {

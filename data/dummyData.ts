@@ -1,4 +1,11 @@
-// Centralized dummy data for Chasingheights application
+import { 
+  Trek, 
+  ItineraryDay, 
+  Gallery, 
+  GalleryVideo, 
+  RouteMap, 
+  Waypoint 
+} from '@/types/trek'
 
 export interface User {
   id: string
@@ -6,63 +13,6 @@ export interface User {
   name: string
   phone?: string
   created_at: string
-}
-
-export interface Gallery {
-  photos: string[]
-  videos: GalleryVideo[]
-}
-
-export interface GalleryVideo {
-  id: string
-  title: string
-  thumbnail: string
-  youtubeId: string
-  duration: string
-}
-
-export interface Trek {
-  id: string
-  title: string
-  location: string
-  duration: string
-  difficulty: string
-  cost: number
-  season: string
-  months: string[]
-  description: string
-  image: string
-  availability: number
-  category: string
-  highlights?: string[]
-  included?: string[]
-  notIncluded?: string[]
-  itinerary?: ItineraryDay[]
-  gallery?: Gallery
-  basecamp?: string
-  highestAltitude?: string
-  totalDistance?: string
-}
-
-export interface ItineraryDay {
-  day: number
-  title: string
-  description: string
-  accommodation: string
-  meals: string,
-  distance?: string
-  duration: string,
-}
-
-export interface RouteMap {
-  waypoints: Waypoint[]
-}
-
-export interface Waypoint {
-  name: string
-  lat: number
-  lng: number
-  altitude: string
 }
 
 export interface Booking {
