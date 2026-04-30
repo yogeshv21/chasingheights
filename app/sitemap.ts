@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { DUMMY_TREKS, DUMMY_BLOGS } from '@/data/dummyData'
+import { DUMMY_TREKS } from '@/data/dummyData'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://chasingheights.com'
@@ -18,12 +18,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    const blogPages = DUMMY_BLOGS.map((blog) => ({
-        url: `${baseUrl}/blog/${blog.slug}`,
-        lastModified: new Date(blog.published_date),
-        changeFrequency: 'monthly' as const,
-        priority: 0.6,
-    }))
-
-    return [...staticPages, ...trekPages, ...blogPages]
+    return [...staticPages, ...trekPages]
 }
