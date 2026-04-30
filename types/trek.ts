@@ -31,6 +31,7 @@ export interface ItineraryDay {
     accommodation: string
     meals: string
     distance?: string
+    altitude?: string
     duration: string
 }
 

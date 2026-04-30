@@ -305,6 +305,7 @@ export function TrekDetailClient({ trek }: Props) {
                                                                     </div>
                                                                     <div className="text-sm text-gray-600 mt-1">
                                                                         {day.distance && `Distance: ${day.distance}`}
+                                                                        {day.altitude && `${day.distance ? ' • ' : ''}Altitude: ${day.altitude}`}
                                                                         {day.duration && ` • Duration: ${day.duration}`}
                                                                     </div>
                                                                 </div>
