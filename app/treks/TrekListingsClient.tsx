@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
+import { useSearchParams } from 'next/navigation';
 import {
     Select,
     SelectContent,
@@ -37,14 +38,23 @@ export function TrekListingsClient() {
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
     const [filters, setFilters] = useState<Filters>({
-        search: '',
+        search: searchParams.get('search') || '',
         season: '',
         difficulty: '',
         month: '',
         category: '',
         priceRange: '',
     })
+
+    const clearSearch = () => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete('search'); // 🔥 remove it completely
+
+        router.replace(`${pathname}?${params.toString()}`);
+    };
 
     const itemsPerPage = 9
 
@@ -122,10 +132,14 @@ export function TrekListingsClient() {
     }
 
     const handleFilterChange = (key: keyof Filters, value: string) => {
+        if (key === 'search') {
+            clearSearch();
+        }
         setFilters((prev) => ({ ...prev, [key]: value }))
     }
 
     const clearFilters = () => {
+        clearSearch();
         setFilters({
             search: '',
             season: '',
@@ -179,10 +193,20 @@ export function TrekListingsClient() {
                     {/* Main Layout with Sidebar */}
                     <div className="flex flex-col lg:flex-row gap-8">
                         {/* Mobile Filter Toggle */}
-                        <div className="lg:hidden">
-                            <Button 
+                        {/* Mobile Filter Toggle */}
+                        <div className="lg:hidden space-y-4">
+                            <div className="relative">
+                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <Input
+                                    placeholder="Search treks..."
+                                    value={filters.search}
+                                    onChange={(e) => handleFilterChange('search', e.target.value)}
+                                    className="pl-11 h-12 text-lg border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-xl shadow-sm bg-white"
+                                />
+                            </div>
+                            <Button
                                 onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
-                                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center h-12 text-lg"
+                                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center h-12 text-lg rounded-xl shadow-lg shadow-emerald-100"
                             >
                                 <Filter className="w-5 h-5 mr-2" />
                                 {isMobileFilterOpen ? 'Hide Filters' : 'Show Filters'}
@@ -211,7 +235,7 @@ export function TrekListingsClient() {
                                             </Button>
                                         )}
                                         {isMobileFilterOpen && (
-                                            <button 
+                                            <button
                                                 onClick={() => setIsMobileFilterOpen(false)}
                                                 className="lg:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors -mr-2"
                                             >
@@ -224,142 +248,142 @@ export function TrekListingsClient() {
                                 {/* Scrolling Body */}
                                 <div className={`p-6 pt-4 ${isMobileFilterOpen ? 'overflow-y-auto' : ''}`}>
                                     <div className="space-y-6">
-                                    {/* Search */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Search Treks
-                                        </label>
-                                        <div className="relative">
-                                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                            <Input
-                                                placeholder="Search treks..."
-                                                value={filters.search}
-                                                onChange={(e) => handleFilterChange('search', e.target.value)}
-                                                className="pl-10"
-                                            />
+                                        {/* Search */}
+                                        <div className="hidden lg:block">
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Search Treks
+                                            </label>
+                                            <div className="relative">
+                                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                                <Input
+                                                    placeholder="Search treks..."
+                                                    value={filters.search}
+                                                    onChange={(e) => handleFilterChange('search', e.target.value)}
+                                                    className="pl-10"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Category */}
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Category
+                                            </label>
+                                            <Select
+                                                value={filters.category}
+                                                onValueChange={(value) => handleFilterChange('category', value)}
+                                            >
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select category" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="upcoming">Upcoming</SelectItem>
+                                                    <SelectItem value="trending">Trending</SelectItem>
+                                                    <SelectItem value="seasonal">Seasonal</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        {/* Difficulty */}
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Difficulty Level
+                                            </label>
+                                            <Select
+                                                value={filters.difficulty}
+                                                onValueChange={(value) => handleFilterChange('difficulty', value)}
+                                            >
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select difficulty" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="Easy">Easy</SelectItem>
+                                                    <SelectItem value="Moderate">Moderate</SelectItem>
+                                                    <SelectItem value="Hard">Hard</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        {/* Season */}
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Best Season
+                                            </label>
+                                            <Select
+                                                value={filters.season}
+                                                onValueChange={(value) => handleFilterChange('season', value)}
+                                            >
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select season" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="Spring">Spring</SelectItem>
+                                                    <SelectItem value="Summer">Summer</SelectItem>
+                                                    <SelectItem value="Autumn">Autumn</SelectItem>
+                                                    <SelectItem value="Winter">Winter</SelectItem>
+                                                    <SelectItem value="All Year">All Year</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        {/* Month */}
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Month
+                                            </label>
+                                            <Select
+                                                value={filters.month}
+                                                onValueChange={(value) => handleFilterChange('month', value)}
+                                            >
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select month" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="January">January</SelectItem>
+                                                    <SelectItem value="February">February</SelectItem>
+                                                    <SelectItem value="March">March</SelectItem>
+                                                    <SelectItem value="April">April</SelectItem>
+                                                    <SelectItem value="May">May</SelectItem>
+                                                    <SelectItem value="June">June</SelectItem>
+                                                    <SelectItem value="July">July</SelectItem>
+                                                    <SelectItem value="August">August</SelectItem>
+                                                    <SelectItem value="September">September</SelectItem>
+                                                    <SelectItem value="October">October</SelectItem>
+                                                    <SelectItem value="November">November</SelectItem>
+                                                    <SelectItem value="December">December</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        {/* Price Range */}
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Price Range
+                                            </label>
+                                            <Select
+                                                value={filters.priceRange}
+                                                onValueChange={(value) => handleFilterChange('priceRange', value)}
+                                            >
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select price range" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="0-500">₹0 - ₹500</SelectItem>
+                                                    <SelectItem value="500-1000">₹500 - ₹1000</SelectItem>
+                                                    <SelectItem value="1000-1500">₹1000 - ₹1500</SelectItem>
+                                                    <SelectItem value="1500-2000">₹1500 - ₹2000</SelectItem>
+                                                    <SelectItem value="2000">₹2000+</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        {/* Results Count */}
+                                        <div className="pt-4 border-t">
+                                            <p className="text-sm text-gray-600">
+                                                Found {treks.length} trek{treks.length !== 1 ? 's' : ''}
+                                            </p>
                                         </div>
                                     </div>
-
-                                    {/* Category */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Category
-                                        </label>
-                                        <Select
-                                            value={filters.category}
-                                            onValueChange={(value) => handleFilterChange('category', value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select category" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="upcoming">Upcoming</SelectItem>
-                                                <SelectItem value="trending">Trending</SelectItem>
-                                                <SelectItem value="seasonal">Seasonal</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    {/* Difficulty */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Difficulty Level
-                                        </label>
-                                        <Select
-                                            value={filters.difficulty}
-                                            onValueChange={(value) => handleFilterChange('difficulty', value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select difficulty" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="Easy">Easy</SelectItem>
-                                                <SelectItem value="Moderate">Moderate</SelectItem>
-                                                <SelectItem value="Hard">Hard</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    {/* Season */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Best Season
-                                        </label>
-                                        <Select
-                                            value={filters.season}
-                                            onValueChange={(value) => handleFilterChange('season', value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select season" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="Spring">Spring</SelectItem>
-                                                <SelectItem value="Summer">Summer</SelectItem>
-                                                <SelectItem value="Autumn">Autumn</SelectItem>
-                                                <SelectItem value="Winter">Winter</SelectItem>
-                                                <SelectItem value="All Year">All Year</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    {/* Month */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Month
-                                        </label>
-                                        <Select
-                                            value={filters.month}
-                                            onValueChange={(value) => handleFilterChange('month', value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select month" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="January">January</SelectItem>
-                                                <SelectItem value="February">February</SelectItem>
-                                                <SelectItem value="March">March</SelectItem>
-                                                <SelectItem value="April">April</SelectItem>
-                                                <SelectItem value="May">May</SelectItem>
-                                                <SelectItem value="June">June</SelectItem>
-                                                <SelectItem value="July">July</SelectItem>
-                                                <SelectItem value="August">August</SelectItem>
-                                                <SelectItem value="September">September</SelectItem>
-                                                <SelectItem value="October">October</SelectItem>
-                                                <SelectItem value="November">November</SelectItem>
-                                                <SelectItem value="December">December</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    {/* Price Range */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Price Range
-                                        </label>
-                                        <Select
-                                            value={filters.priceRange}
-                                            onValueChange={(value) => handleFilterChange('priceRange', value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select price range" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="0-500">₹0 - ₹500</SelectItem>
-                                                <SelectItem value="500-1000">₹500 - ₹1000</SelectItem>
-                                                <SelectItem value="1000-1500">₹1000 - ₹1500</SelectItem>
-                                                <SelectItem value="1500-2000">₹1500 - ₹2000</SelectItem>
-                                                <SelectItem value="2000">₹2000+</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    {/* Results Count */}
-                                    <div className="pt-4 border-t">
-                                        <p className="text-sm text-gray-600">
-                                            Found {treks.length} trek{treks.length !== 1 ? 's' : ''}
-                                        </p>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -446,10 +470,9 @@ export function TrekListingsClient() {
                                                                 <span className="font-medium">{trek.duration}</span>
                                                             </div>
                                                             <div className="flex items-center text-xs text-gray-600">
-                                                                <div className={`w-2 h-2 rounded-full mr-2 shrink-0 ${
-                                                                    trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
+                                                                <div className={`w-2 h-2 rounded-full mr-2 shrink-0 ${trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
                                                                     trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-500' : 'bg-red-500'
-                                                                }`} />
+                                                                    }`} />
                                                                 <span className="font-medium">{trek.difficulty}</span>
                                                             </div>
                                                             {trek.highestAltitude && (
