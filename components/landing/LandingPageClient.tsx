@@ -22,6 +22,8 @@ import {
     Trophy,
     Mountain,
     Sparkles,
+    Instagram,
+    ExternalLink,
 } from 'lucide-react'
 import { ImageWithFallback } from '@/components/shared/ImageWithFallback'
 import {
@@ -167,9 +169,9 @@ export function LandingPageClient() {
                         <span>Adventure starts here</span>
                     </div>
 
-                    <h1 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.9]">
+                    <h1 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-none">
                         Chase the <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-200 pr-4 pb-1">
                             Heights
                         </span>
                     </h1>
@@ -205,7 +207,7 @@ export function LandingPageClient() {
 
                         {/* Search Suggestions */}
                         {showSuggestions && suggestions.length > 0 && (
-                            <div className="absolute top-[80%] left-0 right-0 mt-2 bg-white border border-gray-100 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] z-[99999] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 p-2">
+                            <div className="absolute top-[120%] left-0 right-0 mt-2 bg-white border border-gray-100 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] z-[99999] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 p-2">
                                 <div className="space-y-1">
                                     {suggestions.map((suggestion) => (
                                         <Link
@@ -264,34 +266,13 @@ export function LandingPageClient() {
                             </div>
                         )}
 
-                        {/* Trending Tags */}
-                        <div className="mt-6 flex flex-wrap justify-center gap-3 animate-fade-in delay-500">
-                            <span className="text-sm text-gray-300 font-medium mr-2">Trending:</span>
-                            {['Everest Base Camp', 'Kedarkantha', 'Bali Pass', 'Hampta Pass'].map((tag) => (
-                                <button
-                                    key={tag}
-                                    onClick={() => {
-                                        setSearchQuery(tag)
-                                        router.push(`${APP_ROUTES.TREKS}?search=${encodeURIComponent(tag)}`)
-                                    }}
-                                    className="text-xs font-bold text-white/80 hover:text-white px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/20 transition-all"
-                                >
-                                    {tag}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
 
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center">
-                    <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-2 font-black">Scroll</span>
+                    </div>
                 </div>
             </section>
 
             {/* Featured Adventures */}
-            <section className="py-16 md:py-32 bg-white relative">
+            <section className="py-10 md:py-22 bg-white relative">
                 <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-gray-50/50 to-transparent pointer-events-none" />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -583,6 +564,76 @@ export function LandingPageClient() {
                                     </CardContent>
                                 </Link>
                             </Card>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Instagram Section */}
+            <section className="py-24 bg-gray-50/50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+                        <div className="text-center md:text-left">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-50 text-pink-600 text-xs font-bold uppercase tracking-wider mb-4">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-600"></span>
+                                </span>
+                                Live on Instagram
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tighter">
+                                Journey through <br className="hidden md:block" />
+                                my <span className="text-pink-600 italic">Lens</span>
+                            </h2>
+                            <p className="text-gray-500 font-medium max-w-md mx-auto md:mx-0">
+                                Real moments from the world's most remote corners. Follow the adventure in real-time on Instagram.
+                            </p>
+                        </div>
+                        
+                        <a 
+                            href="https://www.instagram.com/yogesh.travelstories" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-4 bg-white border border-gray-100 p-3 px-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 w-fit mx-auto md:mx-0"
+                        >
+                            <div className="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg shrink-0">
+                                <Instagram className="w-7 h-7" />
+                            </div>
+                            <div className="text-left">
+                                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Follow on Insta</p>
+                                <p className="font-bold text-gray-900 group-hover:text-pink-600 transition-colors flex items-center whitespace-nowrap">
+                                    @yogesh.travelstories
+                                    <ExternalLink className="w-3.5 h-3.5 ml-2 opacity-50" />
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        {[
+                            "https://instagram.fbho3-4.fna.fbcdn.net/v/t51.82787-15/562171433_18403253431190113_2815090038273962787_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ig_cache_key=MzczOTY0OTg1NTgxMjU3MDkxMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=8p2ni7X6RcEQ7kNvwEpG79a&_nc_oc=Adrc-T4UeWZ7EZpSIReUeF1izJ57KrBpOR3RXkzByZaaDplZWtFzL6mdMQG1LubVhIDJqpOobCc1xpAE7k3cP8HF&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=instagram.fbho3-4.fna&_nc_gid=ZTl9Qn8cnK8_XcxEWRLtUg&_nc_ss=7a22e&oh=00_Af5Al4OQAL5vhJG3g66jdSyEgw2Sdla4gWuMW5rMQts_2g&oe=69FA68CF",
+                            "https://instagram.fbho3-1.fna.fbcdn.net/v/t51.82787-15/648172611_18425558389190113_2130145573520622940_n.jpg?stp=dst-jpegr_e35_tt6&_nc_cat=109&ig_cache_key=Mzg0Njg1MDU1OTM4MzUzNTIwOA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5oZHIuQzMifQ%3D%3D&_nc_ohc=qPUZzOd5jBMQ7kNvwHcWacz&_nc_oc=AdrqzbR8szpnp-imZ32ieN6l9S9Fv9b43PVOxnsFKiPbQG9Y-6BMJEDJrhE54xy82NPWrjAfdCfOHHOK-k_u8zAV&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=instagram.fbho3-1.fna&_nc_gid=P4UgCSNoaksx6X3po_NkGA&_nc_ss=7a22e&oh=00_Af7_ZRS65WsBNk3PNb-v58B_chfAqPrRZPbzWwQdUGQl3g&oe=69FA6F05",
+                            "https://instagram.fbho3-2.fna.fbcdn.net/v/t51.82787-15/539019015_18396442114190113_5635099476192784300_n.heic?stp=dst-jpg_e35_p720x720_tt6&_nc_cat=105&ig_cache_key=MzcwNjcxNjgzMDk2MDg2MzIzOA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=9Tm7GSMOdwoQ7kNvwErF0Yt&_nc_oc=Ado4kgrtjKbyTS0hIFZmtWLPDbYxSDiW9Umei3NpAOsW0h7Ed0HJUYlBCQsSe6Bfb7foENU55kOJA41sU8X9kORM&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=instagram.fbho3-2.fna&_nc_gid=OykCZnjaItmi-0peIwQVDw&_nc_ss=7a22e&oh=00_Af4Uzt--SrIsI_ejIHN2xH1bI3UaTgsVunUj8KyYHjiHkA&oe=69FA8A34",
+                            "https://instagram.fbho3-5.fna.fbcdn.net/v/t51.82787-15/621570979_17935512429150317_2366019039838171658_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzYxMzk0NTU2NDQyNzY4ODMwMg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTc5OS5zZHIuQzMifQ%3D%3D&_nc_ohc=fVmu5rsC2hIQ7kNvwFjsN_Y&_nc_oc=Adq-l7vTZQ-p3X2AO5sgXkStkHn6AJlbK19A-UA-lz-GCv2_cZTFvg4wX6pIVL9V8z7rcCM8M6zPPk_UDJ5eS4RD&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=instagram.fbho3-5.fna&_nc_gid=OykCZnjaItmi-0peIwQVDw&_nc_ss=7a22e&oh=00_Af7WLWfD4vGfi2nkdTIWg29iWqFtr2mdyDsmImEINoI4WA&oe=69FA9794",
+                            "https://instagram.fbho3-2.fna.fbcdn.net/v/t51.82787-15/645952125_17926074756239124_7174967051844525574_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ig_cache_key=MzU0NDY4ODY5MzQxMjg3MjU4NQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTgwMC5zZHIuQzMifQ%3D%3D&_nc_ohc=j3supFl9TnEQ7kNvwEqT-S0&_nc_oc=Adp73vWMfaIuyYzPAwMxFD_1qKEf52wWo6PwpDadSMmopzYVxR4nKE3_PItTiBe0_GD6LExCAuiuuYfGp5JdOpes&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=instagram.fbho3-2.fna&_nc_gid=YwvkptSq-JqyrgIYGRt5IQ&_nc_ss=7a22e&oh=00_Af7XuAywf2OYDu44pgNY4af5x-GEryziny-EpMsw6C2aQg&oe=69FA977F",
+                            "https://instagram.fbho3-2.fna.fbcdn.net/v/t51.82787-15/538125826_18396182026190113_5018870313372645069_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_key=MzcwNTI5MDI5ODc4Njc0NDEzNw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM1MC5zZHIuQzMifQ%3D%3D&_nc_ohc=wHxYxyKgeOAQ7kNvwGxUKTM&_nc_oc=Adpfe6f7X4V8djV-7I5_4nap9KffvbD0MrRw4ej6aslYaOVFy6WYB8G3B9AuFGStVptM1NvYrLtFgvhJB5o_xZGx&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=instagram.fbho3-2.fna&_nc_gid=OykCZnjaItmi-0peIwQVDw&_nc_ss=7a22e&oh=00_Af6nbQY7c8lVGKvMbrtmAzk-TL4ZqAJ8HZNGJiiTI_3HEQ&oe=69FA8960",
+                        ].map((img, i) => (
+                            <a 
+                                key={i}
+                                href="https://www.instagram.com/yogesh.travelstories"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-gray-50 shadow-sm hover:shadow-2xl transition-all duration-500"
+                            >
+                                <ImageWithFallback
+                                    src={img}
+                                    alt={`Instagram post ${i + 1}`}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center">
+                                    <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-500" />
+                                </div>
+                            </a>
                         ))}
                     </div>
                 </div>

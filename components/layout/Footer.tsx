@@ -25,14 +25,11 @@ export function Footer() {
                             We don't just organize treks; we curate life-changing expeditions. Join us to explore the most breathtaking peaks with expert safety and local wisdom.
                         </p>
                         <div className="flex items-center space-x-3">
+                            <a href="https://www.instagram.com/yogesh.travelstories" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all duration-300">
+                                <Instagram className="h-5 w-5" />
+                            </a>
                             <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all duration-300">
                                 <Facebook className="h-5 w-5" />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all duration-300">
-                                <Twitter className="h-5 w-5" />
-                            </a>
-                            <a href="#" className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all duration-300">
-                                <Instagram className="h-5 w-5" />
                             </a>
                         </div>
                     </div>
