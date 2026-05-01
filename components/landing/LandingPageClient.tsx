@@ -205,7 +205,7 @@ export function LandingPageClient() {
 
                         {/* Search Suggestions */}
                         {showSuggestions && suggestions.length > 0 && (
-                            <div className="absolute top-[80%] left-0 right-0 mt-0 bg-white border border-gray-100 rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] z-[99999] overflow-hidden animate-in fade-in slide-in-from-top-1 duration-300 p-2 border-t-0">
+                            <div className="absolute top-[80%] left-0 right-0 mt-2 bg-white border border-gray-100 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] z-[99999] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 p-2">
                                 <div className="space-y-1">
                                     {suggestions.map((suggestion) => (
                                         <Link
@@ -253,11 +253,11 @@ export function LandingPageClient() {
                                                 </div>
                                             </div>
 
-                                            {/* <div className="ml-2 opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0">
+                                            <div className="ml-2 opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0 hidden md:block">
                                                 <div className="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
                                                     <ArrowRight className="w-4 h-4" />
                                                 </div>
-                                            </div> */}
+                                            </div>
                                         </Link>
                                     ))}
                                 </div>

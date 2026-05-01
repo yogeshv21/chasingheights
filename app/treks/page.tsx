@@ -1,6 +1,6 @@
+import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { TrekListingsClient } from './TrekListingsClient'
-import { DUMMY_TREKS } from '@/data/dummyData'
 
 export const metadata: Metadata = {
     title: 'Browse Treks',
@@ -12,5 +12,13 @@ export const metadata: Metadata = {
 }
 
 export default function TreksPage() {
-    return <TrekListingsClient />
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600" />
+            </div>
+        }>
+            < TrekListingsClient />
+        </Suspense>
+    )
 }
