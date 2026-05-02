@@ -86,51 +86,7 @@ export default function BlogPage() {
                             </div>
                         </div>
 
-                        {/* Notification Signup */}
-                        <div className="pt-8">
-                            <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-8 max-w-md mx-auto">
-                                <div className="flex items-center justify-center gap-2 mb-4">
-                                    <Bell className="w-5 h-5 text-emerald-600" />
-                                    <h3 className="text-lg font-semibold text-gray-900">Get Notified</h3>
-                                </div>
-                                <p className="text-sm text-gray-600 mb-6">
-                                    Be the first to read our adventure stories when we launch!
-                                </p>
-                                <div className="flex gap-3">
-                                    <input
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                                    />
-                                    <Button className="bg-emerald-600 hover:bg-emerald-700 px-6 rounded-xl">
-                                        Notify Me
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-12">
-                            <Button
-                                size="lg"
-                                className="bg-emerald-600 hover:bg-emerald-700 text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all"
-                                asChild
-                            >
-                                <Link href={APP_ROUTES.TREKS}>
-                                    Explore Adventures
-                                </Link>
-                            </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all"
-                                asChild
-                            >
-                                <Link href={APP_ROUTES.CONTACT}>
-                                    Contact Us
-                                </Link>
-                            </Button>
-                        </div>
                     </div>
                 </div>
             </main>
