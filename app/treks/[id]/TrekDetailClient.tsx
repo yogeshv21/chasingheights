@@ -122,7 +122,7 @@ export function TrekDetailClient({ trek }: Props) {
                             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/30" />
                         </div>
 
-                        <div className="relative z-10 h-full flex flex-col justify-between px-4 md:px-8 py-10 md:py-16">
+                        <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-8 py-10 md:py-16">
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -163,21 +163,21 @@ export function TrekDetailClient({ trek }: Props) {
                                             {trek.difficulty}
                                         </Badge>
                                     </div>
-                                    <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
+                                    <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] break-words">
                                         {trek.title}
                                     </h1>
-                                    <div className="flex flex-wrap items-center gap-6 text-white/90">
+                                    <div className="flex flex-wrap items-center gap-4 md:gap-6 text-white/90">
                                         <div className="flex items-center gap-2">
-                                            <div className="p-2 bg-white/10 rounded-full backdrop-blur-md">
-                                                <MapPin className="w-4 h-4 text-emerald-400" />
+                                            <div className="p-1.5 md:p-2 bg-white/10 rounded-full backdrop-blur-md">
+                                                <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 text-emerald-400" />
                                             </div>
-                                            <span className="text-lg font-medium">{trek.location}</span>
+                                            <span className="text-base md:text-lg font-medium">{trek.location}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <div className="p-2 bg-white/10 rounded-full backdrop-blur-md">
-                                                <Clock className="w-4 h-4 text-emerald-400" />
+                                            <div className="p-1.5 md:p-2 bg-white/10 rounded-full backdrop-blur-md">
+                                                <Clock className="w-3.5 h-3.5 md:w-4 md:h-4 text-emerald-400" />
                                             </div>
-                                            <span className="text-lg font-medium">{trek.duration}</span>
+                                            <span className="text-base md:text-lg font-medium">{trek.duration}</span>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -188,7 +188,7 @@ export function TrekDetailClient({ trek }: Props) {
                         <motion.div
                             animate={{ y: [0, 8, 0] }}
                             transition={{ duration: 2, repeat: Infinity }}
-                            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40"
+                            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40 hidden sm:flex"
                         >
                             <div className="w-5 h-9 border-2 border-white/20 rounded-full flex justify-center p-1">
                                 <div className="w-1 h-1.5 bg-white/40 rounded-full" />
@@ -196,17 +196,18 @@ export function TrekDetailClient({ trek }: Props) {
                         </motion.div>
                     </section>
 
-                    <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-                        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 py-6">
-                            {/* Left Column: Main Details */}
-                            <div className="lg:col-span-8 space-y-16">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+                        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 py-6">
+                            {/* Left Column: Main Details - Order 2 on mobile */}
+                            <div className="lg:col-span-8 space-y-12 md:space-y-16 order-2 lg:order-1">
                                 {/* Modern Tabs - Minimalist Sliding Underline */}
                                 <Tabs defaultValue="overview" className="w-full">
-                                    <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b border-gray-100 -mx-4 px-4 md:-mx-8 md:px-8 mb-6">
-                                        <TabsList className="flex items-center justify-center h-16 bg-transparent p-0 gap-10">
+                                    <div className="sticky top-[64px] md:top-[72px] z-30 bg-white/95 backdrop-blur-xl border-b border-gray-100 mb-6 -mx-4 px-4 sm:mx-0 sm:px-0">
+                                        <div className="overflow-x-auto no-scrollbar">
+                                            <TabsList className="flex items-center justify-start md:justify-center h-14 md:h-16 bg-transparent p-0 gap-4 md:gap-10 min-w-max px-4 md:px-0">
                                             <TabsTrigger
                                                 value="overview"
-                                                className="relative h-full rounded-none border-none bg-transparent px-2 text-base font-bold text-gray-400 transition-all data-[state=active]:text-emerald-600 group"
+                                                className="relative h-full rounded-none border-none bg-transparent px-2 text-sm md:text-base font-bold text-gray-400 transition-all data-[state=active]:text-emerald-600 group"
                                             >
                                                 <span className="flex items-center gap-2">
                                                     <Activity className="w-4 h-4" />
@@ -216,7 +217,7 @@ export function TrekDetailClient({ trek }: Props) {
                                             </TabsTrigger>
                                             <TabsTrigger
                                                 value="gallery"
-                                                className="relative h-full rounded-none border-none bg-transparent px-2 text-base font-bold text-gray-400 transition-all data-[state=active]:text-emerald-600 group"
+                                                className="relative h-full rounded-none border-none bg-transparent px-2 text-sm md:text-base font-bold text-gray-400 transition-all data-[state=active]:text-emerald-600 group"
                                             >
                                                 <span className="flex items-center gap-2">
                                                     <ImageIcon className="w-4 h-4" />
@@ -226,7 +227,7 @@ export function TrekDetailClient({ trek }: Props) {
                                             </TabsTrigger>
                                             <TabsTrigger
                                                 value="itinerary"
-                                                className="relative h-full rounded-none border-none bg-transparent px-2 text-base font-bold text-gray-400 transition-all data-[state=active]:text-emerald-600 group"
+                                                className="relative h-full rounded-none border-none bg-transparent px-2 text-sm md:text-base font-bold text-gray-400 transition-all data-[state=active]:text-emerald-600 group"
                                             >
                                                 <span className="flex items-center gap-2">
                                                     <Calendar className="w-4 h-4" />
@@ -234,13 +235,14 @@ export function TrekDetailClient({ trek }: Props) {
                                                 </span>
                                                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-emerald-600 rounded-t-full scale-x-0 group-data-[state=active]:scale-x-100 transition-transform duration-300" />
                                             </TabsTrigger>
-                                        </TabsList>
+                                            </TabsList>
+                                        </div>
                                     </div>
 
                                     {/* Overview Tab Content */}
                                     <TabsContent value="overview" className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
                                         {/* Quick Facts Grid - Redesigned */}
-                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
                                             {[
                                                 { icon: Clock, label: "Duration", value: trek.duration, color: "text-blue-600", bg: "bg-blue-50" },
                                                 { icon: Mountain, label: "Difficulty", value: trek.difficulty, color: "text-orange-600", bg: "bg-orange-50" },
@@ -441,8 +443,8 @@ export function TrekDetailClient({ trek }: Props) {
                                                         >
                                                             <Accordion type="single" collapsible className="w-full">
                                                                 <AccordionItem value={`day-${day.day}`} className="border-none mb-4 overflow-hidden">
-                                                                    <AccordionTrigger className="hover:no-underline p-0 group">
-                                                                        <div className="flex items-center gap-6 w-full text-left bg-gray-50 group-data-[state=open]:bg-emerald-50 p-6 rounded-3xl transition-colors">
+                                                                    <AccordionTrigger className="hover:no-underline group bg-gray-50 data-[state=open]:bg-emerald-50 p-6 rounded-3xl transition-colors items-center [&>svg]:w-5 [&>svg]:h-5 [&>svg]:text-gray-400 [&>svg]:shrink-0">
+                                                                        <div className="flex items-center gap-6 w-full text-left">
                                                                             <div className="flex flex-col items-center justify-center w-16 h-16 rounded-2xl bg-white shadow-sm border border-gray-100 shrink-0">
                                                                                 <span className="text-xs font-black text-emerald-600 uppercase">Day</span>
                                                                                 <span className="text-2xl font-black text-gray-900 leading-none">{day.day}</span>
@@ -469,7 +471,7 @@ export function TrekDetailClient({ trek }: Props) {
                                                                         </div>
                                                                     </AccordionTrigger>
                                                                     <AccordionContent className="pt-2 pb-6 px-6">
-                                                                        <div className="pl-20">
+                                                                        <div className="pl-0 sm:pl-20">
                                                                             <div className="bg-white border-l-2 border-emerald-200 pl-8 py-2">
                                                                                 <p className="text-gray-600 leading-relaxed text-base font-medium">
                                                                                     {day.description}
@@ -492,11 +494,11 @@ export function TrekDetailClient({ trek }: Props) {
                                 </Tabs>
                             </div>
 
-                            {/* Right Column: Sticky Sidebar */}
-                            <div className="lg:col-span-4">
-                                <div className="sticky top-24 space-y-6">
-                                    <Card className="border-none shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[32px] overflow-hidden">
-                                        <div className="p-8 space-y-8">
+                            {/* Right Column: Sticky Sidebar - Order 1 on mobile */}
+                            <div className="lg:col-span-4 order-1 lg:order-2">
+                                <div className="lg:sticky lg:top-24 space-y-6">
+                                    <Card className="border-none shadow-xl lg:shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-3xl overflow-hidden bg-white">
+                                        <div className="p-6 md:p-8 space-y-6 md:space-y-8">
                                             <div className="flex justify-between items-start">
                                                 <div>
                                                     <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Starting from</p>

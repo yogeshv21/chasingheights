@@ -72,3 +72,13 @@
 .animate-fade-in {
   animation: fade-in 0.8s ease-out;
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

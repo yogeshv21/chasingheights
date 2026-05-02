@@ -11,7 +11,7 @@ export function Footer() {
 
     return (
         <footer className="bg-slate-950 text-slate-400 border-t border-slate-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                     {/* Brand & Mission */}
                     <div className="space-y-6">
@@ -84,9 +84,9 @@ export function Footer() {
                         <p className="text-sm text-slate-500">Subscribe to get trek alerts and adventure tips.</p>
                         <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
                             <div className="relative">
-                                <Input 
-                                    type="email" 
-                                    placeholder="your@email.com" 
+                                <Input
+                                    type="email"
+                                    placeholder="your@email.com"
                                     className="bg-slate-900 border-slate-800 focus:border-emerald-500 h-11 rounded-xl text-slate-200 pl-4 pr-12"
                                 />
                                 <button className="absolute right-2 top-2 w-7 h-7 bg-emerald-600 rounded-lg flex items-center justify-center text-white hover:bg-emerald-500 transition-colors">
@@ -98,7 +98,7 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-20 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="mt-10 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs text-slate-600">
                         &copy; {currentYear} Chasing Heights. Built for explorers.
                     </p>
