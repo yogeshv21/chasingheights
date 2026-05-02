@@ -82,9 +82,11 @@ export function TrekDetailClient({ trek }: Props) {
         const travelers = formData.get('travelers')
         const date = formData.get('date')
 
+        const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
         const message = `*New Trek Booking Request*
         
 *Trek:* ${trek.title}
+*Link:* ${currentUrl}
 *Name:* ${firstName} ${lastName}
 *Email:* ${email}
 *Phone:* ${phone}
