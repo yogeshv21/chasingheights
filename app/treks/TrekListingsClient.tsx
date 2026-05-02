@@ -177,7 +177,7 @@ export function TrekListingsClient() {
             <div className="min-h-screen bg-[#fcfdfc]">
                 {/* Hero Section */}
                 <div className="relative bg-white pt-9 pb-13 overflow-hidden">
-                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#059669 1px, transparent 1px)', size: '24px 24px' }} />
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#059669 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                         <div className="max-w-2xl">
                             <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
