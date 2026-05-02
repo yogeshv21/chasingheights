@@ -45,12 +45,6 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href={APP_ROUTES.ABOUT} className="text-sm hover:text-emerald-500 transition-colors flex items-center group">
-                                    <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden text-emerald-500">→</span>
-                                    Our Story
-                                </Link>
-                            </li>
-                            <li>
                                 <Link href={APP_ROUTES.BLOG} className="text-sm hover:text-emerald-500 transition-colors flex items-center group">
                                     <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden text-emerald-500">→</span>
                                     Mountain Tales

@@ -69,6 +69,25 @@ export interface Trek {
     basecamp?: string
     highestAltitude?: string
     totalDistance?: string
+    bestTime?: {
+        title: string
+        subtitle: string
+        description: string
+        seasons: {
+            name: string
+            months: string
+        }[]
+        conclusion?: string
+    }
+    difficultyDetail?: {
+        title: string
+        subtitle: string
+        description: string
+        items: {
+            title: string
+            content: string
+        }[]
+    }
 }
 
 export interface TrekFilters {

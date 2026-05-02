@@ -174,70 +174,74 @@ export function TrekListingsClient() {
     return (
         <>
             <Header />
-            <div className="min-h-screen bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    {/* Header */}
-                    <div className="mb-8">
-                        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-                            {filters.search
-                                ? `Search Results for "${filters.search}"`
-                                : 'Discover Amazing Treks'}
-                        </h1>
-                        <p className="text-xl text-gray-600 text-[14px]">
-                            {filters.search
-                                ? `Found ${treks.length} trek${treks.length !== 1 ? 's' : ''} matching your search`
-                                : 'Find your perfect adventure from our curated collection of world-class treks'}
-                        </p>
+            <div className="min-h-screen bg-[#fcfdfc]">
+                {/* Hero Section */}
+                <div className="relative bg-white pt-9 pb-13 overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#059669 1px, transparent 1px)', size: '24px 24px' }} />
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                        <div className="max-w-2xl">
+                            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight leading-tight">
+                                {filters.search
+                                    ? `Results for "${filters.search}"`
+                                    : 'Discover Amazing Treks'}
+                            </h1>
+                            <p className="text-lg text-gray-500 max-w-lg leading-relaxed">
+                                {filters.search
+                                    ? `We found ${treks.length} breathtaking journeys matching your criteria.`
+                                    : 'Explore our handpicked collection of world-class adventures, from high mountain passes to hidden valley escapes.'}
+                            </p>
+                        </div>
                     </div>
+                </div>
 
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
                     {/* Main Layout with Sidebar */}
-                    <div className="flex flex-col lg:flex-row gap-8">
-                        {/* Mobile Filter Toggle */}
+                    <div className="flex flex-col lg:flex-row gap-10">
                         {/* Mobile Filter Toggle */}
                         <div className="lg:hidden space-y-4">
-                            <div className="relative">
-                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <div className="relative group">
+                                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-emerald-500 transition-colors" />
                                 <Input
                                     placeholder="Search treks..."
                                     value={filters.search}
                                     onChange={(e) => handleFilterChange('search', e.target.value)}
-                                    className="pl-11 h-12 text-lg border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-xl shadow-sm bg-white"
+                                    className="pl-12 h-14 text-lg border-gray-200 focus:border-emerald-500 focus:ring-emerald-500 rounded-2xl shadow-sm bg-white transition-all"
                                 />
                             </div>
                             <Button
                                 onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
-                                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center h-12 text-lg rounded-xl shadow-lg shadow-emerald-100"
+                                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center h-14 text-lg rounded-2xl shadow-lg shadow-emerald-100 transition-all active:scale-[0.98]"
                             >
                                 <Filter className="w-5 h-5 mr-2" />
-                                {isMobileFilterOpen ? 'Hide Filters' : 'Show Filters'}
+                                {isMobileFilterOpen ? 'Hide Filters' : 'Filter Adventures'}
                             </Button>
                         </div>
 
                         {/* Left Sidebar - Filters */}
-                        <div className={`lg:w-80 flex-shrink-0 ${isMobileFilterOpen ? 'fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-4 lg:static lg:bg-transparent lg:p-0 lg:block' : 'hidden lg:block'}`}>
-                            <div className={`bg-white shadow-sm border w-full flex flex-col ${isMobileFilterOpen ? 'rounded-xl max-h-[85vh] animate-in slide-in-from-bottom-4 lg:animate-none lg:h-auto' : 'rounded-lg sticky top-8'}`}>
+                        <div className={`lg:w-80 flex-shrink-0 ${isMobileFilterOpen ? 'fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-6 lg:static lg:bg-transparent lg:p-0 lg:block' : 'hidden lg:block'}`}>
+                            <div className={`bg-white/80 backdrop-blur-xl border border-gray-100 w-full flex flex-col shadow-2xl lg:shadow-none overflow-hidden ${isMobileFilterOpen ? 'rounded-[2.5rem] max-h-[85vh] animate-in zoom-in-95' : 'rounded-[2rem] sticky top-24'}`}>
                                 {/* Sticky Header */}
-                                <div className="flex items-center justify-between p-6 pb-4 border-b">
-                                    <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+                                <div className="flex items-center justify-between p-8 pb-6">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-1.5 h-6 bg-emerald-600 rounded-full" />
+                                        <h2 className="text-xl font-bold text-gray-900">Filters</h2>
+                                    </div>
                                     <div className="flex items-center gap-3">
                                         {Object.values(filters).some((filter) => filter) && (
-                                            <Button
-                                                variant="outline"
-                                                size="sm"
+                                            <button
                                                 onClick={() => {
                                                     clearFilters()
                                                     setIsMobileFilterOpen(false)
                                                 }}
-                                                className="text-emerald-600 border-emerald-600 hover:bg-emerald-50"
+                                                className="text-xs font-bold text-emerald-600 hover:text-emerald-700 underline underline-offset-4 decoration-2"
                                             >
-                                                <Filter className="w-4 h-4 mr-2" />
-                                                Clear
-                                            </Button>
+                                                Reset All
+                                            </button>
                                         )}
                                         {isMobileFilterOpen && (
                                             <button
                                                 onClick={() => setIsMobileFilterOpen(false)}
-                                                className="lg:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors -mr-2"
+                                                className="p-2 text-gray-400 hover:bg-gray-100 rounded-full transition-colors"
                                             >
                                                 <X className="w-5 h-5" />
                                             </button>
@@ -246,143 +250,111 @@ export function TrekListingsClient() {
                                 </div>
 
                                 {/* Scrolling Body */}
-                                <div className={`p-6 pt-4 ${isMobileFilterOpen ? 'overflow-y-auto' : ''}`}>
-                                    <div className="space-y-6">
-                                        {/* Search */}
-                                        <div className="hidden lg:block">
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Search Treks
-                                            </label>
-                                            <div className="relative">
-                                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                                <Input
-                                                    placeholder="Search treks..."
-                                                    value={filters.search}
-                                                    onChange={(e) => handleFilterChange('search', e.target.value)}
-                                                    className="pl-10"
-                                                />
-                                            </div>
+                                <div className={`px-8 pb-10 space-y-7 flex-1 overflow-y-auto no-scrollbar`}>
+                                    {/* Search */}
+                                    <div className="hidden lg:block">
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3 ml-1">
+                                            Search Treks
+                                        </label>
+                                        <div className="relative group">
+                                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 group-focus-within:text-emerald-500 transition-colors" />
+                                            <Input
+                                                placeholder="Search by name..."
+                                                value={filters.search}
+                                                onChange={(e) => handleFilterChange('search', e.target.value)}
+                                                className="pl-10 h-11 bg-gray-50/50 border-gray-100 focus:bg-white transition-all rounded-xl"
+                                            />
                                         </div>
+                                    </div>
 
-                                        {/* Category */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Category
-                                            </label>
-                                            <Select
-                                                value={filters.category}
-                                                onValueChange={(value) => handleFilterChange('category', value)}
-                                            >
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select category" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="upcoming">Upcoming</SelectItem>
-                                                    <SelectItem value="trending">Trending</SelectItem>
-                                                    <SelectItem value="seasonal">Seasonal</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
+                                    {/* Difficulty */}
+                                    <div className="space-y-1">
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">
+                                            Difficulty Level
+                                        </label>
+                                        <Select
+                                            value={filters.difficulty}
+                                            onValueChange={(value) => handleFilterChange('difficulty', value)}
+                                        >
+                                            <SelectTrigger className="h-11 bg-gray-50/50 border-gray-100 rounded-xl focus:ring-emerald-500/20">
+                                                <SelectValue placeholder="Select difficulty" />
+                                            </SelectTrigger>
+                                            <SelectContent className="rounded-xl border-gray-100">
+                                                <SelectItem value="Easy">Easy</SelectItem>
+                                                <SelectItem value="Moderate">Moderate</SelectItem>
+                                                <SelectItem value="Hard">Hard</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
 
-                                        {/* Difficulty */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Difficulty Level
-                                            </label>
-                                            <Select
-                                                value={filters.difficulty}
-                                                onValueChange={(value) => handleFilterChange('difficulty', value)}
-                                            >
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select difficulty" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="Easy">Easy</SelectItem>
-                                                    <SelectItem value="Moderate">Moderate</SelectItem>
-                                                    <SelectItem value="Hard">Hard</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
+                                    {/* Season */}
+                                    <div className="space-y-1">
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">
+                                            Best Season
+                                        </label>
+                                        <Select
+                                            value={filters.season}
+                                            onValueChange={(value) => handleFilterChange('season', value)}
+                                        >
+                                            <SelectTrigger className="h-11 bg-gray-50/50 border-gray-100 rounded-xl focus:ring-emerald-500/20">
+                                                <SelectValue placeholder="Select season" />
+                                            </SelectTrigger>
+                                            <SelectContent className="rounded-xl border-gray-100">
+                                                <SelectItem value="Spring">Spring</SelectItem>
+                                                <SelectItem value="Summer">Summer</SelectItem>
+                                                <SelectItem value="Autumn">Autumn</SelectItem>
+                                                <SelectItem value="Winter">Winter</SelectItem>
+                                                <SelectItem value="All Year">All Year</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
 
-                                        {/* Season */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Best Season
-                                            </label>
-                                            <Select
-                                                value={filters.season}
-                                                onValueChange={(value) => handleFilterChange('season', value)}
-                                            >
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select season" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="Spring">Spring</SelectItem>
-                                                    <SelectItem value="Summer">Summer</SelectItem>
-                                                    <SelectItem value="Autumn">Autumn</SelectItem>
-                                                    <SelectItem value="Winter">Winter</SelectItem>
-                                                    <SelectItem value="All Year">All Year</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
+                                    {/* Month */}
+                                    <div className="space-y-1">
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">
+                                            Month
+                                        </label>
+                                        <Select
+                                            value={filters.month}
+                                            onValueChange={(value) => handleFilterChange('month', value)}
+                                        >
+                                            <SelectTrigger className="h-11 bg-gray-50/50 border-gray-100 rounded-xl focus:ring-emerald-500/20">
+                                                <SelectValue placeholder="Select Month" />
+                                            </SelectTrigger>
+                                            <SelectContent className="rounded-xl border-gray-100 h-60">
+                                                {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map(m => (
+                                                    <SelectItem key={m} value={m}>{m}</SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
 
-                                        {/* Month */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Month
-                                            </label>
-                                            <Select
-                                                value={filters.month}
-                                                onValueChange={(value) => handleFilterChange('month', value)}
-                                            >
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select month" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="January">January</SelectItem>
-                                                    <SelectItem value="February">February</SelectItem>
-                                                    <SelectItem value="March">March</SelectItem>
-                                                    <SelectItem value="April">April</SelectItem>
-                                                    <SelectItem value="May">May</SelectItem>
-                                                    <SelectItem value="June">June</SelectItem>
-                                                    <SelectItem value="July">July</SelectItem>
-                                                    <SelectItem value="August">August</SelectItem>
-                                                    <SelectItem value="September">September</SelectItem>
-                                                    <SelectItem value="October">October</SelectItem>
-                                                    <SelectItem value="November">November</SelectItem>
-                                                    <SelectItem value="December">December</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
+                                    {/* Price Range */}
+                                    <div className="space-y-1">
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">
+                                            Price Range
+                                        </label>
+                                        <Select
+                                            value={filters.priceRange}
+                                            onValueChange={(value) => handleFilterChange('priceRange', value)}
+                                        >
+                                            <SelectTrigger className="h-11 bg-gray-50/50 border-gray-100 rounded-xl focus:ring-emerald-500/20">
+                                                <SelectValue placeholder="Select Price" />
+                                            </SelectTrigger>
+                                            <SelectContent className="rounded-xl border-gray-100">
+                                                <SelectItem value="0-20000">Below ₹20,000</SelectItem>
+                                                <SelectItem value="20000-50000">₹20,000 - ₹50,000</SelectItem>
+                                                <SelectItem value="50000-100000">₹50,000 - ₹1,00,000</SelectItem>
+                                                <SelectItem value="100000-200000">₹1,00,000 - ₹2,00,000</SelectItem>
+                                                <SelectItem value="200000">Above ₹2,00,000</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
 
-                                        {/* Price Range */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Price Range
-                                            </label>
-                                            <Select
-                                                value={filters.priceRange}
-                                                onValueChange={(value) => handleFilterChange('priceRange', value)}
-                                            >
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select price range" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="0-500">₹0 - ₹500</SelectItem>
-                                                    <SelectItem value="500-1000">₹500 - ₹1000</SelectItem>
-                                                    <SelectItem value="1000-1500">₹1000 - ₹1500</SelectItem>
-                                                    <SelectItem value="1500-2000">₹1500 - ₹2000</SelectItem>
-                                                    <SelectItem value="2000">₹2000+</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-
-                                        {/* Results Count */}
-                                        <div className="pt-4 border-t">
-                                            <p className="text-sm text-gray-600">
-                                                Found {treks.length} trek{treks.length !== 1 ? 's' : ''}
-                                            </p>
-                                        </div>
+                                    {/* Results Summary */}
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-xs font-bold text-gray-400">Total Found</span>
+                                        <span className="text-sm font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md">{treks.length}</span>
                                     </div>
                                 </div>
                             </div>
@@ -392,27 +364,25 @@ export function TrekListingsClient() {
                         <div className="flex-1">
                             {/* Active Filters Chips */}
                             {Object.entries(filters).filter(([_, value]) => value !== '').length > 0 && (
-                                <div className="flex flex-wrap gap-2 mb-6">
+                                <div className="flex flex-wrap gap-2 mb-8">
                                     {Object.entries(filters).map(([key, value]) => {
                                         if (!value) return null;
                                         return (
                                             <Badge
                                                 key={key}
-                                                variant="secondary"
-                                                className="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1.5 hover:bg-emerald-100 transition-colors"
+                                                className="px-4 py-2 bg-white text-gray-900 border-none shadow-sm flex items-center gap-2 rounded-full hover:bg-gray-50 transition-all"
                                             >
-                                                <span className="capitalize font-medium text-emerald-800">
+                                                <span className="text-[10px] font-black text-emerald-600 uppercase tracking-wider">
                                                     {key === 'priceRange' ? 'Price' : key}:
                                                 </span>
-                                                <span className="font-semibold">{value}</span>
+                                                <span className="text-sm font-bold">{value}</span>
                                                 <button
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         e.stopPropagation();
                                                         handleFilterChange(key as keyof Filters, '');
                                                     }}
-                                                    className="ml-1 p-0.5 rounded-full hover:bg-emerald-200 text-emerald-600 hover:text-emerald-900 focus:outline-none transition-colors"
-                                                    aria-label={`Remove ${key} filter`}
+                                                    className="ml-1 p-0.5 rounded-full hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
                                                     type="button"
                                                 >
                                                     <X className="w-3.5 h-3.5" />
@@ -424,89 +394,97 @@ export function TrekListingsClient() {
                             )}
 
                             {loading ? (
-                                <div className="flex items-center justify-center py-32">
-                                    <div className="text-center">
-                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto mb-4"></div>
-                                        <p className="text-gray-600">Loading amazing treks...</p>
+                                <div className="flex flex-col items-center justify-center py-40">
+                                    <div className="relative w-16 h-16">
+                                        <div className="absolute inset-0 rounded-full border-4 border-emerald-50 border-t-emerald-600 animate-spin" />
                                     </div>
+                                    <p className="mt-6 text-gray-400 font-bold tracking-widest uppercase text-xs">Curating Experiences...</p>
                                 </div>
                             ) : currentTreks.length > 0 ? (
                                 <>
-                                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
                                         {currentTreks.map((trek) => (
                                             <Card
                                                 key={trek.id}
-                                                className="group flex flex-col h-full cursor-pointer hover:shadow-xl transition-all duration-300 border-gray-100 overflow-hidden"
+                                                className="group flex flex-col h-full cursor-pointer hover:shadow-2xl transition-all duration-500 border-none rounded-[2rem] overflow-hidden bg-white shadow-lg shadow-gray-200/50"
                                                 onClick={() => router.push(APP_ROUTES.TREK_DETAIL(trek.id))}
                                             >
-                                                <div className="aspect-[16/10] relative overflow-hidden">
+                                                <div className="aspect-[16/11] relative overflow-hidden">
                                                     <ImageWithFallback
                                                         src={trek.image}
                                                         alt={trek.title}
-                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                                     />
-                                                    <div className="absolute top-3 left-3">
-                                                        <Badge className="bg-emerald-600/90 backdrop-blur-sm text-white border-none px-3 py-1 text-xs font-medium uppercase tracking-wider">
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+                                                    <div className="absolute top-4 left-4">
+                                                        <Badge className="bg-white/90 backdrop-blur-md text-emerald-700 border-none px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm">
                                                             {trek.category}
                                                         </Badge>
                                                     </div>
                                                 </div>
 
-                                                <CardContent className="p-5 flex flex-col flex-1">
+                                                <CardContent className="p-5 md:p-5 flex flex-col flex-1">
                                                     <div className="flex-1 space-y-4">
-                                                        <div>
-                                                            <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-1 mb-1.5">
+                                                        <div className='mb-3'>
+                                                            <h3 className="text-xl font-black text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-2 mb-1.5 min-h-[3.5rem] leading-tight">
                                                                 {trek.title}
                                                             </h3>
-                                                            <div className="flex items-center text-gray-500 text-sm font-medium">
-                                                                <MapPin className="w-3.5 h-3.5 mr-1.5 text-emerald-500" />
+                                                            <div className="flex items-center text-gray-400 text-[10px] font-bold tracking-wider uppercase">
+                                                                <MapPin className="w-3 h-3 mr-1.5 text-emerald-500 shrink-0" />
                                                                 <span className="line-clamp-1">{trek.location}</span>
                                                             </div>
                                                         </div>
 
-                                                        <div className="grid grid-cols-2 gap-y-3 gap-x-2 py-3 border-y border-gray-50">
-                                                            <div className="flex items-center text-xs text-gray-600">
-                                                                <Clock className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
-                                                                <span className="font-medium">{trek.duration}</span>
-                                                            </div>
-                                                            <div className="flex items-center text-xs text-gray-600">
-                                                                <div className={`w-2 h-2 rounded-full mr-2 shrink-0 ${trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
-                                                                    trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-500' : 'bg-red-500'
-                                                                    }`} />
-                                                                <span className="font-medium">{trek.difficulty}</span>
-                                                            </div>
-                                                            {trek.highestAltitude && (
-                                                                <div className="flex items-center text-xs text-gray-600">
-                                                                    <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Alt</span>
-                                                                    <span className="font-medium">{trek.highestAltitude}</span>
+                                                        <div className="grid grid-cols-2 gap-y-3 gap-x-4 pt-3 border-t border-gray-50">
+                                                            <div className="flex flex-col gap-0.5">
+                                                                <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest">Duration</span>
+                                                                <div className="flex items-center text-xs font-bold text-gray-700">
+                                                                    <Clock className="w-3 h-3 text-emerald-500 mr-1.5" />
+                                                                    {trek.duration}
                                                                 </div>
-                                                            )}
-                                                            {trek.totalDistance && (
-                                                                <div className="flex items-center text-xs text-gray-600">
-                                                                    <span className="text-emerald-600 font-bold mr-2 shrink-0 italic">Dist</span>
-                                                                    <span className="font-medium">{trek.totalDistance}</span>
+                                                            </div>
+                                                            <div className="flex flex-col gap-0.5">
+                                                                <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest">Difficulty</span>
+                                                                <div className="flex items-center text-xs font-bold text-gray-700">
+                                                                    <div className={`w-1.5 h-1.5 rounded-full mr-1.5 ${trek.difficulty.toLowerCase() === 'easy' ? 'bg-green-500' :
+                                                                        trek.difficulty.toLowerCase() === 'moderate' ? 'bg-yellow-500' : 'bg-red-500'
+                                                                        }`} />
+                                                                    {trek.difficulty}
                                                                 </div>
-                                                            )}
+                                                            </div>
+                                                            <div className="flex flex-col gap-0.5">
+                                                                <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest">Altitude</span>
+                                                                <div className="text-xs font-bold text-gray-700">
+                                                                    <span className="text-emerald-600 mr-1">↑</span>
+                                                                    {trek.highestAltitude}
+                                                                </div>
+                                                            </div>
+                                                            <div className="flex flex-col gap-0.5">
+                                                                <span className="text-[8px] font-black text-gray-300 uppercase tracking-widest">Distance</span>
+                                                                <div className="text-xs font-bold text-gray-700">
+                                                                    <span className="text-emerald-600 mr-1">↔</span>
+                                                                    {trek.totalDistance}
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <div className="mt-5 flex items-center justify-between gap-4">
+                                                    <div className="mt-3 pt-3 border-t border-gray-50 flex items-center justify-between gap-3">
                                                         <div className="flex flex-col">
-                                                            <span className="text-xs text-gray-500 font-medium uppercase tracking-tighter">Starting from</span>
-                                                            <span className="text-xl font-extrabold text-emerald-700">
+                                                            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-0.5">Price pp</span>
+                                                            <span className="text-xl font-black text-emerald-800 tracking-tight">
                                                                 ₹{trek.cost.toLocaleString('en-IN')}
                                                             </span>
                                                         </div>
                                                         <Button
-                                                            className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm px-4"
-                                                            size="sm"
+                                                            className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-10 px-4 text-xs font-bold shadow-lg shadow-emerald-100 transition-all active:scale-95 group/btn"
                                                             onClick={(e) => {
                                                                 e.stopPropagation()
                                                                 router.push(APP_ROUTES.TREK_DETAIL(trek.id))
                                                             }}
                                                         >
                                                             Details
-                                                            <ChevronRight className="w-4 h-4 ml-1" />
+                                                            <ChevronRight className="w-3.5 h-3.5 ml-1 group-hover/btn:translate-x-0.5 transition-transform" />
                                                         </Button>
                                                     </div>
                                                 </CardContent>
@@ -516,30 +494,26 @@ export function TrekListingsClient() {
 
                                     {/* Pagination Controls */}
                                     {totalPages > 1 && (
-                                        <div className="flex items-center justify-center space-x-2 mt-8">
+                                        <div className="flex items-center justify-center space-x-3 mt-12">
                                             <Button
                                                 variant="outline"
-                                                size="sm"
                                                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                                                 disabled={currentPage === 1}
-                                                className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                                                className="rounded-xl h-11 border-gray-200 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700 transition-all"
                                             >
-                                                <ChevronLeft className="w-4 h-4 mr-1" />
-                                                Previous
+                                                <ChevronLeft className="w-4 h-4 mr-1.5" />
+                                                Prev
                                             </Button>
 
-                                            <div className="flex items-center space-x-1">
+                                            <div className="flex items-center gap-2">
                                                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                                                     <Button
                                                         key={page}
-                                                        variant={currentPage === page ? 'default' : 'outline'}
-                                                        size="sm"
                                                         onClick={() => setCurrentPage(page)}
-                                                        className={
-                                                            currentPage === page
-                                                                ? 'bg-emerald-600 hover:bg-emerald-700'
-                                                                : 'border-emerald-600 text-emerald-600 hover:bg-emerald-50'
-                                                        }
+                                                        className={`w-11 h-11 rounded-xl font-bold transition-all ${currentPage === page
+                                                            ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-100 scale-110'
+                                                            : 'bg-white text-gray-400 hover:bg-gray-50 border border-gray-100'
+                                                            }`}
                                                     >
                                                         {page}
                                                     </Button>
@@ -548,36 +522,31 @@ export function TrekListingsClient() {
 
                                             <Button
                                                 variant="outline"
-                                                size="sm"
                                                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                                                 disabled={currentPage === totalPages}
-                                                className="border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+                                                className="rounded-xl h-11 border-gray-200 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700 transition-all"
                                             >
                                                 Next
-                                                <ChevronRight className="w-4 h-4 ml-1" />
+                                                <ChevronRight className="w-4 h-4 ml-1.5" />
                                             </Button>
                                         </div>
                                     )}
                                 </>
                             ) : (
-                                <div className="text-center py-16">
-                                    <div className="max-w-md mx-auto">
-                                        <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                                            <Search className="w-8 h-8 text-gray-400" />
-                                        </div>
-                                        <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                            No treks found
-                                        </h3>
-                                        <p className="text-gray-600 mb-6">
-                                            Try adjusting your filters to find the perfect trek for your adventure.
-                                        </p>
-                                        <Button
-                                            onClick={clearFilters}
-                                            className="bg-emerald-600 hover:bg-emerald-700"
-                                        >
-                                            Clear All Filters
-                                        </Button>
+                                <div className="text-center py-24 bg-white rounded-[3rem] border border-gray-100 shadow-sm">
+                                    <div className="bg-emerald-50 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                                        <Search className="w-10 h-10 text-emerald-600" />
                                     </div>
+                                    <h3 className="text-2xl font-black text-gray-900 mb-2">No adventures found</h3>
+                                    <p className="text-gray-500 mb-8 max-w-xs mx-auto font-medium">
+                                        Try broadening your search or resetting the filters to find your next trek.
+                                    </p>
+                                    <Button
+                                        onClick={clearFilters}
+                                        className="bg-emerald-600 hover:bg-emerald-700 px-10 h-14 rounded-2xl font-bold shadow-lg shadow-emerald-100"
+                                    >
+                                        Reset All Filters
+                                    </Button>
                                 </div>
                             )}
                         </div>

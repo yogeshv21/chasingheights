@@ -925,6 +925,29 @@ export const DUMMY_TREKS: Trek[] = [
         duration: '7 hours'
       }
     ],
+    bestTime: {
+      title: "Best Time to do the Kedarkantha Trek",
+      subtitle: "Time your trek well",
+      description: "Kedarkantha trek is one of the few treks in the Indian Himalayas where you can trek for the most part of the year. Kedarkantha trek is accessible for 10 months of the year except for July and August (the peak rainy months in Uttarakhand).",
+      seasons: [
+        { name: "Winter", months: "December to February" },
+        { name: "Spring", months: "March and April" },
+        { name: "Summer", months: "May and June" },
+        { name: "Autumn", months: "Mid September to November" }
+      ],
+      conclusion: "Each of these seasons has something very different to offer in terms of terrain, difficulty and weather."
+    },
+    difficultyDetail: {
+      title: "How Difficult is the Kedarkantha Trek",
+      subtitle: "What to Expect in terms of Terrain, Altitude, Weather and Safety",
+      description: "Kedarkantha is considered an easy-to-moderate trek, making it ideal for beginners and experienced trekkers alike. However, trekking in winter adds a layer of challenge due to snow.",
+      items: [
+        { title: "Terrain", content: "The trail passes through beautiful pine forests and open meadows. In winter, the path is completely covered in snow, requiring good trekking shoes and sometimes microspikes." },
+        { title: "Altitude", content: "Reaching a maximum altitude of 12,500 ft, climbers must be aware of AMS (Acute Mountain Sickness). Proper hydration and a steady pace are key." },
+        { title: "Weather", content: "Temperatures can drop to -10°C at night during peak winter (Dec-Jan). Layering is essential to stay warm and safe." },
+        { title: "Safety", content: "The trails are well-marked and usually populated, but having an expert guide is mandatory for safe navigation, especially during heavy snowfall." }
+      ]
+    },
   },
   {
     id: 'hamta-pass-trek',

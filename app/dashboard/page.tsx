@@ -16,11 +16,12 @@ export default function DashboardPage() {
     const dispatch = useAppDispatch()
     const { isAuthenticated, user } = useAppSelector((state) => state.auth)
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            router.push(APP_ROUTES.LOGIN)
-        }
-    }, [isAuthenticated, router])
+    // Commented out redirect for now
+    // useEffect(() => {
+    //     if (!isAuthenticated) {
+    //         router.push(APP_ROUTES.LOGIN)
+    //     }
+    // }, [isAuthenticated, router])
 
     const handleLogout = async () => {
         await dispatch(logoutThunk())

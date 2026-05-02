@@ -86,7 +86,7 @@ export default function RootLayout({
         <StoreProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
             {children}
-            <WhatsAppButton />
+            {/* <WhatsAppButton /> */}
             <Toaster position="top-center" richColors />
 
           </ThemeProvider>
